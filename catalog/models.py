@@ -26,7 +26,9 @@ class Category(SaveModelSlugMixin, models.Model):
         order_insertion_by = ['title']
 
     title = models.CharField(max_length=250, verbose_name="Наименование")
-    slug = models.SlugField(max_length=250, blank=True, verbose_name="Наименование для создания ссылки")
+    slug = models.SlugField(max_length=250, blank=True,
+                            verbose_name="Наименование для создания ссылки",
+                            help_text="Необязательно для заполнения руками")
 
 
 class Type(SaveModelSlugMixin, models.Model):
@@ -37,7 +39,9 @@ class Type(SaveModelSlugMixin, models.Model):
         order_insertion_by = ['title']
 
     title = models.CharField(max_length=250, verbose_name="Наименование")
-    slug = models.SlugField(max_length=250, blank=True, verbose_name="Наименование для создания ссылки")
+    slug = models.SlugField(max_length=250, blank=True,
+                            verbose_name="Наименование для создания ссылки",
+                            help_text="Необязательно для заполнения руками")
 
 
 class Manufacturer(SaveModelSlugMixin, models.Model):
@@ -110,10 +114,10 @@ class Product(SaveModelSlugMixin, MPTTModel):
                                    validators=[file_size_and_extension], verbose_name="Инструкция")
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
     category = models.ManyToManyField(Category, related_name='products')
-    type = models.ForeignKey(Type, null=True, blank=True, related_name='types',
+    type = models.ForeignKey(Type, null=True, blank=True, related_name='products',
                              on_delete=models.SET_NULL)
-    manufacturers = models.ForeignKey(Manufacturer, null=True, blank=True, related_name='types',
-                                      on_delete=models.SET_NULL)
+    manufacturer = models.ForeignKey(Manufacturer, null=True, blank=True, related_name='products',
+                                     on_delete=models.SET_NULL)
     image = models.ForeignKey(ProductImage, null=True, blank=True,
                               on_delete=models.SET_NULL, related_name='products',
                               verbose_name="Изображение товара")
