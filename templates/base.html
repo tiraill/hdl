@@ -35,7 +35,7 @@
     <main class="main">
 
         {% block header %}
-            <header class="header header_bg">
+            <header class="header header_bg" {% block header_bg_cls %}{% endblock %}>
 
         <!-- Top -->
 
@@ -46,16 +46,8 @@
 
             <div class="panel d-sm-flex align-items-center">
               <ul class="panel__list d-lg-flex align-items-center">
-                <li><a href="{% url 'core-about' %}">О компании</a></li>
-                <li><a href="#">Техническая поддержка</a></li>
+                <li><a href="{% url 'core-support' %}">Техническая поддержка</a></li>
               </ul>
-              <a href="#" class="panel__login link-pink d-flex align-items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                  <path fill-rule="evenodd"
-                   d="M13.130,14.871 L0.870,14.871 C0.683,14.870 0.530,14.718 0.530,14.530 C0.530,12.677 1.201,11.789 2.423,10.539 C3.629,9.305 5.253,8.627 7.000,8.627 C8.747,8.627 10.371,9.309 11.577,10.542 C12.799,11.789 13.470,12.680 13.470,14.530 C13.469,14.718 13.317,14.870 13.130,14.871 ZM11.086,11.019 C10.010,9.918 8.556,9.312 6.997,9.312 C5.437,9.312 3.983,9.918 2.907,11.019 C1.889,12.061 1.293,12.649 1.218,14.189 L12.775,14.189 C12.701,12.649 12.108,12.061 11.086,11.019 ZM7.000,8.168 C4.781,8.167 2.983,6.368 2.982,4.149 C2.982,1.929 4.781,0.129 7.000,0.129 C9.219,0.129 11.018,1.929 11.018,4.149 C11.018,6.369 9.219,8.168 7.000,8.168 ZM7.000,0.810 C5.158,0.813 3.666,2.306 3.663,4.149 C3.663,5.992 5.157,7.487 7.000,7.487 C8.843,7.487 10.337,5.992 10.337,4.149 C10.337,2.305 8.843,0.810 7.000,0.810 Z"/>
-                </svg>
-                Войти
-              </a>
             </div>
 
             <!-- Right -->
@@ -89,28 +81,30 @@
             </div>
 
             <!-- Box -->
-
-            <div class="box d-flex align-items-center">
+            {% with request.resolver_match.url_name as url_name %}
+                <div class="box d-flex align-items-center">
               <nav class="nav">
                 <ul class="nav__list d-xl-flex align-items-center">
-                  <li class="nav__item nav__item_drop nav__item_active">
+                  <li class="nav__item {% if url_name == 'core-about' %}nav__item_active{% endif %}">
                     <a href="{% url 'core-about' %}" class="nav__link">
                       О компании
                     </a>
                   </li>
-                    <li class="nav__item nav__item_drop nav__item">
+                    <li class="nav__item {% if url_name == 'core-contacts' %}nav__item_active{% endif %}">
                     <a href="{% url 'core-contacts' %}" class="nav__link">
                       Контакты
                     </a>
                   </li>
-                  <li class="nav__item nav__item_drop">
+                  <li class="nav__item {% if url_name == 'catalog-index' %}nav__item_active{% endif %}">
                     <a href="{% url 'catalog-index' %}" class="nav__link">
                       Каталог
                     </a>
                   </li>
-                  <li class="nav__item"><a href="#" class="nav__link">Обучение</a></li>
-                  <li class="nav__item nav__item_drop">
-                    <a href="#" class="nav__link">
+                  <li class="nav__item {% if url_name == 'brochure-index' %}nav__item_active{% endif %}">
+                      <a href="{% url 'brochure-index' %}" class="nav__link">Брошюры</a>
+                  </li>
+                  <li class="nav__item {% if url_name == 'project-index' %}nav__item_active{% endif %} nav__item_drop">
+                    <a href="{% url 'project-index' %}" class="nav__link">
                       Решения
                       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14px" height="8px">
                         <path fill-rule="evenodd"
@@ -118,34 +112,27 @@
                       </svg>
                     </a>
                     <ul class="navdrop">
-                      <li class="navdrop__item"><a href="#" class="navdrop__link">Еще ссылка</a></li>
-                      <li class="navdrop__item"><a href="#" class="navdrop__link">И тут еще ссылка</a></li>
-                      <li class="navdrop__item"><a href="#" class="navdrop__link">И тут еще ссылка</a></li>
-                      <li class="navdrop__item"><a href="#" class="navdrop__link">И тут еще ссылка</a></li>
-                      <li class="navdrop__item"><a href="#" class="navdrop__link">И тут еще ссылка</a></li>
-                      <li class="navdrop__item"><a href="#" class="navdrop__link">И тут еще ссылка</a></li>
+                      <li class="navdrop__item"><a href="{% url 'project-living' %}" class="navdrop__link">Жилые объекты</a></li>
+                      <li class="navdrop__item"><a href="{% url 'project-commercial' %}" class="navdrop__link">Коммерческие объекты</a></li>
+                      <li class="navdrop__item"><a href="{% url 'project-hotels' %}" class="navdrop__link">Гостинничные объекты</a></li>
                     </ul>
                   </li>
-                  <li class="nav__item"><a href="#" class="nav__link">Проекты</a></li>
-                  <li class="nav__item"><a href="#" class="nav__link">Новости</a></li>
-                  <li class="nav__item nav__item_drop">
-                    <a href="#" class="nav__link">
-                      Брошюры
+                  <li class="nav__item {% if url_name == 'news-index' %}nav__item_active{% endif %}">
+                      <a href="{% url 'news-index' %}" class="nav__link">Новости</a>
+                  </li>
+                  <li class="nav__item {% if url_name == 'education-index' %}nav__item_active{% endif %} nav__item_drop">
+                    <a href="{% url 'education-index' %}" class="nav__link">
+                      Обучение
                       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14px" height="8px">
                         <path fill-rule="evenodd"
                          d="M7.255,7.257 L13.294,1.255 C13.436,1.114 13.436,0.887 13.294,0.745 C13.152,0.604 12.924,0.604 12.782,0.745 L7.000,6.492 L1.219,0.745 C1.077,0.604 0.849,0.604 0.706,0.745 C0.637,0.815 0.599,0.908 0.599,0.999 C0.599,1.090 0.634,1.183 0.706,1.252 L6.745,7.254 C6.885,7.396 7.116,7.396 7.255,7.257 Z"/>
                       </svg>
                     </a>
                     <ul class="navdrop">
-                      <li class="navdrop__item"><a href="#" class="navdrop__link">Еще ссылка</a></li>
-                      <li class="navdrop__item"><a href="#" class="navdrop__link">И тут еще ссылка</a></li>
-                      <li class="navdrop__item"><a href="#" class="navdrop__link">И тут еще ссылка</a></li>
-                      <li class="navdrop__item"><a href="#" class="navdrop__link">И тут еще ссылка</a></li>
-                      <li class="navdrop__item"><a href="#" class="navdrop__link">И тут еще ссылка</a></li>
-                      <li class="navdrop__item"><a href="#" class="navdrop__link">И тут еще ссылка</a></li>
+                      <li class="navdrop__item"><a href="{% url 'education-buspro' %}" class="navdrop__link">Buspro</a></li>
+                      <li class="navdrop__item"><a href="{% url 'education-knx' %}" class="navdrop__link">KNX</a></li>
                     </ul>
                   </li>
-                  <li class="nav__item"><a href="#" class="nav__link">Контакты</a></li>
                 </ul>
               </nav>
               <span class="btn-search speed">
@@ -154,22 +141,23 @@
                    d="M16.880,16.327 L12.914,12.361 C13.978,11.138 14.622,9.542 14.622,7.798 C14.622,3.959 11.500,0.839 7.665,0.839 C3.826,0.839 0.707,3.962 0.707,7.798 C0.707,11.634 3.830,14.756 7.665,14.756 C9.409,14.756 11.004,14.113 12.227,13.049 L16.192,17.015 C16.287,17.109 16.413,17.160 16.536,17.160 C16.659,17.160 16.786,17.112 16.880,17.015 C17.068,16.827 17.068,16.515 16.880,16.327 ZM1.680,7.798 C1.680,4.498 4.365,1.817 7.661,1.817 C10.961,1.817 13.642,4.501 13.642,7.798 C13.642,11.095 10.961,13.784 7.661,13.784 C4.365,13.784 1.680,11.098 1.680,7.798 Z"/>
                 </svg>
               </span>
-              <a href="#" class="btn-basket flex-center">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                  <path fill-rule="evenodd"  fill="rgb(195, 164, 252)"
-                   d="M15.340,5.351 C15.322,5.144 15.148,4.986 14.940,4.988 L11.899,4.988 L11.899,3.837 C11.899,1.960 10.376,0.440 8.498,0.440 C6.620,0.440 5.097,1.960 5.097,3.837 L5.097,4.988 L2.056,4.988 C1.849,4.988 1.676,5.145 1.656,5.351 L0.608,17.389 C0.560,17.947 0.749,18.500 1.128,18.912 C1.508,19.325 2.043,19.559 2.604,19.559 L14.396,19.559 C14.957,19.559 15.492,19.325 15.871,18.912 C16.251,18.500 16.440,17.947 16.392,17.389 L15.340,5.351 ZM5.897,3.837 C5.897,2.402 7.062,1.239 8.498,1.239 C9.934,1.239 11.099,2.402 11.099,3.837 L11.099,4.988 L5.897,4.988 L5.897,3.837 ZM15.280,18.372 C15.054,18.621 14.732,18.762 14.396,18.760 L2.600,18.760 C2.264,18.760 1.943,18.619 1.715,18.372 C1.488,18.124 1.375,17.792 1.404,17.457 L2.420,5.787 L5.097,5.787 L5.097,8.281 C4.454,8.479 4.052,9.116 4.152,9.782 C4.252,10.446 4.824,10.938 5.497,10.938 C6.170,10.938 6.742,10.446 6.842,9.782 C6.942,9.116 6.540,8.479 5.897,8.281 L5.897,5.783 L11.099,5.783 L11.099,8.281 C10.455,8.479 10.053,9.116 10.154,9.782 C10.254,10.446 10.826,10.938 11.499,10.938 C12.172,10.938 12.744,10.446 12.844,9.782 C12.944,9.116 12.542,8.479 11.899,8.281 L11.899,5.783 L14.572,5.783 L15.588,17.453 C15.621,17.789 15.509,18.123 15.280,18.372 L15.280,18.372 ZM5.437,9.024 C5.477,9.030 5.517,9.030 5.557,9.024 C5.853,9.056 6.072,9.314 6.056,9.610 C6.040,9.907 5.795,10.140 5.497,10.140 C5.199,10.140 4.954,9.907 4.938,9.610 C4.922,9.314 5.141,9.056 5.437,9.024 L5.437,9.024 ZM11.439,9.024 C11.479,9.030 11.519,9.030 11.559,9.024 C11.855,9.056 12.074,9.314 12.058,9.610 C12.042,9.907 11.796,10.140 11.499,10.140 C11.201,10.140 10.955,9.907 10.939,9.610 C10.924,9.314 11.143,9.056 11.439,9.024 L11.439,9.024 Z"/>
-                </svg>
-              </a>
+{#              <a href="#" class="btn-basket flex-center">#}
+{#                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">#}
+{#                  <path fill-rule="evenodd"  fill="rgb(195, 164, 252)"#}
+{#                   d="M15.340,5.351 C15.322,5.144 15.148,4.986 14.940,4.988 L11.899,4.988 L11.899,3.837 C11.899,1.960 10.376,0.440 8.498,0.440 C6.620,0.440 5.097,1.960 5.097,3.837 L5.097,4.988 L2.056,4.988 C1.849,4.988 1.676,5.145 1.656,5.351 L0.608,17.389 C0.560,17.947 0.749,18.500 1.128,18.912 C1.508,19.325 2.043,19.559 2.604,19.559 L14.396,19.559 C14.957,19.559 15.492,19.325 15.871,18.912 C16.251,18.500 16.440,17.947 16.392,17.389 L15.340,5.351 ZM5.897,3.837 C5.897,2.402 7.062,1.239 8.498,1.239 C9.934,1.239 11.099,2.402 11.099,3.837 L11.099,4.988 L5.897,4.988 L5.897,3.837 ZM15.280,18.372 C15.054,18.621 14.732,18.762 14.396,18.760 L2.600,18.760 C2.264,18.760 1.943,18.619 1.715,18.372 C1.488,18.124 1.375,17.792 1.404,17.457 L2.420,5.787 L5.097,5.787 L5.097,8.281 C4.454,8.479 4.052,9.116 4.152,9.782 C4.252,10.446 4.824,10.938 5.497,10.938 C6.170,10.938 6.742,10.446 6.842,9.782 C6.942,9.116 6.540,8.479 5.897,8.281 L5.897,5.783 L11.099,5.783 L11.099,8.281 C10.455,8.479 10.053,9.116 10.154,9.782 C10.254,10.446 10.826,10.938 11.499,10.938 C12.172,10.938 12.744,10.446 12.844,9.782 C12.944,9.116 12.542,8.479 11.899,8.281 L11.899,5.783 L14.572,5.783 L15.588,17.453 C15.621,17.789 15.509,18.123 15.280,18.372 L15.280,18.372 ZM5.437,9.024 C5.477,9.030 5.517,9.030 5.557,9.024 C5.853,9.056 6.072,9.314 6.056,9.610 C6.040,9.907 5.795,10.140 5.497,10.140 C5.199,10.140 4.954,9.907 4.938,9.610 C4.922,9.314 5.141,9.056 5.437,9.024 L5.437,9.024 ZM11.439,9.024 C11.479,9.030 11.519,9.030 11.559,9.024 C11.855,9.056 12.074,9.314 12.058,9.610 C12.042,9.907 11.796,10.140 11.499,10.140 C11.201,10.140 10.955,9.907 10.939,9.610 C10.924,9.314 11.143,9.056 11.439,9.024 L11.439,9.024 Z"/>#}
+{#                </svg>#}
+{#              </a>#}
               <button class="navbar-toggle">
                 <span class="icon-bar speed"></span>
                 <span class="icon-bar speed"></span>
                 <span class="icon-bar speed"></span>
               </button>
             </div>
+              {% endwith %}
 
           </div>
         </div>
-
+            {% block header_bot %}{% endblock %}
       </header>
         {% endblock %}
 

@@ -17,3 +17,9 @@ def contacts(request):
 
     return render(request,
                   template_name="contacts.html")
+
+
+def support(request):
+
+    return render(request,
+                  template_name="support.html")

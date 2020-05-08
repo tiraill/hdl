@@ -15,6 +15,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mptt',
+    'core',
     'article',
     'brochure',
     'catalog',
@@ -92,6 +93,10 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+# Pagination
+NUMBER_OF_WING_PAGES = os.environ.get('NUMBER_OF_WING_PAGES', 2)
+NUMBER_OF_ELEMENTS_PER_PAGE = os.environ.get('NUMBER_OF_ELEMENTS_PER_PAGE', 12)
 
 # Static files (CSS, JavaScript, Images)
 

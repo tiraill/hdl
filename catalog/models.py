@@ -20,10 +20,9 @@ log = logging.getLogger(__name__)
 
 class Category(SaveModelSlugMixin, models.Model):
 
-    class MPTTMeta:
+    class Meta:
         verbose_name = 'Категория продукта'
         verbose_name_plural = 'Категории продуктов'
-        order_insertion_by = ['title']
 
     title = models.CharField(max_length=250, verbose_name="Наименование")
     slug = models.SlugField(max_length=250, blank=True,
@@ -33,10 +32,9 @@ class Category(SaveModelSlugMixin, models.Model):
 
 class Type(SaveModelSlugMixin, models.Model):
 
-    class MPTTMeta:
+    class Meta:
         verbose_name = 'Тип продукта'
         verbose_name_plural = 'Типы продуктов'
-        order_insertion_by = ['title']
 
     title = models.CharField(max_length=250, verbose_name="Наименование")
     slug = models.SlugField(max_length=250, blank=True,
@@ -60,35 +58,6 @@ class Manufacturer(SaveModelSlugMixin, models.Model):
 
     def __str__(self):
         return f'{self.title}'
-
-
-class ProductImage(models.Model):
-
-    class Meta:
-        verbose_name = "Изображение товара"
-        verbose_name_plural = "Изображения товара"
-
-    uid = models.UUIDField(default=uuid.uuid4, primary_key=True)
-    image = models.ImageField(null=True)
-
-    def save(self, *args, **kwargs):
-        try:
-            temporary_image = Image.open(self.image)
-            output_io_stream = BytesIO()
-            temporary_image = temporary_image.convert("RGB")
-            temporary_image.thumbnail(settings.IMAGE_THUMBNAIL_SIZE, Image.ANTIALIAS)
-            temporary_image.save(output_io_stream, format='JPEG', quality=85)
-            output_io_stream.seek(0)
-            self.image = InMemoryUploadedFile(output_io_stream, 'image',
-                                              f"{self.image.name.split('.')[0]}.jpg",
-                                              'image/jpeg',
-                                              sys.getsizeof(output_io_stream), None)
-        except ValueError:
-            log.warning("Удалён image файл с сохранением объекта")
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return f'<{self.image.name}, размер={self.image.size}>'
 
 
 class Product(SaveModelSlugMixin, MPTTModel):
@@ -118,11 +87,40 @@ class Product(SaveModelSlugMixin, MPTTModel):
                              on_delete=models.SET_NULL)
     manufacturer = models.ForeignKey(Manufacturer, null=True, blank=True, related_name='products',
                                      on_delete=models.SET_NULL)
-    image = models.ForeignKey(ProductImage, null=True, blank=True,
-                              on_delete=models.SET_NULL, related_name='products',
-                              verbose_name="Изображение товара")
     creation_date = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
+
+
+class ProductImage(models.Model):
+
+    class Meta:
+        verbose_name = "Изображение товара"
+        verbose_name_plural = "Изображения товара"
+
+    uid = models.UUIDField(default=uuid.uuid4, primary_key=True)
+    image = models.ImageField(null=True)
+    product = models.ForeignKey(Product, related_name='images',
+                                on_delete=models.CASCADE,
+                                null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        try:
+            temporary_image = Image.open(self.image)
+            output_io_stream = BytesIO()
+            temporary_image = temporary_image.convert("RGB")
+            temporary_image.thumbnail(settings.IMAGE_THUMBNAIL_SIZE, Image.ANTIALIAS)
+            temporary_image.save(output_io_stream, format='JPEG', quality=85)
+            output_io_stream.seek(0)
+            self.image = InMemoryUploadedFile(output_io_stream, 'image',
+                                              f"{self.image.name.split('.')[0]}.jpg",
+                                              'image/jpeg',
+                                              sys.getsizeof(output_io_stream), None)
+        except ValueError:
+            log.warning("Удалён image файл с сохранением объекта")
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f'<{self.image.name}, размер={self.image.size}, товар={self.product.title}>'
