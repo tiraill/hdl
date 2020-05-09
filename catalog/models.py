@@ -29,6 +29,9 @@ class Category(SaveModelSlugMixin, models.Model):
                             verbose_name="Наименование для создания ссылки",
                             help_text="Необязательно для заполнения руками")
 
+    def __str__(self):
+        return self.title
+
 
 class Type(SaveModelSlugMixin, models.Model):
 
@@ -40,6 +43,9 @@ class Type(SaveModelSlugMixin, models.Model):
     slug = models.SlugField(max_length=250, blank=True,
                             verbose_name="Наименование для создания ссылки",
                             help_text="Необязательно для заполнения руками")
+
+    def __str__(self):
+        return self.title
 
 
 class Manufacturer(SaveModelSlugMixin, models.Model):
@@ -62,9 +68,11 @@ class Manufacturer(SaveModelSlugMixin, models.Model):
 
 class Product(SaveModelSlugMixin, MPTTModel):
 
+    class Meta:
+        verbose_name = 'Товар'
+        verbose_name_plural = 'Товары'
+
     class MPTTMeta:
-        verbose_name = 'Продукт'
-        verbose_name_plural = 'Продукты'
         order_insertion_by = ['title']
 
     title = models.CharField(max_length=250, verbose_name="Наименование")

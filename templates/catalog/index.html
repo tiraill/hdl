@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load core_extras %}
 
         {% block header_bot %}
         <div class="header__bot">
@@ -41,32 +42,24 @@
                       </svg>
                     </span>
                   </h3>
-                  <div class="aside__list check">
-                    <label class="check__item d-flex">
-                      <input type="checkbox" name="check" checked="checked">
-                      <span class="check__mark"></span>
-                      <span class="check__name">Proprietary Wired Technology</span>
-                    </label>
-                    <label class="check__item d-flex">
-                      <input type="checkbox" name="check">
-                      <span class="check__mark"></span>
-                      <span class="check__name">Proprietary Wireless Technology</span>
-                    </label>
-                    <label class="check__item d-flex">
-                      <input type="checkbox" name="check">
-                      <span class="check__mark"></span>
-                      <span class="check__name">Open Standard</span>
-                    </label>
-                    <label class="check__item d-flex">
-                      <input type="checkbox" name="check">
-                      <span class="check__mark"></span>
-                      <span class="check__name">Products compatible with HDL</span>
-                    </label>
+                    <div class="aside__list check">
+                  {% for category in categories %}
+                        <label class="check__item d-flex">
+                          <input type="checkbox" data-slug="{{ category.slug }}" name="check">
+                          <span class="check__mark"></span>
+                          <span class="check__name">{{ category.title }}</span>
+                        </label>
+                  {% endfor %}
+{#                    <label class="check__item d-flex">#}
+{#                      <input type="checkbox" name="check" checked="checked">#}
+{#                      <span class="check__mark"></span>#}
+{#                      <span class="check__name">Proprietary Wireless Technology</span>#}
+{#                    </label>#}
                   </div>
                 </div>
                 <div class="aside__item">
                   <h3>
-                    Каталог:
+                    Тип:
                     <span class="aside__arrow">
                       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21px" height="10px">
                         <path fill-rule="evenodd"  fill="rgb(0, 0, 0)"
@@ -75,51 +68,18 @@
                     </span>
                   </h3>
                   <div class="aside__list check">
-                    <label class="check__item d-flex">
-                      <input type="checkbox" name="check" checked="checked">
-                      <span class="check__mark"></span>
-                      <span class="check__name">Программное обеспечение</span>
-                    </label>
-                    <label class="check__item d-flex">
-                      <input type="checkbox" name="check">
-                      <span class="check__mark"></span>
-                      <span class="check__name">Панели управления/Интерфейсы питания панели</span>
-                    </label>
-                    <label class="check__item d-flex">
-                      <input type="checkbox" name="check">
-                      <span class="check__mark"></span>
-                      <span class="check__name">Контроллеры/Приводы</span>
-                    </label>
-                    <label class="check__item d-flex">
-                      <input type="checkbox" name="check">
-                      <span class="check__mark"></span>
-                      <span class="check__name">Датчики</span>
-                    </label>
-                    <label class="check__item d-flex">
-                      <input type="checkbox" name="check">
-                      <span class="check__mark"></span>
-                      <span class="check__name">Шлюзы/Контакты</span>
-                    </label>
-                    <label class="check__item d-flex">
-                      <input type="checkbox" name="check">
-                      <span class="check__mark"></span>
-                      <span class="check__name">Аудио</span>
-                    </label>
-                    <label class="check__item d-flex">
-                      <input type="checkbox" name="check">
-                      <span class="check__mark"></span>
-                      <span class="check__name">Инфраструктурные устройства/Аксессуары</span>
-                    </label>
-                    <label class="check__item d-flex">
-                      <input type="checkbox" name="check">
-                      <span class="check__mark"></span>
-                      <span class="check__name">Клавишные панели</span>
-                    </label>
+                    {% for type in types %}
+                        <label class="check__item d-flex">
+                          <input type="checkbox" data-slug="{{ type.slug }}" name="check">
+                          <span class="check__mark"></span>
+                          <span class="check__name">{{ type.title }}</span>
+                        </label>
+                      {% endfor %}
                   </div>
                 </div>
                 <div class="aside__item">
                   <h3>
-                    Серия:
+                    Производитель:
                     <span class="aside__arrow">
                       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21px" height="10px">
                         <path fill-rule="evenodd"  fill="rgb(0, 0, 0)"
@@ -128,21 +88,13 @@
                     </span>
                   </h3>
                   <div class="aside__list check">
-                    <label class="check__item d-flex">
-                      <input type="checkbox" name="check" checked="checked">
-                      <span class="check__mark"></span>
-                      <span class="check__name">iElegance</span>
-                    </label>
-                    <label class="check__item d-flex">
-                      <input type="checkbox" name="check">
-                      <span class="check__mark"></span>
-                      <span class="check__name">Tile</span>
-                    </label>
-                    <label class="check__item d-flex">
-                      <input type="checkbox" name="check">
-                      <span class="check__mark"></span>
-                      <span class="check__name">Granite</span>
-                    </label>
+                    {% for manufacturer in manufacturers %}
+                      <label class="check__item d-flex">
+                        <input type="checkbox" data-slug="{{ manufacturer.slug }}" name="check">
+                        <span class="check__mark"></span>
+                        <span class="check__name">{{ manufacturer.title }}</span>
+                      </label>
+                    {% endfor %}
                   </div>
                 </div>
               </aside>
@@ -161,154 +113,40 @@
                     </svg>
                   </button>
                 </form>
-                <div class="show-by d-flex align-items-center">
-                  <span>Показать по:</span>
-                  <ul class="show-by__list d-flex">
-                    <li class="show-by__item"><a href="#" class="show-by__link active">10</a></li>
-                    <li class="show-by__item"><a href="#" class="show-by__link">20</a></li>
-                    <li class="show-by__item"><a href="#" class="show-by__link">50</a></li>
-                  </ul>
-                </div>      
               </div>
               <div class="catalog__group row">
 
-                <!-- Item -->
+                {% for product in products %}
 
-                <div class="col-sm-6 col-lg-6 col-xl-4">
-                  <div class="catalog__item speed">
-                    <div class="catalog__img"><img src="img/catalog/1.png" alt="Фото"></div>
-                    <div class="catalog__desc">
-                      <p class="catalog__name">5A LED диммерный модуль, 6 каналов</p>
-                      <p class="catalog__articul">Артикул: HDL-MPH102.48</p>
-                    </div>
-                    <p class="catalog__price">$263.00</p>
-                    <div class="catalog__btn"><a href="#" class="btn btn__main"><span>В корзину</span></a></div>
-                  </div>
-                </div>
-                
-                <!-- Item -->
-
-                <div class="col-sm-6 col-lg-6 col-xl-4">
-                  <div class="catalog__item speed">
-                    <div class="catalog__img"><img src="img/catalog/2.png" alt="Фото"></div>
-                    <div class="catalog__desc">
-                      <p class="catalog__name">Диммер 12-канальный, 10А на канал</p>
-                      <p class="catalog__articul">Артикул: HDL-MPH102.48</p>
-                    </div>
-                    <p class="catalog__price">$3,490.00</p>
-                    <div class="catalog__btn"><a href="#" class="btn btn__main"><span>В корзину</span></a></div>
-                  </div>
+                    <div class="col-sm-6 col-lg-6 col-xl-4">
+                      <div class="catalog__item speed">
+                        <div class="catalog__img"><img src="{{ product.images.all.0.image.url }}" alt="Фото"></div>
+                        <div class="catalog__desc">
+                          <p class="catalog__name">{{ product.title }}</p>
+                          <p class="catalog__articul">Артикул: {{ product.qualifier }}</p>
+                        </div>
+                      </div>
                 </div>
 
-                <!-- Item -->
-
-                <div class="col-sm-6 col-lg-6 col-xl-4">
-                  <div class="catalog__item speed">
-                    <div class="catalog__img"><img src="img/catalog/3.png" alt="Фото"></div>
-                    <div class="catalog__desc">
-                      <p class="catalog__name">5A LED диммерный модуль, 6 каналов</p>
-                      <p class="catalog__articul">Артикул: HDL-MPH102.48</p>
-                    </div>
-                    <p class="catalog__price">$263.00</p>
-                    <div class="catalog__btn"><a href="#" class="btn btn__main"><span>В корзину</span></a></div>
-                  </div>
-                </div>
-
-                <!-- Item -->
-
-                <div class="col-sm-6 col-lg-6 col-xl-4">
-                  <div class="catalog__item speed">
-                    <div class="catalog__img"><img src="img/catalog/1.png" alt="Фото"></div>
-                    <div class="catalog__desc">
-                      <p class="catalog__name">5A LED диммерный модуль, 6 каналов</p>
-                      <p class="catalog__articul">Артикул: HDL-MPH102.48</p>
-                    </div>
-                    <p class="catalog__price">$263.00</p>
-                    <div class="catalog__btn"><a href="#" class="btn btn__main"><span>В корзину</span></a></div>
-                  </div>
-                </div>
-
-                <!-- Item -->
-
-                <div class="col-sm-6 col-lg-6 col-xl-4">
-                  <div class="catalog__item speed">
-                    <div class="catalog__img"><img src="img/catalog/3.png" alt="Фото"></div>
-                    <div class="catalog__desc">
-                      <p class="catalog__name">5A LED диммерный модуль, 6 каналов</p>
-                      <p class="catalog__articul">Артикул: HDL-MPH102.48</p>
-                    </div>
-                    <p class="catalog__price">$263.00</p>
-                    <div class="catalog__btn"><a href="#" class="btn btn__main"><span>В корзину</span></a></div>
-                  </div>
-                </div>
-
-                <!-- Item -->
-
-                <div class="col-sm-6 col-lg-6 col-xl-4">
-                  <div class="catalog__item speed">
-                    <div class="catalog__img"><img src="img/catalog/2.png" alt="Фото"></div>
-                    <div class="catalog__desc">
-                      <p class="catalog__name">5A LED диммерный модуль, 6 каналов</p>
-                      <p class="catalog__articul">Артикул: HDL-MPH102.48</p>
-                    </div>
-                    <p class="catalog__price">$263.00</p>
-                    <div class="catalog__btn"><a href="#" class="btn btn__main"><span>В корзину</span></a></div>
-                  </div>
-                </div>
-
-                <!-- Item -->
-
-                <div class="col-sm-6 col-lg-6 col-xl-4">
-                  <div class="catalog__item speed">
-                    <div class="catalog__img"><img src="img/catalog/1.png" alt="Фото"></div>
-                    <div class="catalog__desc">
-                      <p class="catalog__name">5A LED диммерный модуль, 6 каналов</p>
-                      <p class="catalog__articul">Артикул: HDL-MPH102.48</p>
-                    </div>
-                    <p class="catalog__price">$263.00</p>
-                    <div class="catalog__btn"><a href="#" class="btn btn__main"><span>В корзину</span></a></div>
-                  </div>
-                </div>
-
+                {% endfor %}
               </div>
+            {% if products.has_other_pages %}
               <nav class="pagination">
                 <ul class="pagination__list flex-center">
-                  <li class="page__item">
-                    <a class="page__link__btn" href="#">
-                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <path fill-rule="evenodd"
-                         d="M0.123,6.759 L6.376,12.886 C6.523,13.030 6.759,13.030 6.907,12.886 C7.054,12.742 7.054,12.510 6.907,12.366 L0.920,6.500 L6.907,0.634 C7.054,0.490 7.054,0.259 6.907,0.114 C6.835,0.043 6.737,0.005 6.643,0.005 C6.548,0.005 6.451,0.041 6.379,0.114 L0.125,6.241 C-0.022,6.383 -0.022,6.617 0.123,6.759 Z"/>
-                      </svg>
-                    </a>
-                  </li>
-                  <li class="page__item">
-                    <a class="page__link active" href="#">1</a>
-                  </li>
-                  <li class="page__item">
-                    <a class="page__link" href="#">2</a>
-                  </li>
-                  <li class="page__item">
-                    <a class="page__link" href="#">3</a>
-                  </li>
-                  <li class="page__item">
-                    <a class="page__link" href="#">4</a>
-                  </li>
-                  <li class="page__item">
-                    <a class="page__link" href="#">...</a>
-                  </li>
-                  <li class="page__item">
-                    <a class="page__link" href="#">10</a>
-                  </li>
-                  <li class="page__item">
-                    <a class="page__link__btn" href="#">
-                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <path fill-rule="evenodd"
-                         d="M6.877,6.759 L0.624,12.886 C0.476,13.030 0.240,13.030 0.093,12.886 C-0.054,12.742 -0.054,12.510 0.093,12.366 L6.080,6.500 L0.093,0.634 C-0.054,0.490 -0.054,0.259 0.093,0.114 C0.165,0.043 0.263,0.005 0.357,0.005 C0.452,0.005 0.549,0.041 0.621,0.114 L6.874,6.241 C7.022,6.383 7.022,6.617 6.877,6.759 Z"/>
-                      </svg>
-                    </a>
-                  </li>
+                {% for pg_num in products.paginator.page_range %}
+                    {% if products.number == pg_num %}
+                      <li class="page__item">
+                        <a class="page__link active" href="?{% url_replace page=pg_num %}">{{ pg_num }}</a>
+                      </li>
+                    {% else %}
+                      <li class="page__item">
+                        <a class="page__link" href="?{% url_replace page=pg_num %}">{{ pg_num }}</a>
+                      </li>
+                    {% endif %}
+                {% endfor %}
                 </ul>
               </nav>
+            {% endif %}
             </div>
 
           </div>

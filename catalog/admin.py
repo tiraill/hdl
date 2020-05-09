@@ -1,2 +1,71 @@
 from django.contrib import admin
+from django.db import models
+from django.forms import Textarea
+from mptt.admin import MPTTModelAdmin
 
+from .models import Category, Type, Manufacturer, Product, ProductImage
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('title',)
+
+
+@admin.register(Type)
+class TypeAdmin(admin.ModelAdmin):
+    list_display = ('title',)
+
+
+@admin.register(Manufacturer)
+class ManufacturerAdmin(admin.ModelAdmin):
+    list_display = ('title',)
+
+
+@admin.register(ProductImage)
+class ProductImageAdmin(admin.ModelAdmin):
+    list_display = ('uid', 'get_product')
+    list_filter = ('product__title',)
+    search_fields = ('product__title',)
+    exclude = ('uid',)
+
+    def get_product(self, instance):
+        if instance and instance.product:
+            return instance.product.title
+        else:
+            return f"Продукт не указан, либо был удален"
+    get_product.short_description = "Продукт, к которому прикреплено фото"
+
+
+@admin.register(Product)
+class ProductAdmin(MPTTModelAdmin):
+
+    formfield_overrides = {
+        models.TextField: {'widget': Textarea(attrs={'cols': 80, 'rows': 5})},
+        models.CharField: {'widget': Textarea(attrs={'cols': 80, 'rows': 5})},
+    }
+
+    list_display = ('title', 'get_category', 'get_type', 'get_manufacturer', 'creation_date', 'qualifier')
+    list_filter = ('category__title', 'type__title', 'manufacturer__title', 'creation_date')
+    search_fields = ('title', 'qualifier')
+
+    def get_category(self, instance):
+        if instance:
+            all_categories = instance.category.all()
+            return ", ".join([item.title for item in all_categories])
+        else:
+            return f"Категория не указана, либо была удалена"
+    get_category.short_description = "Категория товара"
+
+    def get_type(self, instance):
+        if instance and instance.type:
+            return instance.type.title
+        else:
+            return f"Тип не указан, либо был удалена"
+    get_type.short_description = "Тип товара"
+
+    def get_manufacturer(self, instance):
+        if instance and instance.manufacturer:
+            return instance.manufacturer.title
+        else:
+            return f"Производитель не указан, либо был удалён"
+    get_manufacturer.short_description = "Производитель товара"
