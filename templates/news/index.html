@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load core_extras %}
+
+    {% block header_bot %}
+        <div class="header__bot">
+            <div class="container">
+                <nav class="breadcrumb">
+                    <ol class="breadcrumb__list d-flex align-items-center">
+                        <li class="breadcrumb__item">
+                            <a href="{% url 'core-index' %}" class="breadcrumb__link">Главная</a>
+                        </li>
+                        <li class="breadcrumb__item active"> Новости </li>
+                    </ol>
+                </nav>
+                <h1 class="title__page">Новости</h1>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block main_body %}
+        <div class="news">
+        <div class="container news__container">
+          <div class="row">
+
+          {% for column in news %}
+            <div class="col-sm-6 col-lg-3">
+                {% for item in column %}
+                    <div class="news__item">
+                    <a href="{% url 'news-card' item.slug %}" class="news__link">
+                      <div class="news__img"><img src="{{ item.image.url }}" alt="Фото"></div>
+                      <div class="news__txt">
+                        <span class="news__category">{{ item.topic.title }}</span>
+                        <h3>{{ item.title }}</h3>
+                        <p class="news__text">{{ item.text }}</p>
+                        <p class="news__date">{{ item.date|date:"SHORT_DATE_FORMAT" }}</p>
+                      </div>
+                    </a>
+                  </div>
+                {% endfor %}
+            </div>
+          {% endfor %}
+          </div>
+        </div>
+      {% if news_paginator.has_other_pages %}
+        <div class="container news__nav">
+          <nav class="pagination">
+            <ul class="pagination__list flex-center">
+{#              <li class="page__item">#}
+{#                <a class="page__link__btn" href="#">#}
+{#                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">#}
+{#                    <path fill-rule="evenodd" d="M0.123,6.759 L6.376,12.886 C6.523,13.030 6.759,13.030 6.907,12.886 C7.054,12.742 7.054,12.510 6.907,12.366 L0.920,6.500 L6.907,0.634 C7.054,0.490 7.054,0.259 6.907,0.114 C6.835,0.043 6.737,0.005 6.643,0.005 C6.548,0.005 6.451,0.041 6.379,0.114 L0.125,6.241 C-0.022,6.383 -0.022,6.617 0.123,6.759 Z"></path>#}
+{#                  </svg>#}
+{#                </a>#}
+{#              </li>#}
+                {% for pg_num in news_paginator.paginator.page_range %}
+                    {% if news.number == pg_num %}
+                      <li class="page__item">
+                        <a class="page__link active" href="?{% url_replace page=pg_num %}">{{ pg_num }}</a>
+                      </li>
+                    {% else %}
+                      <li class="page__item">
+                        <a class="page__link" href="?{% url_replace page=pg_num %}">{{ pg_num }}</a>
+                      </li>
+                    {% endif %}
+                {% endfor %}
+{#              <li class="page__item">#}
+{#                <a class="page__link__btn" href="#">#}
+{#                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">#}
+{#                    <path fill-rule="evenodd" d="M6.877,6.759 L0.624,12.886 C0.476,13.030 0.240,13.030 0.093,12.886 C-0.054,12.742 -0.054,12.510 0.093,12.366 L6.080,6.500 L0.093,0.634 C-0.054,0.490 -0.054,0.259 0.093,0.114 C0.165,0.043 0.263,0.005 0.357,0.005 C0.452,0.005 0.549,0.041 0.621,0.114 L6.874,6.241 C7.022,6.383 7.022,6.617 6.877,6.759 Z"></path>#}
+{#                  </svg>#}
+{#                </a>#}
+{#              </li>#}
+            </ul>
+          </nav>
+        </div>
+      {% endif %}
+        </div>
+    {% endblock %}
