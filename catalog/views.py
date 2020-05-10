@@ -6,6 +6,10 @@ from core.utils import create_pagination
 
 
 def index(request):
+
+    get_params = request.GET.copy()
+
+
     products = Product.objects.all()
 
     paginated_products = create_pagination(request, products)
