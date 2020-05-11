@@ -53,7 +53,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'hdl_settings.wsgi.application'
+WSGI_APPLICATION = 'src.hdl_settings.wsgi.application'
 
 
 DATABASES = {

@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+        {% block header_bot %}
+        <div class="header__bot">
+          <div class="container">
+            <nav class="breadcrumb">
+              <ol class="breadcrumb__list d-flex align-items-center">
+                <li class="breadcrumb__item">
+                  <a href="{% url 'core-index' %}" class="breadcrumb__link">Главная</a>
+                </li>
+                  <li class="breadcrumb__item">
+                  <a href="{% url 'catalog-index' %}" class="breadcrumb__link">Каталог</a>
+                </li>
+                <li class="breadcrumb__item active">
+                    {{ product.title }}
+                </li>
+              </ol>
+            </nav>
+            <h1 class="title__page">{{ product.title }}</h1>
+          </div>
+        </div>
+        {% endblock %}
+
+        {%  block main_body %}
+      <!-- Product -->
+
+          <div class="product">
+            <div class="container">
+
+              <!-- Row -->
+
+              <div class="row product__name justify-content-end">
+                <div class="col-lg-6">
+                  <div class="product__name__img"><img src="{{ product.images.all.0.image.url }}" alt="Фото"></div>
+                  <h2>{{ product.title }}</h2>
+                  <p class="product__name__cod">Код товара: {{ product.qualifier }}</p>
+                </div>
+              </div>
+
+              <!-- Row -->
+
+              <div class="row product__desc">
+
+                <!-- Col -->
+
+                <div class="col-lg-6">
+                  <div class="product__sl d-flex">
+                    <div class="product__sl__small">
+                        {% for picture in product.images.all %}
+                            <div class="product__sl__small__item"><img src="{{ picture.image.url }}" alt="Фото"></div>
+                        {% endfor %}
+                    </div>
+                    <div class="product__sl__big">
+                        {% for picture in product.images.all %}
+                            <div class="product__sl__big__item"><img src="{{ picture.image.url }}" alt="Фото"></div>
+                        {% endfor %}
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Col -->
+
+                <div class="col-lg-6">
+                  <div class="product__box">
+                    <p class="product__txt">{{ product.general_description }}</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Data -->
+
+          <div class="data tabs-js hide_mob">
+            <nav class="tabs__nav">
+              <div class="container">
+                <ul class="tabs__list d-flex justify-content-between">
+                  <li class="tabs__name speed active">Общая информация</li>
+                  <li class="tabs__name speed">Характеристики</li>
+                  <li class="tabs__name speed">Функции</li>
+                  <li class="tabs__name speed">Техническая спецификация</li>
+                </ul>
+              </div>
+            </nav>
+            <div class="tabs__content">
+              <div class="container ">
+
+                <!-- Item -->
+
+                <div class="tabs__item">
+                  <div class="box">
+                    <h2>Общая информация</h2>
+                    <p>{{ product.general_description }}</p>
+                  </div>
+                </div>
+
+                <!-- Item -->
+
+                <div class="tabs__item">
+                  <div class="box">
+                    <h2>Характеристики</h2>
+                    <p>{{ product.tech_description }}</p>
+                  </div>
+                </div>
+
+                <!-- Item -->
+
+                <div class="tabs__item">
+                  <div class="box">
+                    <h2>Функции</h2>
+                    <p>{{ product.func_description }}</p>
+                  </div>
+                </div>
+
+                <!-- Item -->
+
+                <div class="tabs__item">
+                  <div class="box">
+                    <h2>Техническая спецификация</h2>
+                    {% if product.instruction %}
+                        <p>
+                            <a href="{{ product.instruction.url }}">{{ product.instruction.name }}</a>
+                        </p>
+
+                    {% else %}
+                        <p>Для предоставления инфструкции свяжитесь с нашими менеджерами</p>
+                    {% endif %}
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion -->
+
+          <div class="accordion accordion__mob">
+            <div class="container">
+              <ul class="accordion">
+                <li>
+                  <div class="accordion-header">
+                    <span class="speed">Общая информация</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <path fill-rule="evenodd"
+                       d="M7.270,7.892 L0.106,0.568 C-0.021,0.438 -0.021,0.227 0.106,0.097 C0.233,-0.033 0.439,-0.033 0.566,0.097 L7.499,7.186 L14.433,0.097 C14.560,-0.033 14.767,-0.033 14.894,0.097 C14.957,0.162 14.989,0.247 14.989,0.333 C14.989,0.418 14.957,0.503 14.894,0.568 L7.730,7.892 C7.603,8.022 7.397,8.022 7.270,7.892 Z"/>
+                    </svg>
+                  </div>
+                  <div class="accordion-body">
+                    <h3>Общая информация</h3>
+                    <p>{{ product.general_description }}</p>
+                  </div>
+                </li>
+                <li>
+                  <div class="accordion-header">
+                    <span class="speed">Характеристики</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <path fill-rule="evenodd"
+                       d="M7.270,7.892 L0.106,0.568 C-0.021,0.438 -0.021,0.227 0.106,0.097 C0.233,-0.033 0.439,-0.033 0.566,0.097 L7.499,7.186 L14.433,0.097 C14.560,-0.033 14.767,-0.033 14.894,0.097 C14.957,0.162 14.989,0.247 14.989,0.333 C14.989,0.418 14.957,0.503 14.894,0.568 L7.730,7.892 C7.603,8.022 7.397,8.022 7.270,7.892 Z"/>
+                    </svg>
+                  </div>
+                  <div class="accordion-body">
+                    <h3>Характеристики</h3>
+                    <p>{{ product.tech_description }}</p>
+                  </div>
+                </li>
+                <li>
+                  <div class="accordion-header">
+                    <span class="speed">Функции</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <path fill-rule="evenodd"
+                       d="M7.270,7.892 L0.106,0.568 C-0.021,0.438 -0.021,0.227 0.106,0.097 C0.233,-0.033 0.439,-0.033 0.566,0.097 L7.499,7.186 L14.433,0.097 C14.560,-0.033 14.767,-0.033 14.894,0.097 C14.957,0.162 14.989,0.247 14.989,0.333 C14.989,0.418 14.957,0.503 14.894,0.568 L7.730,7.892 C7.603,8.022 7.397,8.022 7.270,7.892 Z"/>
+                    </svg>
+                  </div>
+                  <div class="accordion-body">
+                    <h3>Функции</h3>
+                    <p>{{ product.func_description }}</p>
+                  </div>
+                </li>
+                <li>
+                  <div class="accordion-header">
+                    <span class="speed">Техническая спецификация</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <path fill-rule="evenodd"
+                       d="M7.270,7.892 L0.106,0.568 C-0.021,0.438 -0.021,0.227 0.106,0.097 C0.233,-0.033 0.439,-0.033 0.566,0.097 L7.499,7.186 L14.433,0.097 C14.560,-0.033 14.767,-0.033 14.894,0.097 C14.957,0.162 14.989,0.247 14.989,0.333 C14.989,0.418 14.957,0.503 14.894,0.568 L7.730,7.892 C7.603,8.022 7.397,8.022 7.270,7.892 Z"/>
+                    </svg>
+                  </div>
+                  <div class="accordion-body">
+                    <h3>Техническая спецификация</h3>
+                      {% if product.instruction %}
+                        <p>
+                            <a href="{{ product.instruction.url }}">{{ product.instruction.name }}</a>
+                        </p>
+                    {% else %}
+                        <p>Для предоставления инфструкции свяжитесь с нашими менеджерами</p>
+                    {% endif %}
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        {% endblock %}

@@ -48,11 +48,11 @@ class Type(SaveModelSlugMixin, models.Model):
         return self.title
 
 
-class Manufacturer(SaveModelSlugMixin, models.Model):
+class Series(SaveModelSlugMixin, models.Model):
 
     class Meta:
-        verbose_name = "Производитель"
-        verbose_name_plural = "Производители"
+        verbose_name = "Серия"
+        verbose_name_plural = "Серия"
 
     title = models.CharField(max_length=150, null=True, verbose_name="Наименование")
     slug = models.CharField(max_length=150, null=True, blank=True,
@@ -93,8 +93,8 @@ class Product(SaveModelSlugMixin, MPTTModel):
     category = models.ManyToManyField(Category, related_name='products')
     type = models.ForeignKey(Type, null=True, blank=True, related_name='products',
                              on_delete=models.SET_NULL)
-    manufacturer = models.ForeignKey(Manufacturer, null=True, blank=True, related_name='products',
-                                     on_delete=models.SET_NULL)
+    series = models.ForeignKey(Series, null=True, blank=True, related_name='products',
+                               on_delete=models.SET_NULL)
     creation_date = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     modified = models.DateTimeField(auto_now=True)
 
