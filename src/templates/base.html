@@ -46,7 +46,8 @@
 
             <div class="panel d-sm-flex align-items-center">
               <ul class="panel__list d-lg-flex align-items-center">
-                <li><a href="{% url 'core-support' %}">Техническая поддержка</a></li>
+                  <li><a href="{% url 'core-about' %}">О компании</a></li>
+                  <li><a href="https://hdlautomation.freshdesk.com/support/home" target="_blank">Техническая поддержка</a></li>
               </ul>
             </div>
 
@@ -85,11 +86,6 @@
                 <div class="box d-flex align-items-center">
               <nav class="nav">
                 <ul class="nav__list d-xl-flex align-items-center">
-                  <li class="nav__item {% if url_name == 'core-about' %}nav__item_active{% endif %}">
-                    <a href="{% url 'core-about' %}" class="nav__link">
-                      О компании
-                    </a>
-                  </li>
                     <li class="nav__item {% if url_name == 'core-contacts' %}nav__item_active{% endif %}">
                     <a href="{% url 'core-contacts' %}" class="nav__link">
                       Контакты
@@ -470,5 +466,6 @@
   <!-- Yandex.Metrika counter --><!-- /Yandex.Metrika counter -->
   <!-- Google Analytics counter --><!-- /Google Analytics counter -->
   {% endblock %}
+  {% block additional_js %}{% endblock %}
 </body>
 </html>
