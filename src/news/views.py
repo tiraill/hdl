@@ -4,7 +4,7 @@ from django.http import Http404
 
 from .models import News
 
-from core.utils import create_pagination, chunks
+from src.core.utils import create_pagination, chunks
 
 
 def index(request):
