@@ -10,10 +10,10 @@ def index(request):
 def buspro(request):
 
     return render(request,
-                  template_name="education/index.html")
+                  template_name="education/buspro.html")
 
 
 def knx(request):
 
     return render(request,
-                  template_name="education/index.html")
+                  template_name="education/knx.html")

@@ -1,0 +1,274 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block header_bg_cls %}style="background: url(/static/img/bg/buspro.jpg) center 0/cover no-repeat;"{% endblock %}
+
+{% block header_bot %}
+    <div class="header__bot">
+  <div class="container">
+    <nav class="breadcrumb">
+      <ol class="breadcrumb__list d-flex align-items-center">
+        <li class="breadcrumb__item">
+          <a href="{% url 'core-index' %}" class="breadcrumb__link">Главная</a>
+        </li>
+        <li class="breadcrumb__item">
+          <a href="{% url 'education-index' %}" class="breadcrumb__link">Обучение</a>
+        </li>
+        <li class="breadcrumb__item active">
+          KNX
+        </li>
+      </ol>
+    </nav>
+    <div class="main__title main__title__fix main__title__big">
+      <h1>Сертифицирующий курс KNX</h1>
+      <p>По программе «Basic KNX certification Course» на основе протокола KNX и оборудовании HDL. Центр сертифицирован международной организацией «KNX Association»</p>
+    </div>
+    <div class="header__img header__img__knx"><img src="{% static "img/other/knx.png" %}" alt="Фото"></div>
+    <button class="header__play flex-center">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path fill-rule="evenodd"
+         d="M-0.000,-0.001 L-0.000,26.000 L17.000,12.999 L-0.000,-0.001 Z"/>
+      </svg>
+      <span class="impuls"></span>
+    </button>
+    <span class="countries">Видео с мероприятия</span>
+  </div>
+</div>
+{% endblock %}
+
+
+{%  block main_body %}
+          <!-- Teaching -->
+
+      <div class="teaching teaching_knx">
+        <div class="container">
+
+          <!-- Title -->
+
+          <div class="title text-center">
+            <span class="title__overhead">СЕРТИФИЦИРОВАН ЗАВОДОМ HDL</span>
+            <h2 class="title__h2">Тренинг центр KNX</h2>
+          </div>
+
+          <!-- Row -->
+
+          <div class="row justify-content-end">
+
+            <!-- Col -->
+
+            <div class="col-md-8">
+              <div class="teaching__item">
+                <div class="teaching__box d-flex align-items-center">
+                  <p>На базе ФГБОУ ВО «Российский государственный геологоразведочный университет им. С.Орджоникидзе (МГРИ-РГГРУ)» в учебно-научной лаборатории «Автоматизация технологических процессов геолого-разведочных и горно-добывающих работ» создан <strong>сертифицированный тренинг центр KNX</strong> («MGRI KNX Training Centre»).</p>
+                </div>
+                <div class="teaching__img"><img src="{% static "img/other/training.png" %}" alt="Фото"></div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Plan -->
+
+      <div class="plan">
+        <div class="container">
+
+          <!-- Title -->
+
+          <div class="title text-center">
+            <h2 class="title__h2">Программа курса</h2>
+            <p class="title__txt">Даты следующего курса согласовывается по набору группы.</p>
+          </div>
+
+          <!-- Row -->
+
+          <div class="row">
+
+            <!-- Col -->
+
+            <div class="col-sm-6 col-lg-4">
+              <div class="plan__item">
+                <span class="program__day">Понедельник</span>
+                <ul class="program__list">
+                  <li><p>Аргументы в пользу использования технологии KNX</p></li>
+                  <li><p>Коммуникация в протоколе KNX</p></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Col -->
+
+            <div class="col-sm-6 col-lg-4">
+              <div class="plan__item">
+                <span class="program__day">Вторник</span>
+                <ul class="program__list">
+                  <li><p>Топология в протоколе KNX</p></li>
+                  <li><p>Имплементация телеграмм в KNX</p></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Col -->
+
+            <div class="col-sm-6 col-lg-4">
+              <div class="plan__item">
+                <span class="program__day">Среда</span>
+                <ul class="program__list">
+                  <li><p>Шинные устройства в KNX</p></li>
+                  <li><p>Задачи инсталляции в KNX</p></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Col -->
+
+            <div class="col-sm-6 col-lg-4">
+              <div class="plan__item">
+                <span class="program__day">Четверг</span>
+                <ul class="program__list">
+                  <li><p>Особенности Power Line KNX</p></li>
+                  <li><p>Разработка проекта</p></li>
+                  <li><p>Повторение пройденного материала</p></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Col -->
+
+            <div class="col-sm-6 col-lg-4">
+              <div class="plan__item">
+                <span class="program__day">Пятница</span>
+                <ul class="program__list">
+                  <li><p>Экзамен</p></li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Finally -->
+
+      <div class="finally finally_knx">
+        <div class="container">
+
+          <!-- Title -->
+
+          <div class="title text-center">
+            <h2 class="title__h2">Что Вы Получите После <br>Прохождения Курса</h2>
+            <p class="title__txt">После обучения специалист и организация получают официальные сертификаты завода HDL.</p>
+          </div>
+
+          <!-- Row -->
+
+          <div class="row justify-content-between">
+
+            <!-- Col -->
+
+            <div class="col-sm-6 col-lg-3">
+              <div class="finally__item">
+                <i class="finally__icon i-certificate"></i>
+                <p class="finally__txt">Персональный международный сертификат</p>
+              </div>
+            </div>
+
+            <!-- Col -->
+
+            <div class="col-sm-6 col-lg-3">
+              <div class="finally__item">
+                <i class="finally__icon i-books"></i>
+                <p class="finally__txt">Учебные материалы и пособия</p>
+              </div>
+            </div>
+
+            <!-- Col -->
+
+            <div class="col-sm-6 col-lg-3">
+              <div class="finally__item">
+                <i class="finally__icon i-discounts"></i>
+                <p class="finally__txt">Скидки на программное обеспечение (ETS, ETS Application и т.д.)</p>
+              </div>
+            </div>
+
+            <!-- Col -->
+
+            <div class="col-sm-6 col-lg-3">
+              <div class="finally__item">
+                <i class="finally__icon i-europe"></i>
+                <p class="finally__txt">Выполнять работы по установке и пуско-наладке систем автоматизации KNX на территории Евросоюза</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Course -->
+
+      <div class="sourse">
+        <div class="container">
+          <div class="row align-items-end">
+
+            <!-- Col -->
+
+            <div class="col-xl-6">
+              <div class="sourse__item">
+                <h2>Сертифицирующий курс KNX <br />по программе «Basic KNX certification Course»</h2>
+                <p class="sourse__txt">Длительность обучения составляет 5 дней. Слушатели, успешно сдавшие теоретический и практический экзамены, получают персональный сертификат «KNX Partner».</p>
+              </div>
+            </div>
+
+            <!-- Col -->
+
+            <div class="col-xl-6">
+              <div class="sourse__item sourse__item_price d-md-flex align-items-center">
+                <h3 class="sourse__price">Стоимость: 25 000 ₽ <span><small>28 000 ₽</small></span></h3>
+                <div class="sourse__btn">
+                  <a href="#" class="btn btn__dark">
+                    Купить со скидкой
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <path fill-rule="evenodd" d="M4.987,4.918 L0.458,0.390 C0.351,0.284 0.180,0.284 0.074,0.390 C-0.033,0.497 -0.033,0.668 0.074,0.775 L4.409,5.109 L0.074,9.443 C-0.033,9.550 -0.033,9.721 0.074,9.828 C0.126,9.880 0.196,9.908 0.265,9.908 C0.333,9.908 0.404,9.882 0.456,9.828 L4.984,5.300 C5.091,5.195 5.091,5.022 4.987,4.918 Z"></path>
+                    </svg>
+                    <span class="btn__layer"><span></span></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Photo -->
+
+      <div class="photo">
+        <img src="{% static "img/other/photo.png" %}" alt="Фото">
+      </div>
+
+      <!-- Video -->
+
+      <div class="video">
+        <div class="container">
+          <div class="row">
+
+            <!-- Col -->
+
+            <div class="col-lg-6">
+              <div class="title d-flex align-items-center">
+                <h2 class="title__h2">Видео с мероприятия HDL для партнеров и дилеров</h2>
+              </div>
+              <div class="video__item">
+                <iframe src="https://www.youtube.com/embed/yT4wHDC917E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+{% endblock %}
