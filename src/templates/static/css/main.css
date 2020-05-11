@@ -1748,8 +1748,9 @@ i.brochures__icon {
 }
 
 i.i-file {
-  background: url(img/icons/i-file.png) center no-repeat;
+  background: url(../img/icons/i-file.png) center no-repeat;
 }
+
 
 .brochures__name {
   color: #5f5f5f;
