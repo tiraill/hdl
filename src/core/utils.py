@@ -40,3 +40,14 @@ def create_pagination(request, qs):
 def chunks(lst, n):
     for i in range(0, len(lst), n):
         yield lst[i:i + n]
+
+
+def slice_into_columns(news_lst, num_columns=4):
+    counter = 0
+    columns = [[] for _ in range(num_columns)]
+    for el in news_lst:
+        if counter == num_columns:
+            counter = 0
+        columns[counter].append(el)
+        counter += 1
+    return columns

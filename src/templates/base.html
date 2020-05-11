@@ -8,7 +8,7 @@
 <html lang="ru">
 <!--<![endif]-->
 <head>
-  <title>{% block title %}Default{% endblock %}</title>
+  <title>{% block title %}HDL Automation{% endblock %}</title>
     {% block meta_tags %}
       <meta charset="utf-8" />
       <meta name="description" content="" />
@@ -113,6 +113,9 @@
                       <li class="navdrop__item"><a href="{% url 'project-hotels' %}" class="navdrop__link">Гостинничные объекты</a></li>
                     </ul>
                   </li>
+                  <li class="nav__item {% if url_name == 'article-index' %}nav__item_active{% endif %}">
+                      <a href="{% url 'article-index' %}" class="nav__link">Статьи</a>
+                  </li>
                   <li class="nav__item {% if url_name == 'news-index' %}nav__item_active{% endif %}">
                       <a href="{% url 'news-index' %}" class="nav__link">Новости</a>
                   </li>
@@ -166,7 +169,7 @@
           <!-- Title -->
 
           <div class="title text-center">
-            <h2 class="title__h2">Запросить информацию</h2>
+            <h2 class="title__h2" id="additional-info">Запросить информацию</h2>
             <p class="title__txt">Если у вас возникли вопросы или вы решили стать нашим дилером у себя в регионе, отправьте ваши контакты и мы оперативно свяжемся с Вами.</p>
           </div>
 
@@ -274,7 +277,7 @@
                     <input type="checkbox" name="check" checked="checked">
                     <span class="check__mark"></span>
                   </label>
-                  <p class="check__txt">Даю согласие на <a href="#">обработку моих персональных данных</a> и согласен(а) с <a href="#">политикой Конфиденциальности</a>*.</p>
+                  <p class="check__txt">Даю согласие на <a href="{% url 'core-politics' %}">обработку моих персональных данных</a> и согласен(а) с <a href="{% url 'core-politics' %}">политикой Конфиденциальности</a>*.</p>
                 </div>
                 <button class="btn btn__main form__btn"><span>Отправить</span></button>
               </form>
@@ -301,11 +304,11 @@
               <div class="footer__item">
                 <h4 class="footer__title">О нас</h4>
                 <ul class="footer__list">
-                  <li class="footer__list__item"><a href="#" class="footer__list__link">О компании</a></li>
-                  <li class="footer__list__item"><a href="#" class="footer__list__link">Вакансии</a></li>
+                  <li class="footer__list__item"><a href="{% url 'core-about' %}" class="footer__list__link">О компании</a></li>
+{#                  <li class="footer__list__item"><a href="#" class="footer__list__link">Вакансии</a></li>#}
                   <li class="footer__list__item"><a href="#" class="footer__list__link">Примеры проектов</a></li>
-                  <li class="footer__list__item"><a href="#" class="footer__list__link">Стандарты и протоколы</a></li>
-                  <li class="footer__list__item"><a href="#" class="footer__list__link">Контакты</a></li>
+{#                  <li class="footer__list__item"><a href="#" class="footer__list__link">Стандарты и протоколы</a></li>#}
+                  <li class="footer__list__item"><a href="{% url 'core-contacts' %}" class="footer__list__link">Контакты</a></li>
                 </ul>
               </div>
             </div>
@@ -316,11 +319,11 @@
               <div class="footer__item">
                 <h4 class="footer__title">Ресурсы</h4>
                 <ul class="footer__list">
-                  <li class="footer__list__item"><a href="#" class="footer__list__link">Техническая поддержка</a></li>
-                  <li class="footer__list__item"><a href="#" class="footer__list__link">Обучение</a></li>
-                  <li class="footer__list__item"><a href="#" class="footer__list__link">Прайс-лист</a></li>
-                  <li class="footer__list__item"><a href="#" class="footer__list__link">Брошюры</a></li>
-                  <li class="footer__list__item"><a href="#" class="footer__list__link">ПО по настройке Buspro</a></li>
+                  <li class="footer__list__item"><a href="https://hdlautomation.freshdesk.com/support/home" target="_blank" class="footer__list__link">Техническая поддержка</a></li>
+                  <li class="footer__list__item"><a href="{% url 'education-index' %}" class="footer__list__link">Обучение</a></li>
+{#                  <li class="footer__list__item"><a href="#" class="footer__list__link">Прайс-лист</a></li>#}
+                  <li class="footer__list__item"><a href="{% url 'brochure-index' %}" class="footer__list__link">Брошюры</a></li>
+{#                  <li class="footer__list__item"><a href="#" class="footer__list__link">ПО по настройке Buspro</a></li>#}
                 </ul>
               </div>
             </div>
@@ -331,12 +334,12 @@
               <div class="footer__item">
                 <h4 class="footer__title">Продукты</h4>
                 <ul class="footer__list">
-                  <li class="footer__list__item"><a href="#" class="footer__list__link">HDL Buspro</a></li>
-                  <li class="footer__list__item"><a href="#" class="footer__list__link">HDL KNX</a></li>
-                  <li class="footer__list__item"><a href="#" class="footer__list__link">HDL Wireless</a></li>
-                  <li class="footer__list__item"><a href="#" class="footer__list__link">Cool Automation</a></li>
-                  <li class="footer__list__item"><a href="#" class="footer__list__link">Розетки Isocket</a></li>
-                  <li class="footer__list__item"><a href="#" class="footer__list__link">CasaTunes</a></li>
+                  <li class="footer__list__item"><a href="{% url 'catalog-index' %}" class="footer__list__link">HDL Buspro</a></li>
+                  <li class="footer__list__item"><a href="{% url 'catalog-index' %}" class="footer__list__link">HDL KNX</a></li>
+                  <li class="footer__list__item"><a href="{% url 'catalog-index' %}" class="footer__list__link">HDL Wireless</a></li>
+                  <li class="footer__list__item"><a href="{% url 'catalog-index' %}" class="footer__list__link">Cool Automation</a></li>
+                  <li class="footer__list__item"><a href="{% url 'catalog-index' %}" class="footer__list__link">Розетки Isocket</a></li>
+                  <li class="footer__list__item"><a href="{% url 'catalog-index' %}" class="footer__list__link">CasaTunes</a></li>
                 </ul>
               </div>
             </div>
@@ -361,7 +364,7 @@
                       <input type="checkbox" name="check" checked="checked">
                       <span class="check__mark"></span>
                     </label>
-                    <p class="check__txt">Даю согласие на <a href="#">обработку моих персональных данных</a> и согласен(а) с <a href="#">политикой Конфиденциальности</a>*.</p>
+                    <p class="check__txt">Даю согласие на <a href="{% url 'core-politics' %}">обработку моих персональных данных</a> и согласен(а) с <a href="{% url 'core-politics' %}">политикой Конфиденциальности</a>*.</p>
                   </div>
                 </form>
               </div>
