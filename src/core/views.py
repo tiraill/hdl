@@ -23,3 +23,9 @@ def support(request):
 
     return render(request,
                   template_name="support.html")
+
+
+def confident_politics(request):
+
+    return render(request,
+                  template_name="confident.html")

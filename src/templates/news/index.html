@@ -54,7 +54,7 @@
 {#                </a>#}
 {#              </li>#}
                 {% for pg_num in news_paginator.paginator.page_range %}
-                    {% if news.number == pg_num %}
+                    {% if news_paginator.number == pg_num %}
                       <li class="page__item">
                         <a class="page__link active" href="?{% url_replace page=pg_num %}">{{ pg_num }}</a>
                       </li>
