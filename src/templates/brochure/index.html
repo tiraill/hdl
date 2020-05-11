@@ -49,149 +49,25 @@
                             <div class="brochures__item flex-center fx-column speed">
                                 <i class="brochures__icon i-file"></i>
                                 <p class="brochures__name">{{ brochure.title }}
-                                    <span class="brochures__size">{{ brochure.brochure_file.size|filesizeformat }}</span>
+                                    {% if brochure.brochure_file %}
+                                        <span class="brochures__size">{{ brochure.brochure_file.size|filesizeformat }}</span>
+                                        {% else %}
+                                        <span class="brochures__size">Файл отсутствует</span>
+                                        {% endif %}
                                 </p>
-                                <div class="brochures__btn">
-                                    <a href="{{ brochure.brochure_file.url }}" class="btn btn__main">
-                                        <span>Скачать</span>
-                                    </a>
-                                </div>
+                                {% if brochure.brochure_file %}
+                                    <div class="brochures__btn">
+                                        <a href="{{ brochure.brochure_file.url }}" class="btn btn__main">
+                                            <span>Скачать</span>
+                                        </a>
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
                         {% endif %}
                     {% endfor %}
                 </div>
             {% endfor %}
-            <!-- Item -->
-
-            <div class="tabs__item row">
-
-
-              <div class="col-6 col-md-4 col-lg-3">
-                <div class="brochures__item flex-center fx-column speed">
-                  <i class="brochures__icon i-file"></i>
-                  <p class="brochures__name">Обзор продукции<span class="brochures__size">4 мб</span></p>
-                  <div class="brochures__btn">
-                    <a href="#" class="btn btn__main"><span>Скачать</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-6 col-md-4 col-lg-3">
-                <div class="brochures__item flex-center fx-column speed">
-                  <i class="brochures__icon i-file"></i>
-                  <p class="brochures__name">Каталог продукции KNX<span class="brochures__size">4 мб</span></p>
-                  <div class="brochures__btn">
-                    <a href="#" class="btn btn__main"><span>Скачать</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-6 col-md-4 col-lg-3">
-                <div class="brochures__item flex-center fx-column speed">
-                  <i class="brochures__icon i-file"></i>
-                  <p class="brochures__name">Сенсорная панель <br />DLP KNX<span class="brochures__size">4 мб</span></p>
-                  <div class="brochures__btn">
-                    <a href="#" class="btn btn__main"><span>Скачать</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-6 col-md-4 col-lg-3">
-                <div class="brochures__item flex-center fx-column speed">
-                  <i class="brochures__icon i-file"></i>
-                  <p class="brochures__name">Датчик OmniSens<span class="brochures__size">4 мб</span></p>
-                  <div class="brochures__btn">
-                    <a href="#" class="btn btn__main"><span>Скачать</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-6 col-md-4 col-lg-3">
-                <div class="brochures__item flex-center fx-column speed">
-                  <i class="brochures__icon i-file"></i>
-                  <p class="brochures__name">Таймер KNX<span class="brochures__size">4 мб</span></p>
-                  <div class="brochures__btn">
-                    <a href="#" class="btn btn__main"><span>Скачать</span></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Item -->
-
-            <div class="tabs__item row">
-              <div class="col-6 col-md-4 col-lg-3">
-                <div class="brochures__item flex-center fx-column speed">
-                  <i class="brochures__icon i-file"></i>
-                  <p class="brochures__name">Примеры проектов<span class="brochures__size">4 мб</span></p>
-                  <div class="brochures__btn">
-                    <a href="#" class="btn btn__main"><span>Скачать</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-6 col-md-4 col-lg-3">
-                <div class="brochures__item flex-center fx-column speed">
-                  <i class="brochures__icon i-file"></i>
-                  <p class="brochures__name">Обзор решений<span class="brochures__size">4 мб</span></p>
-                  <div class="brochures__btn">
-                    <a href="#" class="btn btn__main"><span>Скачать</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-6 col-md-4 col-lg-3">
-                <div class="brochures__item flex-center fx-column speed">
-                  <i class="brochures__icon i-file"></i>
-                  <p class="brochures__name">Обзор продукции<span class="brochures__size">4 мб</span></p>
-                  <div class="brochures__btn">
-                    <a href="#" class="btn btn__main"><span>Скачать</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-6 col-md-4 col-lg-3">
-                <div class="brochures__item flex-center fx-column speed">
-                  <i class="brochures__icon i-file"></i>
-                  <p class="brochures__name">Каталог продукции KNX<span class="brochures__size">4 мб</span></p>
-                  <div class="brochures__btn">
-                    <a href="#" class="btn btn__main"><span>Скачать</span></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Item -->
-
-            <div class="tabs__item row">
-              <div class="col-6 col-md-4 col-lg-3">
-                <div class="brochures__item flex-center fx-column speed">
-                  <i class="brochures__icon i-file"></i>
-                  <p class="brochures__name">Примеры проектов<span class="brochures__size">4 мб</span></p>
-                  <div class="brochures__btn">
-                    <a href="#" class="btn btn__main"><span>Скачать</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-6 col-md-4 col-lg-3">
-                <div class="brochures__item flex-center fx-column speed">
-                  <i class="brochures__icon i-file"></i>
-                  <p class="brochures__name">Обзор решений<span class="brochures__size">4 мб</span></p>
-                  <div class="brochures__btn">
-                    <a href="#" class="btn btn__main"><span>Скачать</span></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Item -->
-
-            <div class="tabs__item row">
-              <div class="col-6 col-md-4 col-lg-3">
-                <div class="brochures__item flex-center fx-column speed">
-                  <i class="brochures__icon i-file"></i>
-                  <p class="brochures__name">Примеры проектов<span class="brochures__size">4 мб</span></p>
-                  <div class="brochures__btn">
-                    <a href="#" class="btn btn__main"><span>Скачать</span></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
