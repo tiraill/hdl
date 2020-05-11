@@ -3,7 +3,7 @@ from django.db import models
 from django.forms import Textarea
 from mptt.admin import MPTTModelAdmin
 
-from .models import Category, Type, Manufacturer, Product, ProductImage
+from .models import Category, Type, Series, Product, ProductImage
 
 
 @admin.register(Category)
@@ -16,8 +16,8 @@ class TypeAdmin(admin.ModelAdmin):
     list_display = ('title',)
 
 
-@admin.register(Manufacturer)
-class ManufacturerAdmin(admin.ModelAdmin):
+@admin.register(Series)
+class SeriesAdmin(admin.ModelAdmin):
     list_display = ('title',)
 
 
@@ -45,7 +45,7 @@ class ProductAdmin(MPTTModelAdmin):
     }
 
     list_display = ('title', 'get_category', 'get_type', 'get_manufacturer', 'creation_date', 'qualifier')
-    list_filter = ('category__title', 'type__title', 'manufacturer__title', 'creation_date')
+    list_filter = ('category__title', 'type__title', 'series__title', 'creation_date')
     search_fields = ('title', 'qualifier')
 
     def get_category(self, instance):
@@ -64,8 +64,8 @@ class ProductAdmin(MPTTModelAdmin):
     get_type.short_description = "Тип товара"
 
     def get_manufacturer(self, instance):
-        if instance and instance.manufacturer:
-            return instance.manufacturer.title
+        if instance and instance.series:
+            return instance.series.title
         else:
             return f"Производитель не указан, либо был удалён"
     get_manufacturer.short_description = "Производитель товара"
