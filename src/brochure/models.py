@@ -1,18 +1,10 @@
-import sys
 import logging
-import uuid
-
-from PIL import Image
-from io import BytesIO
 
 from django.db import models
-from django.core.files.uploadedfile import InMemoryUploadedFile
 from mptt.models import MPTTModel, TreeForeignKey
 
 from catalog.mixins import SaveModelSlugMixin
 from catalog.utils import file_size_and_extension, get_random_filename
-
-from django.conf import settings
 
 
 log = logging.getLogger(__name__)

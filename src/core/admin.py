@@ -1,3 +1,13 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import FeedbackHistory, EmailReceivers
+
+
+@admin.register(FeedbackHistory)
+class FeedbackHistoryAdmin(admin.ModelAdmin):
+    list_display = ('email',)
+
+
+@admin.register(EmailReceivers)
+class EmailReceiversAdmin(admin.ModelAdmin):
+    list_display = ('email',)

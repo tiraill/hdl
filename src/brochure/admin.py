@@ -1,16 +1,13 @@
 from django.contrib import admin
-from django.db import models
-from django.forms import Textarea
-from mptt.admin import MPTTModelAdmin
 
 from .models import BrochureCategory, Brochure
 
 
 @admin.register(BrochureCategory)
-class CategoryAdmin(admin.ModelAdmin):
+class BrochureCategoryAdmin(admin.ModelAdmin):
     list_display = ('title',)
 
 
 @admin.register(Brochure)
-class TypeAdmin(admin.ModelAdmin):
+class BrochureAdmin(admin.ModelAdmin):
     list_display = ('title',)

@@ -1,4 +1,13 @@
-from django.shortcuts import render
+import logging
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, reverse
+from core.contact import ContactForm
+from django.core.mail import EmailMessage
+from hdl_settings.settings import EMAIL_SENDER
+from .models import FeedbackHistory, EmailReceivers
+
+
+log = logging.getLogger(__name__)
 
 
 def index(request):
@@ -23,3 +32,37 @@ def support(request):
 
     return render(request,
                   template_name="support.html")
+
+
+def send_feedback(request):
+
+    if request.method == 'POST':
+        form: ContactForm = ContactForm(request.POST)
+        if form.is_valid():
+            body = f'''Поступила новая заявка
+            Имя: {form.data['first_name']}
+            Email: {form.data['email']}
+            Телефон: {form.data['phone_number']}
+            Комментарий: {form.data['comment']}
+            '''
+            email = EmailMessage(
+                from_email=EMAIL_SENDER,
+                subject='Новая заявка',
+                body=body,
+            )
+            feedback = FeedbackHistory(
+                first_name=form.data['first_name'],
+                email=form.data['email'],
+                phone_number=form.data['phone_number'],
+                comment=form.data['comment']
+            )
+            feedback.save()
+            receivers = EmailReceivers.objects.filter(is_send_email_notifications=True)
+            if receivers:
+                email.to = [user.email for user in receivers]
+                try:
+                    email.send()
+                except Exception as exc:
+                    log.exception(exc)
+            return HttpResponseRedirect(reverse('core-index'))
+        return render(request, 'index.html', {'contact_form': form})

@@ -48,6 +48,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'core.contact.contact_form'
             ],
         },
     },
@@ -122,8 +123,11 @@ FILE_UPLOAD_LIMIT_MULTIPLIER = os.environ.get('FILE_UPLOAD_LIMIT_MULTIPLIER', 5)
 FILE_UPLOAD_LIMIT = FILE_UPLOAD_LIMIT_MULTIPLIER * 1024 * 1024  # 5 Mb
 
 # Django email settings
+EMAIL_SENDER = os.getenv("EMAIL_SENDER")
+
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_HOST = os.getenv("EMAIL_HOST")
-EMAIL_PORT = os.getenv("EMAIL_PORT", "465")
-EMAIL_USE_SSL = True
+EMAIL_PORT = int(os.getenv("EMAIL_PORT")) or 587
+EMAIL_USE_SSL = int(os.getenv("EMAIL_USE_SSL"))
+EMAIL_USE_TLS = int(os.getenv("EMAIL_USE_TLS"))

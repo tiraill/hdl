@@ -264,20 +264,23 @@
             <!-- Col -->
 
             <div class="col-lg-6 col-xl-5">
-              <form action="#" class="feedback__form form">
-                <label class="form__field"><input type="text" placeholder="Ваше имя" /><span class="form__name speed">Ваше имя:</span></label>
-                <label class="form__field"><input type="text" placeholder="Email: *" required /><span class="form__name speed">Email:</span></label>
-                <label class="form__field"><input type="text" class="phone-mask" placeholder="Телефон: *" required /><span class="form__name speed">Телефон:</span></label>
-                <label class="form__field"><textarea placeholder="Комментарий (необязательно)"></textarea><span class="form__name speed">Комментарий</span></label>
-                <div class="check d-flex align-items-start">
-                  <label class="check__item d-flex">
-                    <input type="checkbox" name="check" checked="checked">
-                    <span class="check__mark"></span>
-                  </label>
-                  <p class="check__txt">Даю согласие на <a href="#">обработку моих персональных данных</a> и согласен(а) с <a href="#">политикой Конфиденциальности</a>*.</p>
-                </div>
-                <button class="btn btn__main form__btn"><span>Отправить</span></button>
-              </form>
+                <form method="post" action="{% url 'send_feedback' %}">
+                     {% csrf_token %}
+                     <label class="form__field">{{ contact_form.first_name }}<span class="form__name speed">Ваше имя:</span></label>
+                     <label class="form__field">{{ contact_form.email }}<span class="form__name speed">Email:</span></label>
+                     {{ contact_form.email.errors }}
+                     <label class="form__field">{{ contact_form.phone_number }}<span class="form__name speed">Телефон:</span></label>
+                     <label class="form__field">{{ contact_form.comment }}<span class="form__name speed">Комментарий</span></label>
+
+                    <div class="d-flex align-items-start">
+                      <label class="check__item d-flex">
+                        {{ contact_form.check }}
+                      </label>
+                      <p class="check__txt">Даю согласие на <a href="#">обработку моих персональных данных</a> и согласен(а) с <a href="#">политикой Конфиденциальности</a>*.</p>
+                    </div>
+                    <br>
+                    <button class="btn btn__main form__btn"><span>Отправить</span></button>
+                 </form>
             </div>
 
           </div>
