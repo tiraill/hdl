@@ -1,11 +1,9 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
-{% block main_body %}
-<header class="header" style="background: url({% static 'img/bg/hotels.jpg' %}) center 0/cover no-repeat;">
+{% block header_bg_cls %}style="background: url({% static 'img/bg/hotels.jpg' %}) center 0/cover no-repeat;"{% endblock %}
 
-    <!-- Bot -->
-
+{% block header_bot %}
     <div class="header__bot page-info">
       <div class="container">
         <nav class="breadcrumb">
@@ -14,7 +12,7 @@
               <a href="{% url 'core-index' %}" class="breadcrumb__link">Главная</a>
             </li>
             <li class="breadcrumb__item active">
-              Каталог
+              HDL для гостиничных объектов
             </li>
           </ol>
         </nav>
@@ -24,8 +22,9 @@
         </div>
       </div>
     </div>
+{% endblock %}
 
-  </header>
+    {% block main_body %}
 
   <!-- Subnav -->
 

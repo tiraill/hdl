@@ -23,3 +23,9 @@ def hotels(request):
 
     return render(request,
                   template_name="project/hotels.html")
+
+
+def morpheus(request):
+
+    return render(request,
+                  template_name="project/morpheus.html")

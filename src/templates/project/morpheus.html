@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block header_bg_cls %}style="background: url({% static 'img/bg/project.jpg' %}) center 0/cover no-repeat;"{% endblock %}
+
+{% block header_bot %}
+    <div class="header__bot">
+      <div class="container">
+        <nav class="breadcrumb">
+          <ol class="breadcrumb__list d-flex align-items-center">
+            <li class="breadcrumb__item">
+              <a href="{% url 'core-index' %}" class="breadcrumb__link">Главная</a>
+            </li>
+            <li class="breadcrumb__item">
+              <a href="{% url 'project-index' %}" class="breadcrumb__link">Проекты</a>
+            </li>
+            <li class="breadcrumb__item active">
+              Hotel City of Dreams — Morpheus
+            </li>
+          </ol>
+        </nav>
+        <div class="main__title main__title_project">
+          <h1>Hotel City <br />of Dreams — <br />Morpheus</h1>
+          <p>Макао</p>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block main_body %}
+      <!-- Info -->
+
+      <div class="info">
+        <div class="container">
+          <div class="row">
+
+            <!-- Col -->
+
+            <div class="col-sm-6 col-lg-3">
+              <div class="info__item">
+                <p class="info__name">Кол-во звезд: </p>
+                <p class="info__txt">5 звезд</p>
+              </div>
+            </div>
+
+            <!-- Col -->
+
+            <div class="col-sm-6 col-lg-3">
+              <div class="info__item">
+                <p class="info__name">Кол-во номеров: </p>
+                <p class="info__txt">772 гостевых номера</p>
+              </div>
+            </div>
+
+            <!-- Col -->
+
+            <div class="col-sm-6 col-lg-3">
+              <div class="info__item">
+                <p class="info__name">Внедрение системы:</p>
+                <p class="info__txt">автоматизация Buspro</p>
+              </div>
+            </div>
+
+            <!-- Col -->
+
+            <div class="col-sm-6 col-lg-3">
+              <div class="info__item">
+                <p class="info__name">Введен в эксплуатацию: </p>
+                <p class="info__txt">2018 год</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Project -->
+
+      <div class="project">
+        <div class="container">
+
+          <!-- Row -->
+
+          <div class="row project__lvl project__lvl_1">
+            <div class="col-lg-7">
+              <div class="project__txt project__txt_left">
+                <h2 class="title__h2">Гостевые комнаты</h2>
+                <p>Гостевые комнаты важны для любого отеля, т.к. посетитель проводит большую часть времени именно в ней. Пятизвездные комнаты для посетителей — это приоритет №1 для отеля.</p>
+                <p>Инженеры HDL установили RCU и модули Входа/ Выхода, чтобы реализовать концепцию умного освещения, управления шторами, системой кондиционирования и ТВ в гостевых комнатах. При входе посетителя включится режим Добро Пожаловать, который можно настроить. Затем включится освещение, откроются шторы, а кондиционер станет поддерживать оптимальную температуру.</p>
+              </div>
+            </div>
+            <div class="col-lg-5 project__images">
+              <div class="project__img"><img src="{% static 'img/other/project-1.png' %}" alt="Фото"></div>
+            </div>
+          </div>
+
+          <!-- Row -->
+
+          <div class="row project__lvl project__lvl_2">
+            <div class="col-12 project__images">
+              <div class="project__img"><img src="{% static 'img/other/project-2.png' %}" alt="Фото"></div>
+            </div>
+          </div>
+
+          <!-- Row -->
+
+          <div class="row project__lvl project__lvl_3">
+            <div class="col-lg-5 project__images">
+              <div class="project__img"><img src="{% static 'img/other/project-3.png' %}" alt="Фото"></div>
+            </div>
+            <div class="col-lg-7">
+              <div class="project__txt project__txt_right">
+                <p>Каждая комната снабжена панелью HDL Enviro. Гладкое наружное стекло и алюминиевые грани отлично сочетаются с элегантными дверьми. Панель Enviro автоматически включается, когда приближается посетитель благодаря встроенному датчику приближения. Используя панель Enviro посетитель может управлять устройствами простыми нажатиями кнопок, что дает поистине новый и запоминающийся опыт проживания в отеле.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row -->
+
+          <div class="row project__lvl project__lvl_4">
+            <div class="col-lg-7">
+              <div class="project__txt project__txt_left">
+                <h2 class="title__h2">Публичные зоны</h2>
+                <p>Кроме гостевых комнат, руководство компании уделило внимание умному управлению публичными зонами. Обслуживающий персонал может управлять освещением различных зон простым нажатием кнопки на умной панели или воспользоваться приложением для смартфона или iPad для удаленного управления, без необходимости проверки каждого этажа отдельно. Также они могут выбирать различные режимы работы исходя из потребностей.</p>
+                <p>Возьмем лобби отеля для примера. Если погода на улице холодная и дождливая, то режим освещения может увеличить интенсивность освещения лобби, чтобы добиться нужной освещенности. В то же время, система кондиционирования начнет поднимать температуру в помещении. Бытует мнение, что лобби отеля — это место, которое оставляет первое впечатление. Решения HDL гарантируют поддержание правильной атмосферы в лобби, чтобы приятно поприветствовать посетителей.</p>
+              </div>
+            </div>
+            <div class="col-lg-5 project__images">
+              <div class="project__img"><img src="{% static 'img/other/project-4.png' %}" alt="Фото"></div>
+            </div>
+          </div>
+
+          <!-- Row -->
+
+          <div class="row project__lvl project__lvl_5 align-items-end justify-content-between">
+            <div class="col-sm-6 col-lg-5 project__images">
+              <div class="project__img"><img src="{% static 'img/other/project-5.png' %}" alt="Фото"></div>
+            </div>
+            <div class="col-sm-6 col-lg-5 project__images">
+              <div class="project__img"><img src="{% static 'img/other/project-6.png' %}" alt="Фото"></div>
+            </div>
+          </div>
+
+          <!-- Row -->
+
+          <div class="row project__lvl project__lvl_6 align-items-end justify-content-between">
+            <div class="col-md-6 col-lg-5">
+              <div class="project__txt">
+                <h2 class="title__h2">Установленное оборудование</h2>
+                <p>В проекте Morpheus было задействовано следующее оборудование Buspro:</p>
+              </div>
+              <ul class="project__list">
+                <li>Умные панели управления</li>
+                <li>Диммеры</li>
+                <li>Реле</li>
+                <li>Mosfet питание для штор</li>
+                <li>Модули управления</li>
+                <li>Triac модули постоянного тока</li>
+                <li>RCU приводы упраления на 512 канала</li>
+                <li>DMX контроллеры сцен</li>
+                <li>Модули управления кондиционированием</li>
+                <li>RS232/ RS485 шлюзы</li>
+                <li>HDL Buspro системные шлюзы</li>
+                <li>Гостиничные модули Входа/Выхода</li>
+                <li>Модули питания</li>
+                <li>Модули логического управления</li>
+              </ul>
+            </div>
+            <div class="col-md-6 col-lg-5">
+              <div class="conditions d-flex fx-wrap">
+                <div class="conditions__item">
+                  <i class="conditions__icon i-lighting-1"></i>
+                  <p class="conditions__txt">Освещение</p>
+                </div>
+                <div class="conditions__item">
+                  <i class="conditions__icon i-blackout"></i>
+                  <p class="conditions__txt">Затемнение</p>
+                </div>
+                <div class="conditions__item">
+                  <i class="conditions__icon i-conditioning-1"></i>
+                  <p class="conditions__txt">Кондиционер</p>
+                </div>
+                <div class="conditions__item">
+                  <i class="conditions__icon i-heat"></i>
+                  <p class="conditions__txt">Нагрев</p>
+                </div>
+                <div class="conditions__item">
+                  <i class="conditions__icon i-audio"></i>
+                  <p class="conditions__txt">Фоновая музыка</p>
+                </div>
+                <div class="conditions__item">
+                  <i class="conditions__icon i-security-1"></i>
+                  <p class="conditions__txt">Безопасность</p>
+                </div>
+                <div class="conditions__item">
+                  <i class="conditions__icon i-safety"></i>
+                  <p class="conditions__txt">Охрана</p>
+                </div>
+              </div>
+              <div class="project__logo"><img src="{% static 'img/other/buspro-3.png' %}" alt="Фото"></div>
+              <div class="project__txt project__txt__hide_mob">
+                <p>Buspro - это умная система управления, которая работает по протоколу HDL. Система позволяет подключать практически любое электрическое оборудование для освещения, затемнения, кондиционирования, теплого пола, фоновой музыки, охраны и прочего. Управлять системой можно с настенных панелей, смартфона или планшета. Умные решения Buspro можно использовать в жилых, коммерческих и гостиничных проектах.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row -->
+
+          <div class="row project__lvl project__lvl_7">
+            <div class="col-12 project__images">
+              <div class="project__img"><img src="{% static 'img/other/project-7.png' %}" alt="Фото"></div>
+            </div>
+          </div>
+
+          <!-- Row -->
+
+          <div class="row project__lvl project__lvl_8">
+            <div class="col-12">
+              <div class="project__txt">
+                <h2 class="title__h2">Результат</h2>
+                <p>Полностью настраиваемые решения HDL установлены в гостевых комнатах и публичных зонах, позволяя управлять освещением, затенением и HVAC всего курорта.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+{% endblock %}
