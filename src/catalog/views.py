@@ -42,10 +42,6 @@ def product_card(request, slug):
     except ObjectDoesNotExist:
         raise Http404
 
-    for category in product.category.all():
-        if category.image:
-            print(category.image.url)
-
     return render(request,
                   template_name="catalog/card.html",
                   context={'product': product})
