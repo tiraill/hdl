@@ -77,9 +77,9 @@ class Product(SaveModelSlugMixin, MPTTModel):
 
     title = models.CharField(max_length=250, verbose_name="Наименование")
     slug = models.SlugField(max_length=250, blank=True, verbose_name="Наименование для создания ссылки")
-    general_description = models.CharField(max_length=200, verbose_name="Общее описание")
-    func_description = models.CharField(max_length=200, verbose_name="Функции")
-    tech_description = models.CharField(max_length=200, verbose_name="Характеристики")
+    general_description = models.TextField(verbose_name="Общее описание")
+    func_description = models.TextField(verbose_name="Функции")
+    tech_description = models.TextField(verbose_name="Характеристики")
     meta_keywords = models.CharField(max_length=1000, null=True, blank=True,
                                      verbose_name="Слова для тэга keywords (SEO)",
                                      help_text="Не более 1000 символов с пробелами")
@@ -107,9 +107,11 @@ class ProductImage(models.Model):
     class Meta:
         verbose_name = "Изображение товара"
         verbose_name_plural = "Изображения товара"
+        ordering = ['priority']
 
     uid = models.UUIDField(default=uuid.uuid4, primary_key=True)
     image = models.ImageField(null=True)
+    priority = models.IntegerField(default=1)
     product = models.ForeignKey(Product, related_name='images',
                                 on_delete=models.CASCADE,
                                 null=True, blank=True)
