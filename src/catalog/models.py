@@ -28,6 +28,9 @@ class Category(SaveModelSlugMixin, models.Model):
     slug = models.SlugField(max_length=250, blank=True,
                             verbose_name="Наименование для создания ссылки",
                             help_text="Необязательно для заполнения руками")
+    image = models.ImageField(null=True, blank=True, upload_to=get_random_filename,
+                              verbose_name="Картинка категории")
+    svg_image = models.TextField(null=True, blank=True, verbose_name="Картинка в формате SVG с тегом svg")
 
     def __str__(self):
         return self.title
