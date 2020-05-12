@@ -32,7 +32,12 @@
 
               <div class="row product__name justify-content-end">
                 <div class="col-lg-6">
-                  <div class="product__name__img"><img src="{{ product.images.all.0.image.url }}" alt="Фото"></div>
+                  <div class="product__name__img">
+                  {% for category in product.category.all %}
+                      {% if category.svg_image %}{{ category.svg_image|safe }}{% endif %}
+                      {% if category.image %}<img src="{{ category.image.url }}" alt="Фото">{% endif %}
+                  {% endfor %}
+                  </div>
                   <h2>{{ product.title }}</h2>
                   <p class="product__name__cod">Код товара: {{ product.qualifier }}</p>
                 </div>
@@ -92,7 +97,7 @@
                 <div class="tabs__item">
                   <div class="box">
                     <h2>Общая информация</h2>
-                    <p>{{ product.general_description }}</p>
+                    <p>{{ product.general_description|safe }}</p>
                   </div>
                 </div>
 
@@ -101,7 +106,7 @@
                 <div class="tabs__item">
                   <div class="box">
                     <h2>Характеристики</h2>
-                    <p>{{ product.tech_description }}</p>
+                    <p>{{ product.tech_description|safe }}</p>
                   </div>
                 </div>
 
@@ -110,7 +115,7 @@
                 <div class="tabs__item">
                   <div class="box">
                     <h2>Функции</h2>
-                    <p>{{ product.func_description }}</p>
+                    <p>{{ product.func_description|safe }}</p>
                   </div>
                 </div>
 

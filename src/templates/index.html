@@ -13,7 +13,7 @@
             <span class="intro__overhead">HDL AUTOMATION RUSSIA</span>
             <h1 class="title__h1">Эксперты в области систем автоматизации</h1>
             <p>Международная компания, производитель систем автоматизации «Умный Дом».</p>
-            <a href="#" class="btn btn__dark intro__btn">
+            <a href="#additional-info" class="btn btn__dark intro__btn">
               Оставить заявку на сотрудничество
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <path fill-rule="evenodd"
@@ -43,7 +43,7 @@
               
               <div class="col-4">
                 <div class="solutions__item" style="background: url({% static 'img/other/solutions-1.png' %}) center/cover no-repeat #dd73ed;">
-                  <h4 class="solutions__name">Для жилых <br />объектов</h4>
+                    <a href="{% url 'project-living' %}"><h4 class="solutions__name">Для жилых <br />объектов</h4></a>
                 </div>
               </div>
               
@@ -51,7 +51,7 @@
               
               <div class="col-4">
                 <div class="solutions__item" style="background: url({% static 'img/other/solutions-2.png' %}) center/cover no-repeat #dd73ed;">
-                  <h4 class="solutions__name">Для коммерческих <br />объектов</h4>
+                    <a href="{% url 'project-commercial' %}"><h4 class="solutions__name">Для коммерческих <br />объектов</h4></a>
                 </div>
               </div>
 
@@ -59,7 +59,7 @@
               
               <div class="col-4">
                 <div class="solutions__item" style="background: url({% static 'img/other/solutions-3.png' %}) center/cover no-repeat #dd73ed;">
-                  <h4 class="solutions__name">Для гостиничных <br />объектов</h4>
+                    <a href="{% url 'project-hotels' %}"><h4 class="solutions__name">Для гостиничных <br />объектов</h4></a>
                 </div>
               </div>
 
@@ -277,7 +277,7 @@
                   <p class="offer__txt">KNX cамый популярный стандарт систем автоматизации, предпологающий высокие требования к оборудованию.</p>
                 </div>
                 <div class="offer__wrap">
-                  <a href="#" class="btn btn__main offer__btn"><span>Подробнее</span></a>
+                  <a href="{% url 'catalog-index' %}" class="btn btn__main offer__btn"><span>Подробнее</span></a>
                 </div>
               </div>
             </div>
@@ -292,7 +292,7 @@
                   <p class="offer__txt">Открытый протокол с высокой надежностью и широким функционалом.</p>
                 </div>
                 <div class="offer__wrap">
-                  <a href="#" class="btn btn__main offer__btn"><span>Подробнее</span></a>
+                  <a href="{% url 'catalog-index' %}" class="btn btn__main offer__btn"><span>Подробнее</span></a>
                 </div>
               </div>
             </div>
@@ -307,7 +307,7 @@
                   <p class="offer__txt">Buspro Wireless стандартизирована и работает по стандарту IEEE 802.15.4. Используя частоты 768, 868 и 900 МГц</p>
                 </div>
                 <div class="offer__wrap">
-                  <a href="#" class="btn btn__main offer__btn"><span>Подробнее</span></a>
+                  <a href="{% url 'catalog-index' %}" class="btn btn__main offer__btn"><span>Подробнее</span></a>
                 </div>
               </div>
             </div>
@@ -322,7 +322,7 @@
                   <p class="offer__txt">Новый уровень комфорта и оптимизация потребления энергоресурсов.</p>
                 </div>
                 <div class="offer__wrap">
-                  <a href="#" class="btn btn__main offer__btn"><span>Подробнее</span></a>
+                  <a href="{% url 'catalog-index' %}" class="btn btn__main offer__btn"><span>Подробнее</span></a>
                 </div>
               </div>
             </div>
@@ -337,7 +337,7 @@
                   <p class="offer__txt">Мы предлагаем разные варианты обучающих курсов по работе с системами умный дом.</p>
                 </div>
                 <div class="offer__wrap">
-                  <a href="#" class="btn btn__main offer__btn"><span>Подробнее</span></a>
+                  <a href="{% url 'education-index' %}" class="btn btn__main offer__btn"><span>Подробнее</span></a>
                 </div>
               </div>
             </div>
@@ -389,7 +389,7 @@
           <!-- Btn -->
 
           <div class="offer__btn__box text-center">
-            <a href="#" class="btn btn__dark">
+            <a href="#additional-info" class="btn btn__dark">
               Получить консультацию
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <path fill-rule="evenodd" d="M4.987,4.918 L0.458,0.390 C0.351,0.284 0.180,0.284 0.074,0.390 C-0.033,0.497 -0.033,0.668 0.074,0.775 L4.409,5.109 L0.074,9.443 C-0.033,9.550 -0.033,9.721 0.074,9.828 C0.126,9.880 0.196,9.908 0.265,9.908 C0.333,9.908 0.404,9.882 0.456,9.828 L4.984,5.300 C5.091,5.195 5.091,5.022 4.987,4.918 Z"></path>
@@ -427,7 +427,7 @@
                   <div class="scope__wrap">
                     <h3 class="scope__name">Квартиры и дома</h3>
                     <p class="scope__txt">Возможность просто и эффективно контролировать Ваш Дом с любого места. Элегантные панели управления представлены в разнообразных расцветках, стилях и материалах, удовлетворяющих дизайн любого интерьера.</p>
-                    <a href="#" class="btn btn__main scope__btn"><span>Подробнее</span></a>
+                    <a href="{% url 'project-living' %}" class="btn btn__main scope__btn"><span>Подробнее</span></a>
                   </div>
                 </div>
               </div>
@@ -442,7 +442,7 @@
                   <div class="scope__wrap">
                     <h3 class="scope__name">Коммерческая недвижимость</h3>
                     <p class="scope__txt">Решения по экономии энергоресурсов, интеллектуальное управление освещением, климатом и другими системами зданийщих дизайн любого интерьера.</p>
-                    <a href="#" class="btn btn__main scope__btn"><span>Подробнее</span></a>
+                    <a href="{% url 'project-commercial' %}" class="btn btn__main scope__btn"><span>Подробнее</span></a>
                   </div>
                 </div>
               </div>
@@ -457,7 +457,7 @@
                   <div class="scope__wrap">
                     <h3 class="scope__name">Гостиницы и отели</h3>
                     <p class="scope__txt">Автоматизация номерного фонда, энергоэффективность, интеграция с системами PMS, новый уровень комфорта и сервиса для гостей.</p>
-                    <a href="#" class="btn btn__main scope__btn"><span>Подробнее</span></a>
+                    <a href="{% url 'project-hotels' %}" class="btn btn__main scope__btn"><span>Подробнее</span></a>
                   </div>
                 </div>
               </div>

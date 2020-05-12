@@ -32,6 +32,7 @@
 
             <div class="col-lg-3">
               <aside class="aside">
+              {% if categories %}
                 <div class="aside__item">
                   <h3>
                     Категория:
@@ -52,6 +53,8 @@
                   {% endfor %}
                   </div>
                 </div>
+              {% endif %}
+              {% if types %}
                 <div class="aside__item">
                   <h3>
                     Тип:
@@ -72,26 +75,29 @@
                       {% endfor %}
                   </div>
                 </div>
-                <div class="aside__item">
-                  <h3>
-                    Серия:
-                    <span class="aside__arrow">
-                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21px" height="10px">
-                        <path fill-rule="evenodd"  fill="rgb(0, 0, 0)"
-                         d="M10.308,9.865 L19.880,0.681 C20.050,0.519 20.050,0.254 19.880,0.091 C19.710,-0.072 19.434,-0.072 19.265,0.091 L10.001,8.980 L0.736,0.091 C0.566,-0.072 0.290,-0.072 0.121,0.091 C0.036,0.173 -0.006,0.280 -0.006,0.387 C-0.006,0.494 0.036,0.600 0.121,0.681 L9.693,9.865 C9.862,10.027 10.138,10.027 10.308,9.865 Z"/>
-                      </svg>
-                    </span>
-                  </h3>
-                  <div class="aside__list check">
-                    {% for serie in series %}
-                      <label class="check__item d-flex filters__item">
-                        <input type="checkbox" data-slug="{{ serie.slug }}" name="series">
-                        <span class="check__mark"></span>
-                        <span class="check__name">{{ serie.title }}</span>
-                      </label>
-                    {% endfor %}
-                  </div>
-                </div>
+              {% endif %}
+                  {% if series %}
+                    <div class="aside__item">
+                      <h3>
+                        Серия:
+                        <span class="aside__arrow">
+                          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21px" height="10px">
+                            <path fill-rule="evenodd"  fill="rgb(0, 0, 0)"
+                             d="M10.308,9.865 L19.880,0.681 C20.050,0.519 20.050,0.254 19.880,0.091 C19.710,-0.072 19.434,-0.072 19.265,0.091 L10.001,8.980 L0.736,0.091 C0.566,-0.072 0.290,-0.072 0.121,0.091 C0.036,0.173 -0.006,0.280 -0.006,0.387 C-0.006,0.494 0.036,0.600 0.121,0.681 L9.693,9.865 C9.862,10.027 10.138,10.027 10.308,9.865 Z"/>
+                          </svg>
+                        </span>
+                      </h3>
+                      <div class="aside__list check">
+                         {% for serie in series %}
+                          <label class="check__item d-flex filters__item">
+                            <input type="checkbox" data-slug="{{ serie.slug }}" name="series">
+                            <span class="check__mark"></span>
+                            <span class="check__name">{{ serie.title }}</span>
+                          </label>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  {% endif %}
               </aside>
             </div>
 

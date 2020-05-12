@@ -4,15 +4,14 @@ from django.http import Http404
 
 from .models import News
 
-from core.utils import create_pagination, chunks
+from core.utils import create_pagination, slice_into_columns
 
 
 def index(request):
     news = News.objects.all()
 
     paginated_news = create_pagination(request, news)
-
-    chunked_news = chunks(paginated_news.object_list, 3)
+    chunked_news = slice_into_columns(news_lst=paginated_news.object_list)
 
     ctx = {
         'news': chunked_news,
@@ -26,7 +25,7 @@ def index(request):
 
 def news_card(request, slug):
     try:
-        news = News.objects.get(slug=slug)
+            news = News.objects.get(slug=slug)
     except ObjectDoesNotExist:
         raise Http404
 

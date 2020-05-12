@@ -11,7 +11,7 @@ services:
       python /src/manage.py makemigrations --noinput &&
       python /src/manage.py migrate --noinput &&
       python /src/manage.py collectstatic --noinput &&
-      gunicorn service.wsgi -b 0.0.0.0:8000 --workers 4"
+      gunicorn hdl_settings.wsgi -b 0.0.0.0:8000 --workers 4"
     restart: on-failure
     volumes:
       - ./src:/src
