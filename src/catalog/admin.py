@@ -9,16 +9,19 @@ from .models import Category, Type, Series, Product, ProductImage
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('title',)
+    search_fields = ('title', 'slug')
 
 
 @admin.register(Type)
 class TypeAdmin(admin.ModelAdmin):
     list_display = ('title',)
+    search_fields = ('title', 'slug')
 
 
 @admin.register(Series)
 class SeriesAdmin(admin.ModelAdmin):
     list_display = ('title',)
+    search_fields = ('title', 'slug')
 
 
 @admin.register(ProductImage)
@@ -26,6 +29,7 @@ class ProductImageAdmin(admin.ModelAdmin):
     list_display = ('uid', 'get_product')
     list_filter = ('product__title',)
     search_fields = ('product__title',)
+    autocomplete_fields = ('product',)
     exclude = ('uid',)
 
     def get_product(self, instance):
@@ -46,6 +50,7 @@ class ProductAdmin(MPTTModelAdmin):
 
     list_display = ('title', 'get_category', 'get_type', 'get_manufacturer', 'creation_date', 'qualifier')
     list_filter = ('category__title', 'type__title', 'series__title', 'creation_date')
+    autocomplete_fields = ('parent', 'category', 'type', 'series')
     search_fields = ('title', 'qualifier')
 
     def get_category(self, instance):

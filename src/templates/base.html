@@ -54,7 +54,7 @@
             <!-- Right -->
 
             <div class="relations d-flex align-items-center">
-              <a href="#" class="relations__bell link-pink">Заказать звонок</a>
+              <a href="#" class="relations__bell link-pink open-modal-bell">Заказать звонок</a>
               <a href="tel:+74955653371" class="relations__tel">+7 (495) 565-33-71</a>
               <a href="tel:+78125653346" class="relations__tel d-flex align-items-center">
                 <i class="i-tel flex-center speed">
@@ -279,7 +279,7 @@
                       <label class="check__item d-flex">
                         {{ contact_form.check }}
                       </label>
-                      <p class="check__txt">Даю согласие на <a href="#">обработку моих персональных данных</a> и согласен(а) с <a href="#">политикой Конфиденциальности</a>*.</p>
+                      <p class="check__txt">Даю согласие на обработку моих персональных данных и согласен(а) с <a href="{% url 'core-politics' %}">политикой Конфиденциальности</a>*.</p>
                     </div>
                     <br>
                     <button class="btn btn__main form__btn"><span>Отправить</span></button>
@@ -457,6 +457,46 @@
       </form>
     </div>
   </div>
+
+  <!-- Modal Call -->
+
+  <div class="modal modal_bell">
+    <div class="modal__fullScreen flex-center">
+      <div class="modal__box">
+        <button class="modal__close">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512.001 512.001">
+            <path d="M284.286,256.002L506.143,34.144c7.811-7.811,7.811-20.475,0-28.285c-7.811-7.81-20.475-7.811-28.285,0L256,227.717
+              L34.143,5.859c-7.811-7.811-20.475-7.811-28.285,0c-7.81,7.811-7.811,20.475,0,28.285l221.857,221.857L5.858,477.859
+              c-7.811,7.811-7.811,20.475,0,28.285c3.905,3.905,9.024,5.857,14.143,5.857c5.119,0,10.237-1.952,14.143-5.857L256,284.287
+              l221.857,221.857c3.905,3.905,9.024,5.857,14.143,5.857s10.237-1.952,14.143-5.857c7.811-7.811,7.811-20.475,0-28.285
+              L284.286,256.002z"></path>
+          </svg>
+        </button>
+        <div class="modal__head text-center">
+          <h2>Заказать звонок!</h2>
+        </div>
+        <div class="modal__body">
+          <form method="post" action="{% url 'send_feedback' %}" class="feedback__form form">
+              {% csrf_token %}
+            <label class="form__field">{{ contact_form.first_name }}<span class="form__name speed">Ваше имя:</span></label>
+            <label class="form__field">{{ contact_form.email }}<span class="form__name speed">Email:</span></label>
+            {{ contact_form.email.errors }}
+            <label class="form__field">{{ contact_form.phone_number }}<span class="form__name speed">Телефон:</span></label>
+            <label class="form__field">{{ contact_form.comment }}<span class="form__name speed">Комментарий</span></label>
+            <div class="check d-flex align-items-start">
+              <label class="check__item d-flex">
+                  {{ contact_form.check }}
+                <span class="check__mark"></span>
+              </label>
+              <p class="check__txt">Даю согласие на обработку моих персональных данных и согласен(а) с <a href="{% url 'core-politics' %}">политикой Конфиденциальности</a>*.</p>
+            </div>
+            <div class="text-right"><button class="btn btn__main form__btn"><span>Отправить</span></button></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   {% block base_js %}
   <!--[if lt IE 9]>

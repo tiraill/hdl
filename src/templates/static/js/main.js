@@ -18,7 +18,7 @@ $(document).ready(function () {
 
   if($(window).width() < 1200){
     $('.nav__item_drop .nav__link').click(function(e) {
-      e.preventDefault();
+      // e.preventDefault();
       $(this).parents('.nav__item_drop').toggleClass('nav__item_drop_active');
       $(this).next('.navdrop').slideToggle( "slow", function() {});
     });
@@ -42,6 +42,95 @@ $(document).ready(function () {
   // Modal close
   $('.modal__close').click(function() {
     $('.modal').fadeOut();
+  });
+
+  // Modal bell
+  $('.open-modal-bell').click(function(e) {
+    e.preventDefault();
+    let modal = $('.modal_bell');
+    modal.find('h2').text('Заказать звонок!');
+    modal.fadeIn();
+  });
+
+  // Modal request
+  $('.open-modal-request').click(function(e) {
+    e.preventDefault();
+    let modal = $('.modal_bell');
+    modal.find('h2').text('Оставьте заявку для сотрудничества!');
+    modal.fadeIn();
+  });
+
+  // Modal consult
+  $('.open-modal-consult').click(function(e) {
+    e.preventDefault();
+    let modal = $('.modal_bell');
+    modal.find('h2').text('Получите консультацию!');
+    modal.fadeIn();
+  });
+
+  // Modal education general
+  $('.open-modal-education-general').click(function(e) {
+    e.preventDefault();
+    let modal = $('.modal_bell');
+    modal.find('h2').text('Заявка на обучение');
+    modal.fadeIn();
+  });
+
+  // Modal education general-buspro
+  $('.open-modal-education-general-buspro').click(function(e) {
+    e.preventDefault();
+    let modal = $('.modal_bell');
+    modal.find('h2').text('Заявка на обучение протоколу BusPro');
+    modal.fadeIn();
+  });
+
+  // Modal education general-knx
+  $('.open-modal-education-general-knx').click(function(e) {
+    e.preventDefault();
+    let modal = $('.modal_bell');
+    modal.find('h2').text('Заявка на обучение протоколу KNX');
+    modal.fadeIn();
+  });
+
+  // Modal education general-online
+  $('.open-modal-education-general-online').click(function(e) {
+    e.preventDefault();
+    let modal = $('.modal_bell');
+    modal.find('h2').text('Заявка на онлайн курс HDL BusPro');
+    modal.fadeIn();
+  });
+
+  // Modal education buspro
+  $('.open-modal-education-buspro').click(function(e) {
+    e.preventDefault();
+    let modal = $('.modal_bell');
+    modal.find('h2').text('Зарегистрироваться на обучение');
+    modal.fadeIn();
+  });
+
+  // Modal education knx
+  $('.open-modal-education-knx').click(function(e) {
+    e.preventDefault();
+    let modal = $('.modal_bell');
+    modal.find('h2').text('Купить со скидкой курс сертификации KNX');
+    modal.fadeIn();
+  });
+
+  $(document).click(function(event) {
+    if ($(event.target).closest('.modal__box').length 
+      || $(event.target).closest('.modal_search').length
+      || $(event.target).closest('.open-modal-bell').length
+      || $(event.target).closest('.open-modal-request').length
+      || $(event.target).closest('.open-modal-consult').length
+      || $(event.target).closest('.open-modal-education-general').length
+      || $(event.target).closest('.open-modal-education-general-buspro').length
+      || $(event.target).closest('.open-modal-education-general-knx').length
+      || $(event.target).closest('.open-modal-education-general-online').length
+      || $(event.target).closest('.open-modal-education-buspro').length
+      || $(event.target).closest('.open-modal-education-knx').length
+      || $(event.target).closest('.btn-search').length ) return;
+      $('.modal').fadeOut();
+      event.stopPropagation();
   });
 
   // Tabs

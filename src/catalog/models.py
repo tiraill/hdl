@@ -54,8 +54,8 @@ class Type(SaveModelSlugMixin, models.Model):
 class Series(SaveModelSlugMixin, models.Model):
 
     class Meta:
-        verbose_name = "Серия"
-        verbose_name_plural = "Серия"
+        verbose_name = "Серия продукта"
+        verbose_name_plural = "Серии продукта"
 
     title = models.CharField(max_length=150, null=True, verbose_name="Наименование")
     slug = models.CharField(max_length=150, null=True, blank=True,
@@ -92,12 +92,18 @@ class Product(SaveModelSlugMixin, MPTTModel):
     qualifier = models.CharField(max_length=50, null=True, blank=True, verbose_name="Артикул")
     instruction = models.FileField(blank=True, null=True,
                                    validators=[file_size_and_extension], verbose_name="Инструкция")
-    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
-    category = models.ManyToManyField(Category, related_name='products')
+    parent = TreeForeignKey('self', on_delete=models.CASCADE,
+                            null=True, blank=True, related_name='children',
+                            help_text='В этом поле можно использовать автозаполнение для поиска')
+    category = models.ManyToManyField(Category, related_name='products',
+                                      verbose_name="Категория продукта",
+                                      help_text='В этом поле можно использовать автозаполнение для поиска')
     type = models.ForeignKey(Type, null=True, blank=True, related_name='products',
-                             on_delete=models.SET_NULL)
+                             on_delete=models.SET_NULL, verbose_name="Тип продукта",
+                             help_text='В этом поле можно использовать автозаполнение для поиска')
     series = models.ForeignKey(Series, null=True, blank=True, related_name='products',
-                               on_delete=models.SET_NULL)
+                               on_delete=models.SET_NULL, verbose_name="Серия продукта",
+                                help_text='В этом поле можно использовать автозаполнение для поиска')
     creation_date = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     modified = models.DateTimeField(auto_now=True)
 
@@ -117,7 +123,8 @@ class ProductImage(models.Model):
     priority = models.IntegerField(default=1)
     product = models.ForeignKey(Product, related_name='images',
                                 on_delete=models.CASCADE,
-                                null=True, blank=True)
+                                null=True, blank=True, verbose_name="Товар для картинки",
+                                help_text='В этом поле можно использовать автозаполнение')
 
     def save(self, *args, **kwargs):
         try:

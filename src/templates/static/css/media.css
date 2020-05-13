@@ -1,6 +1,18 @@
 @charset "UTF-8";
 /*==========  Desktop First Method  ==========*/
 
+@media only screen and (max-width : 1620px) {
+  .keys__sl {
+    width: 1620px;
+  }
+  span.sentence__img {
+    background-position: 40% center !important;
+  }
+  .showroom__sl__item {
+    height: 371px;
+  }
+}
+
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1200px) {
   .header__body {
@@ -292,6 +304,64 @@
   .project__lvl_7,
   .project__lvl_8 {
     margin-top: 50px;
+  }
+  .page-info .main__title {
+    margin: 100px 0 160px;
+  }
+  .keys {
+    padding: 70px 0 80px;
+  }
+  .keys .box {
+    padding: 0 15px;
+  }
+  .keys__sl {
+    width: 1200px;
+  }
+  .keys__sl__item {
+    margin-right: 15px;
+  }
+  .indicator {
+    height: 3px;
+  }
+  .realization {
+    padding: 50px 0;
+  }
+  .sentence {
+    min-height: 521px;
+  }
+  .description .box {
+    padding: 60px 0;
+  }
+  .description .scope__name {
+    font-size: 38px;
+  }
+  .information {
+    min-height: 561px;
+  }
+  .about {
+    padding: 50px 0 30px;
+  }
+  .about__txt {
+    font-size: 16px;
+    margin-top: 30px;
+  }
+  .paragraph, .about__list {
+    margin-bottom: 20px;
+  }
+  .about__list p {
+    font-size: 18px;
+  }
+  .advantages {
+    padding: 50px 0;
+  }
+  .advantages__item {
+    padding: 25px;
+  }
+  .showroom {
+    padding-top: 50px;
+  }
+  .showroom__sl__item {
+    height: 291px;
   }
 }
 
@@ -703,6 +773,44 @@
     width: 20%;
     margin-bottom: 10px;
   }
+  .subnav__link:after {
+    width: auto;
+  }
+  .keys__sl {
+    width: 992px;
+  }
+  .realization__sl .slick-arrow, .realization__sl .slick-arrow:hover, .realization__sl .slick-arrow:focus {
+    width: 44px;height: 44px;
+  }
+  .description .scope__item {
+    margin-top: 0;
+    background: none;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .description .scope__img {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+    margin-top: -70px;
+  }
+  .description .scope__item .scope__wrap {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+    background: #fff;
+    border-radius: 50px;
+    padding-bottom: 110px;
+    -webkit-box-shadow: 0px 5px 65px 0px rgba(161, 104, 255, 0.17);
+            box-shadow: 0px 5px 65px 0px rgba(161, 104, 255, 0.17);
+  }
+  .information {
+    min-height: 491px;
+  }
+  .advantages__item {
+    border-radius: 25px;
+  }
 }
 
 /* Small Devices, Tablets */
@@ -960,6 +1068,112 @@
   .conditions__item {
     width: 14.2857142857%;
   }
+  .page-info .main__title {
+    margin: 70px 0 110px;
+  }
+  .subnav .container {
+    max-width: 100%;
+  }
+  .subnav .row .col-12 {
+    padding: 0;
+  }
+  .subnav {
+    border-bottom: 0;
+  }
+  .subnav__item {
+    padding: 0;
+    border-bottom: 1px solid rgba(151, 112, 199, 0.15);
+  }
+  .subnav__link {
+    text-align: left;
+    padding: 10px 25px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .subnav__link:after {
+    content: none;
+  }
+  i.subnav__icon {
+    margin: 0;
+    background-position: 0 center;
+  }
+  .subnav__txt {
+    margin-top: 0;
+    margin-left: 20px;
+  }
+  .subnav__link_active,
+  .subnav__link:hover {
+    color: #fff;
+    background: #9770c7;
+    -webkit-box-shadow: 0px 3px 7px 0px rgba(163, 96, 250, 0.45);
+            box-shadow: 0px 3px 7px 0px rgba(163, 96, 250, 0.45);
+  }
+  .subnav__link_active svg,
+  .subnav__link:hover svg {
+    fill: #fff;
+  }
+  .keys {
+    padding: 50px 0;
+  }
+  .keys .box {
+    padding: 0;
+    margin-top: 20px;
+  }
+  .keys__sl {
+    width: 100%;
+  }
+  .keys__sl__item {
+    margin-right: 0;
+  }
+  .keys__txt {
+    padding: 0 15px;
+  }
+  .indicator {
+    display: none;
+  }
+  .sentence {
+    display: block;
+    min-height: auto;
+    padding: 15px 0 0;
+  }
+  .sentence .container {
+    display: block;
+    text-align: center;
+  }
+  .sentence .box {
+   margin: 0 auto;
+  }
+  .sentence__img {
+    display: block;
+    position: static;
+    margin-top: 44px;
+    width: 100%;height: 400px;
+  }
+  span.sentence__img {
+    background-position: 70% center !important;
+  }
+  .description .scope__img {
+    width: 94%;
+  }
+  .description .scope__name {
+    font-size: 24px;
+  }
+  .information {
+    min-height: 530px;
+  }
+  .information .title__txt {
+    font-size: 17px;
+  }
+  .advantages__name {
+    font-size: 20px;
+  }
+  .advantages__txt {
+    font-size: 16px;
+  }
 }
 
 @media only screen and (max-width : 576px) {
@@ -1181,6 +1395,21 @@
   .info__item {
     text-align: center;
   }
+  .keys__sl .slick-arrow, .keys__sl .slick-arrow:hover, .keys__sl .slick-arrow:focus {
+    top: 27%;
+  }
+  .realization__sl {
+    padding: 0;
+  }
+  .realization__sl .slick-arrow, .realization__sl .slick-arrow:hover, .realization__sl .slick-arrow:focus {
+    top: auto;bottom: -68px;
+    -webkit-transform: translate(0);
+        -ms-transform: translate(0);
+            transform: translate(0);
+  }
+  .realization__btn {
+    margin-top: 20px;
+  }
 }
 
 /* Extra Small Devices, Phones */
@@ -1312,6 +1541,31 @@
   .conditions__item {
     width: 25%;
   }
+  .page-info .main__title {
+    text-align: center;
+  }
+  .subnav__link {
+    padding: 10px;
+  }
+  .keys__sl .slick-arrow, .keys__sl .slick-arrow:hover, .keys__sl .slick-arrow:focus {
+    top: 35%;
+  }
+  .realization__btn .btn span {
+    padding: 15px 25px;
+  }
+  .sentence__img {
+    height: 230px;
+  }
+  .description .box {
+    padding: 40px 0;
+  }
+  .modal__box {
+    border-radius: 10px;
+    padding: 55px 15px 40px;
+  }
+  .modal__head h2 {
+    font-size: 24px;
+  }
 }
 
 @media only screen and (max-width : 420px) {
@@ -1363,6 +1617,28 @@
   }
   .article__img img {
     width: 100%;
+  }
+  .keys__sl .slick-arrow, .keys__sl .slick-arrow:hover, .keys__sl .slick-arrow:focus {
+    top: 33%;
+  }
+  .description .scope__img {
+    height: 200px;
+    border-radius: 25px;
+  }
+}
+
+@media only screen and (max-width : 380px) {
+  .realization__sl .slick-prev {
+    left: -10px;
+  }
+  .realization__sl .slick-next {
+    right: -10px;
+  }
+  .realization__btn .btn {
+    font-size: 14px;
+  }
+  .realization__btn .btn span {
+    padding: 15px;
   }
 }
 
