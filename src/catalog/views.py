@@ -18,6 +18,8 @@ def index(request):
                                    Q(qualifier__icontains=search_query[0]))
 
     if get_params:
+        if 'page' in get_params:
+            get_params.pop('page')
         slugged_get_params = {f'{key}__slug': value for key, value in get_params.items()}
         products = products.filter(**slugged_get_params)
 
