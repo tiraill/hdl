@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load core_extras %}
+
+    {% block header_bot %}
+        <div class="header__bot">
+            <div class="container">
+                <nav class="breadcrumb">
+                    <ol class="breadcrumb__list d-flex align-items-center">
+                        <li class="breadcrumb__item">
+                            <a href="{% url 'core-index' %}" class="breadcrumb__link">Главная</a>
+                        </li>
+                        <li class="breadcrumb__item active"> Результаты поиска по сайту </li>
+                    </ol>
+                </nav>
+                <h1 class="title__page">Результаты поиска по сайту</h1>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block main_body %}
+        {% for item in results %}
+        <div class="coreSearch">
+                <div class="container news__container">
+                  <div class="row">
+                    <div class="coreSearch__item">
+                        {% if item.url_tag %}<a href="{% url item.url_tag item.element.slug %}" class="news__link">{% endif %}
+                            {% if item.element.image %}<div class="news__img"><img src="{{ item.element.image.url }}" alt="Фото"></div>{% endif %}
+                            {% if item.element.images %}<div class="news__img"><img src="{{ item.element.images.all.0.image.url }}" alt="Фото"></div>{% endif %}
+                            <div class="news__txt">
+                            {% if item.element.brochure_file %}<h3>Брошюра "{{ item.element.title }}"</h3>{% else %}<h3>{{ item.element.title }}</h3>{% endif %}
+                                {% if item.element.text %}<p class="news__text">{{ item.element.text|truncatechars:200 }}</p>{% endif %}
+                                {% if item.element.date %}<p class="news__date">{{ item.element.date|date:"SHORT_DATE_FORMAT" }}</p>{% endif %}
+                            {% if item.element.brochure_file %}<div class="brochures__btn">
+                                        <a href="{{ item.element.brochure_file.url }}" class="btn btn__main">
+                                            <span>Скачать</span>
+                                        </a>
+                                    </div>
+                            {% endif %}
+                            </div>
+                        </a>
+                    </div>
+                  </div>
+                </div>
+        </div>
+        {% endfor %}
+    {% endblock %}

@@ -3520,6 +3520,17 @@ i.i-frame {
   margin-top: 10px;
   font-weight: 300;
 }
+/* =================================== */
+/*             Page SiteSearch         */
+/* =================================== */
+
+.coreSearch {
+  padding: 40px 0 50px;
+}
+
+.coreSearch__item {
+  border-bottom: 1px solid #f3f3f3;
+}
 
 /* =================================== */
 /*             Page News               */

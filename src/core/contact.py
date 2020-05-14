@@ -12,6 +12,15 @@ class ContactForm(forms.Form):
     check = forms.BooleanField(required=True, widget=forms.CheckboxInput(attrs={'checked': 'checked'}))
 
 
+class SearchForm(forms.Form):
+    search_q = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Поиск...'}), required=False)
+
+
 def contact_form(request):
     form = ContactForm()
     return {'contact_form': form}
+
+
+def search_form(request):
+    search_req_form = SearchForm()
+    return {'search_form': search_req_form}
