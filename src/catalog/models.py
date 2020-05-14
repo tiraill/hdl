@@ -9,7 +9,7 @@ from django.db import models
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from mptt.models import MPTTModel, TreeForeignKey
 
-from catalog.mixins import SaveModelSlugMixin
+from catalog.mixins import SaveModelSlugMixin, SaveModelImageMixin
 from catalog.utils import file_size_and_extension, get_random_filename
 
 from django.conf import settings
@@ -111,7 +111,7 @@ class Product(SaveModelSlugMixin, MPTTModel):
         return self.title
 
 
-class ProductImage(models.Model):
+class ProductImage(SaveModelImageMixin, models.Model):
 
     class Meta:
         verbose_name = "Изображение товара"
@@ -122,25 +122,8 @@ class ProductImage(models.Model):
     image = models.ImageField(null=True)
     priority = models.IntegerField(default=1)
     product = models.ForeignKey(Product, related_name='images',
-                                on_delete=models.CASCADE,
-                                null=True, blank=True, verbose_name="Товар для картинки",
+                                on_delete=models.CASCADE, verbose_name="Товар к которому привязана картинка",
                                 help_text='В этом поле можно использовать автозаполнение')
-
-    def save(self, *args, **kwargs):
-        try:
-            temporary_image = Image.open(self.image)
-            output_io_stream = BytesIO()
-            temporary_image = temporary_image.convert("RGB")
-            temporary_image.thumbnail(settings.IMAGE_THUMBNAIL_SIZE, Image.ANTIALIAS)
-            temporary_image.save(output_io_stream, format='JPEG', quality=85)
-            output_io_stream.seek(0)
-            self.image = InMemoryUploadedFile(output_io_stream, 'image',
-                                              f"{self.image.name.split('.')[0]}.jpg",
-                                              'image/jpeg',
-                                              sys.getsizeof(output_io_stream), None)
-        except ValueError:
-            log.warning("Удалён image файл с сохранением объекта")
-        super().save(*args, **kwargs)
 
     def __str__(self):
         return f'<{self.image.name}, размер={self.image.size}, товар={self.product.title}>'
