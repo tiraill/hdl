@@ -50,17 +50,20 @@ def send_feedback(request):
             Email: {form.data['email']}
             Телефон: {form.data['phone_number']}
             Комментарий: {form.data['comment']}
+            Дополнительная информация по заявке: {form.data['additional_info']}
             '''
             email = EmailMessage(
                 from_email=EMAIL_SENDER,
                 subject='Новая заявка',
                 body=body,
             )
+            comment = f"ТИП ЗАЯВКИ: {form.data['additional_info']}\n\n" \
+                      f"Комментарий клиента: {form.data['comment']}"
             feedback = FeedbackHistory(
                 first_name=form.data['first_name'],
                 email=form.data['email'],
                 phone_number=form.data['phone_number'],
-                comment=form.data['comment']
+                comment=comment
             )
             feedback.save()
             receivers = EmailReceivers.objects.filter(is_send_email_notifications=True)

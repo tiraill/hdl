@@ -28,7 +28,7 @@ class FeedbackHistory(models.Model):
     email = models.CharField(max_length=50, verbose_name="Email")
     phone_number = models.CharField(max_length=25, verbose_name="Телефон")
     comment = models.CharField(max_length=999, verbose_name="Комментарий", blank=True)
-    datatime = models.DateTimeField(auto_now_add=True, blank=True)
+    creation_date = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
         return f'{self.email}'

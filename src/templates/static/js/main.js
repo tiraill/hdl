@@ -49,6 +49,7 @@ $(document).ready(function () {
     e.preventDefault();
     let modal = $('.modal_bell');
     modal.find('h2').text('Заказать звонок!');
+    modal.find('#id_additional_info').val('Обратный звонок');
     modal.fadeIn();
   });
 
@@ -57,6 +58,7 @@ $(document).ready(function () {
     e.preventDefault();
     let modal = $('.modal_bell');
     modal.find('h2').text('Оставьте заявку для сотрудничества!');
+    modal.find('#id_additional_info').val('Заявка для сотрудничества');
     modal.fadeIn();
   });
 
@@ -65,6 +67,7 @@ $(document).ready(function () {
     e.preventDefault();
     let modal = $('.modal_bell');
     modal.find('h2').text('Получите консультацию!');
+    modal.find('#id_additional_info').val('Заявка для получения консультации');
     modal.fadeIn();
   });
 
@@ -73,6 +76,7 @@ $(document).ready(function () {
     e.preventDefault();
     let modal = $('.modal_bell');
     modal.find('h2').text('Заявка на обучение');
+    modal.find('#id_additional_info').val('Заявка на обучение');
     modal.fadeIn();
   });
 
@@ -81,6 +85,7 @@ $(document).ready(function () {
     e.preventDefault();
     let modal = $('.modal_bell');
     modal.find('h2').text('Заявка на обучение протоколу BusPro');
+    modal.find('#id_additional_info').val('Заявка на обучение протоколу BusPro');
     modal.fadeIn();
   });
 
@@ -89,6 +94,7 @@ $(document).ready(function () {
     e.preventDefault();
     let modal = $('.modal_bell');
     modal.find('h2').text('Заявка на обучение протоколу KNX');
+    modal.find('#id_additional_info').val('Заявка на обучение протоколу KNX');
     modal.fadeIn();
   });
 
@@ -97,6 +103,7 @@ $(document).ready(function () {
     e.preventDefault();
     let modal = $('.modal_bell');
     modal.find('h2').text('Заявка на онлайн курс HDL BusPro');
+    modal.find('#id_additional_info').val('Заявка на онлайн курс HDL BusPro');
     modal.fadeIn();
   });
 
@@ -105,6 +112,7 @@ $(document).ready(function () {
     e.preventDefault();
     let modal = $('.modal_bell');
     modal.find('h2').text('Зарегистрироваться на обучение');
+    modal.find('#id_additional_info').val('Заявка на обучение');
     modal.fadeIn();
   });
 
@@ -113,6 +121,7 @@ $(document).ready(function () {
     e.preventDefault();
     let modal = $('.modal_bell');
     modal.find('h2').text('Купить со скидкой курс сертификации KNX');
+    modal.find('#id_additional_info').val('Заявка на покупку со скидкой курса сертификации KNX');
     modal.fadeIn();
   });
 
