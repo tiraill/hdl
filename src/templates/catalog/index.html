@@ -124,13 +124,17 @@
 
                     <div class="col-sm-6 col-lg-6 col-xl-4">
                       <div class="catalog__item speed">
-                        <div class="catalog__img"><img src="{{ product.images.all.0.image.url }}" alt="Фото"></div>
+                        <div class="catalog__img">
+                            <a href="{% url 'catalog-product' product.slug %}" class="btn btn__main"  target="_blank">
+                                <img src="{{ product.images.all.0.image.url }}" alt="Фото">
+                            </a>
+                            </div>
                         <div class="catalog__desc">
                           <p class="catalog__name">{{ product.title }}</p>
                           <p class="catalog__articul">Артикул: {{ product.qualifier }}</p>
                         </div>
                           <div class="catalog__btn">
-                              <a href="{% url 'catalog-product' product.slug %}" class="btn btn__main">
+                              <a href="{% url 'catalog-product' product.slug %}" class="btn btn__main"  target="_blank">
                                 <span>Подробнее</span>
                               </a>
                           </div>
