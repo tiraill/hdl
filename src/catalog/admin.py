@@ -3,7 +3,7 @@ from django.db import models
 from django.forms import Textarea
 from mptt.admin import MPTTModelAdmin
 
-from .models import Category, Type, Series, Product, ProductImage
+from .models import Category, Type, Series, Product, ProductImage, TechDoc
 
 
 @admin.register(Category)
@@ -22,6 +22,22 @@ class TypeAdmin(admin.ModelAdmin):
 class SeriesAdmin(admin.ModelAdmin):
     list_display = ('title',)
     search_fields = ('title', 'slug')
+
+
+@admin.register(TechDoc)
+class TechDocAdmin(admin.ModelAdmin):
+    list_display = ('uid', 'get_product')
+    list_filter = ('product__title',)
+    search_fields = ('product__title',)
+    autocomplete_fields = ('product',)
+    exclude = ('uid',)
+
+    def get_product(self, instance):
+        if instance and instance.product:
+            return instance.product.title
+        else:
+            return f"Продукт не указан, либо был удален"
+    get_product.short_description = "Продукт, к которому прикреплена инструкция"
 
 
 @admin.register(ProductImage)

@@ -68,10 +68,9 @@
 
                 <div class="col-lg-6">
                   <div class="product__box">
-                    <p class="product__txt">{{ product.general_description }}</p>
+                    <p class="product__txt">{{ product.short_description }}</p>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
@@ -124,11 +123,12 @@
                 <div class="tabs__item">
                   <div class="box">
                     <h2>Техническая спецификация</h2>
-                    {% if product.instruction %}
-                        <p>
-                            <a href="{{ product.instruction.url }}">{{ product.instruction.name }}</a>
-                        </p>
-
+                      {% if product.instructions.all %}
+                          {% for inst in product.instructions.all %}
+                            <p>
+                                <a href="{{ inst.instruction.url }}">{{ inst.instruction.name }}</a>
+                            </p>
+                          {% endfor %}
                     {% else %}
                         <p>Для предоставления инфструкции свяжитесь с нашими менеджерами</p>
                     {% endif %}
@@ -193,10 +193,12 @@
                   </div>
                   <div class="accordion-body">
                     <h3>Техническая спецификация</h3>
-                      {% if product.instruction %}
-                        <p>
-                            <a href="{{ product.instruction.url }}">{{ product.instruction.name }}</a>
-                        </p>
+                      {% if product.instructions.all %}
+                          {% for inst in product.instructions.all %}
+                            <p>
+                                <a href="{{ inst.instruction.url }}">{{ inst.instruction.name }}</a>
+                            </p>
+                          {% endfor %}
                     {% else %}
                         <p>Для предоставления инфструкции свяжитесь с нашими менеджерами</p>
                     {% endif %}
