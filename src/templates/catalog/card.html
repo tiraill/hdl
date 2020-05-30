@@ -53,6 +53,7 @@
 
                 <div class="col-lg-6">
                   <div class="product__sl d-flex">
+                    {% if product.images.all %}
                     <div class="product__sl__small">
                         {% for picture in product.images.all %}
                             <div class="product__sl__small__item"><img src="{{ picture.image.url }}" alt="Фото"></div>
@@ -60,9 +61,15 @@
                     </div>
                     <div class="product__sl__big">
                         {% for picture in product.images.all %}
-                            <div class="product__sl__big__item"><img src="{{ picture.image.url }}" alt="Фото"></div>
+                            <div class="product__sl__big__item">
+                                <img src="{{ picture.image.url }}" alt="Фото"></div>
                         {% endfor %}
                     </div>
+                  {% else %}
+                    <div class="product__sl__big">
+                        <div class="product__sl__big__item"><img src="{% static 'img/other/noimage.png' %}" alt="Фото"></div>
+                    </div>
+                  {% endif %}
                   </div>
                 </div>
 

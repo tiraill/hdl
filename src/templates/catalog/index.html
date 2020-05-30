@@ -116,7 +116,7 @@
                     </svg>
                   </button>
                 </form>
-                  <button class="btn btn__main"><span><a href="{% url 'catalog-index' %}">Сбросить фильтры</a></span></button>
+                  <a href="{% url 'catalog-index' %}"><button class="btn btn__main"><span>Сбросить фильтры</span></button></a>
               </div>
               <div class="catalog__group row">
 
@@ -126,7 +126,11 @@
                       <div class="catalog__item speed">
                         <div class="catalog__img">
                             <a href="{% url 'catalog-product' product.slug %}" target="_blank">
-                                <img src="{{ product.images.all.0.image.url }}" alt="Фото">
+                                {% if product.images.all %}
+                                    <img src="{{ product.images.all.0.image.url }}" alt="Фото">
+                                {% else %}
+                                    <img src="{% static 'img/other/noimage.png' %}" alt="Фото">
+                                {% endif %}
                             </a>
                             </div>
                         <div class="catalog__desc">
