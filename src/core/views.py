@@ -7,10 +7,9 @@ from django.db.models import Q
 from hdl_settings.settings import EMAIL_SENDER
 from .models import FeedbackHistory, EmailReceivers
 
-from news.models import News
-from article.models import Article
-from catalog.models import Product
-from brochure.models import Brochure
+from catalog.models import Category, Type, Series, Product
+
+from core.utils import create_pagination
 
 log = logging.getLogger(__name__)
 
@@ -91,24 +90,19 @@ def core_search_request(request):
     if request.method == 'POST':
         search_request_form: SearchForm = SearchForm(request.POST)
         if search_request_form.is_valid():
-            result = []
-            news = News.objects.filter(Q(title__icontains=search_request_form.data['search_q'])|
-                                       Q(text__icontains=search_request_form.data['search_q']))
-            articles = Article.objects.filter(Q(title__icontains=search_request_form.data['search_q'])|
-                                              Q(text__icontains=search_request_form.data['search_q']))
             products = Product.objects.filter(Q(title__icontains=search_request_form.data['search_q'])|
                                               Q(qualifier__icontains=search_request_form.data['search_q']))
-            brochures = Brochure.objects.filter(title__icontains=search_request_form.data['search_q'])
 
-            if news:
-                result.extend(prepare_elements(news, 'news-card'))
-            if articles:
-                result.extend(prepare_elements(articles, 'article-card'))
-            if products:
-                result.extend(prepare_elements(products, 'catalog-product'))
-            if brochures:
-                result.extend(prepare_elements(brochures))
+            paginated_products = create_pagination(request, products)
 
-            return render(request, 'site_search_result.html',
-                          context={"results": result})
+            ctx = {
+                'categories': Category.objects.all(),
+                'types': Type.objects.all(),
+                'series': Series.objects.all(),
+                'products': paginated_products
+            }
+            return render(request,
+                          template_name="catalog/index.html",
+                          context=ctx)
+
         return render(request, 'index.html', {'search_form': search_request_form})

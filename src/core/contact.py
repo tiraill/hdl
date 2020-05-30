@@ -13,7 +13,7 @@ class ContactForm(forms.Form):
 
 
 class SearchForm(forms.Form):
-    search_q = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Поиск...'}), required=False)
+    search_q = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Поиск товара...'}), required=False)
 
 
 def contact_form(request):
