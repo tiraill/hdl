@@ -126,7 +126,7 @@
                       {% if product.instructions.all %}
                           {% for inst in product.instructions.all %}
                             <p>
-                                <a href="{{ inst.instruction.url }}">{{ inst.instruction.name }}</a>
+                                <a href="{{ inst.instruction.url }}" target="_blank">{{ inst.instruction.name }}</a>
                             </p>
                           {% endfor %}
                     {% else %}
@@ -196,7 +196,7 @@
                       {% if product.instructions.all %}
                           {% for inst in product.instructions.all %}
                             <p>
-                                <a href="{{ inst.instruction.url }}">{{ inst.instruction.name }}</a>
+                                <a href="{{ inst.instruction.url }}" target="_blank">{{ inst.instruction.name }}</a>
                             </p>
                           {% endfor %}
                     {% else %}
