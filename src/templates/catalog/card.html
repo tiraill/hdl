@@ -210,4 +210,40 @@
             </div>
           </div>
 
+          <!-- Similar -->
+        {% if product.similar.all %}
+          <div class="similar">
+            <div class="container">
+
+              <!-- Title -->
+
+              <div class="title text-center">
+                <h2 class="title__h2">Похожие товары</h2>
+              </div>
+
+              <!-- Row -->
+
+              <div class="row similar__sl">
+
+              {% for product in product.similar.all %}
+                <div class="col-xl-3">
+                  <div class="catalog__item speed">
+                    <div class="catalog__img">
+                        <a href="{% url 'catalog-product' product.slug %}" target="_blank">
+                            <img src="{{ product.images.all.0.image.url }}" alt="Фото">
+                        </a>
+                    </div>
+                    <div class="catalog__desc">
+                      <p class="catalog__name">{{ product.title }}</p>
+                      <p class="catalog__articul">Код товара: {{ product.qualifier }}</p>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+
+              </div>
+
+            </div>
+          </div>
+        {% endif %}
         {% endblock %}

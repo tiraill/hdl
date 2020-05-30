@@ -87,6 +87,10 @@ class Product(SaveModelSlugMixin, MPTTModel):
                                         verbose_name="Описание для тэга description(SEO)",
                                         help_text="Не более 1000 символов с пробелами")
     qualifier = models.CharField(max_length=50, null=True, blank=True, verbose_name="Артикул")
+    simlr = models.ForeignKey('self', null=True, blank=True, related_name='similar',
+                              on_delete=models.SET_NULL, verbose_name="Ссылка на похожий товар",
+                              help_text='Укажите в карточке какого товара данный'
+                                        ' товар будет показан в разделе \"Похожие товары\"')
     parent = TreeForeignKey('self', on_delete=models.CASCADE,
                             null=True, blank=True, related_name='children',
                             help_text='В этом поле можно использовать автозаполнение для поиска')
