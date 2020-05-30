@@ -1,3 +1,6 @@
+from itertools import chain
+
+
 from django.shortcuts import render
 from django.db.models import Q
 from django.core.exceptions import ObjectDoesNotExist
@@ -22,6 +25,23 @@ def index(request):
             get_params.pop('page')
         slugged_get_params = {f'{key}__slug': value for key, value in get_params.items()}
         products = products.filter(**slugged_get_params)
+        product_categories = set(chain.from_iterable([list(product.category.all())
+                                                      for product in products if product.category]))
+        product_types = set([product.type for product in products if product.type])
+        product_series = set([product.series for product in products if product.series])
+
+        paginated_products = create_pagination(request, products)
+
+        ctx = {
+            'categories': product_categories,
+            'types': product_types,
+            'series': product_series,
+            'products': paginated_products
+        }
+
+        return render(request,
+                      template_name="catalog/index.html",
+                      context=ctx)
 
     paginated_products = create_pagination(request, products)
 
