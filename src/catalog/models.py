@@ -80,6 +80,8 @@ class Product(SaveModelSlugMixin, MPTTModel):
     general_description = models.TextField(verbose_name="Общее описание")
     func_description = models.TextField(verbose_name="Функции")
     tech_description = models.TextField(verbose_name="Характеристики")
+    instruction = models.FileField(blank=True, null=True,
+                                   validators=[file_size_and_extension], verbose_name="Инструкция")
     meta_keywords = models.CharField(max_length=1000, null=True, blank=True,
                                      verbose_name="Слова для тэга keywords (SEO)",
                                      help_text="Не более 1000 символов с пробелами")
