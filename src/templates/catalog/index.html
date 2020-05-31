@@ -116,7 +116,6 @@
                     </svg>
                   </button>
                 </form>
-                  <a href="{% url 'catalog-index' %}"><button class="btn btn__main"><span>Сбросить фильтры</span></button></a>
               </div>
               <div class="catalog__group row">
 
@@ -171,104 +170,5 @@
       </div>
         {% endblock %}
     {% block additional_js %}
-        <script>
-        var getUrlParameter = function getUrlParameter(sParam) {
-                var sPageURL = window.location.search.substring(1),
-                    sURLVariables = sPageURL.split('&'),
-                    sParameterName,
-                    i;
-
-                for (i = 0; i < sURLVariables.length; i++) {
-                    sParameterName = sURLVariables[i].split('=');
-
-                    if (sParameterName[0] === sParam) {
-                        return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
-                    }
-                }
-            };
-
-        function getAllUrlParams(){
-            let options = window.location.search.slice(1)
-                  .split('&')
-                  .reduce(function _reduce (/*Object*/ a, /*String*/ b) {
-                    b = b.split('=');
-                    a[b[0]] = decodeURIComponent(b[1]);
-                    return a;
-                  }, {});
-            return options
-        }
-
-        function useFilters() {
-            var new_location = Array();
-            new_location.push(old_location + "?");
-            var object_length = Object.keys(all_params).length;
-
-            for (const [index, [key, value]] of Object.entries(Object.entries(all_params))) {
-                if (key !== "") {
-                    if (object_length === parseInt(index) + 1) {
-                        new_location.push(key + "=" + value);
-                    } else {
-                        new_location.push(key + "=" + value + "&");
-                    }
-                }}
-            window.location.href = new_location.join('');
-        }
-
-
-        var all_params = getAllUrlParams();
-        let old_location = window.location.href.slice(0, window.location.href.indexOf('?'));
-
-        var filters = document.getElementsByClassName('filters__item');
-        var searchReq = document.getElementById('catalog-search-input');
-
-        Array.from(filters).forEach(function(element){
-            let closest_input = $(element).children(":first");
-            let elementName = closest_input.attr("name");
-            let elementSlug = closest_input.data("slug");
-
-            if (elementName in all_params && elementSlug === all_params[elementName]) {
-                closest_input.prop("checked", true)
-            }
-
-        })
-
-        let searchName = $(searchReq).attr("name");
-
-        if (searchName in all_params) {
-            $(searchReq).val(all_params[searchName])
-        }
-
-        $('#catalog-search-input').keypress(function(event){
-            let keycode = (event.keyCode ? event.keyCode : event.which);
-            if (keycode === 13){
-                event.preventDefault();
-                all_params['search'] = $(searchReq).val()
-                useFilters();
-            }
-        })
-
-        $('#catalog__search__symbol').click(function (event) {
-            event.preventDefault();
-            all_params['search'] = $(searchReq).val();
-            useFilters();
-        })
-
-
-        $('.filters__item').click(function(event){
-            event.preventDefault();
-            let closest_input = $(this).children(":first");
-            if (closest_input.is(":checked")) {
-                closest_input.prop("checked", false)
-            } else {
-                closest_input.prop("checked", true)
-            }
-
-            let elementName = closest_input.attr("name");
-            let elementSlug = closest_input.data("slug");
-
-            all_params[elementName] = elementSlug;
-            useFilters();
-        })
-
-        </script>
+          <script src="{% static 'js/catalog.js' %}"></script>
     {% endblock %}

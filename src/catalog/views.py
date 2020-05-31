@@ -1,6 +1,5 @@
 from itertools import chain
 
-
 from django.shortcuts import render
 from django.db.models import Q
 from django.core.exceptions import ObjectDoesNotExist
