@@ -44,6 +44,18 @@ $(document).ready(function () {
     $('.modal').fadeOut();
   });
 
+    $('.open-modal-picture').click(function(e) {
+    e.preventDefault();
+    let modal = $('.modal__big_picture');
+    // console.log($('.product__sl__big__item'));
+    let url = $(this).data("pictureurl");
+    console.log(url);
+    modal.find('img').attr('src', url);
+    // modal.find('#id_additional_info').val('Обратный звонок');
+    modal.fadeIn();
+  });
+
+
   // Modal bell
   $('.open-modal-bell').click(function(e) {
     e.preventDefault();
@@ -137,6 +149,7 @@ $(document).ready(function () {
       || $(event.target).closest('.open-modal-education-general-online').length
       || $(event.target).closest('.open-modal-education-buspro').length
       || $(event.target).closest('.open-modal-education-knx').length
+      || $(event.target).closest('.open-modal-picture').length
       || $(event.target).closest('.btn-search').length ) return;
       $('.modal').fadeOut();
       event.stopPropagation();

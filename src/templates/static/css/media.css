@@ -1410,6 +1410,9 @@
   .realization__btn {
     margin-top: 20px;
   }
+  .modal__product__big {
+    min-height: 250px;
+  }
 }
 
 /* Extra Small Devices, Phones */
@@ -1528,6 +1531,9 @@
   }
   .product__btn .btn span {
     padding: 15px 35px;
+  }
+  .modal__product__big {
+    min-height: 200px;
   }
   .banner__img {
     height: 230px;

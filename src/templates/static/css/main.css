@@ -3164,6 +3164,13 @@ i.i-europe {
   margin-left: 70px;
   max-width: 270px;width: 100%;
 }
+.modal__product__inner {
+  display: flex;
+}
+.modal__product__big {
+  min-height: 300px;
+  margin: auto;
+}
 
 /* Overview */
 
