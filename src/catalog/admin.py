@@ -6,6 +6,16 @@ from mptt.admin import MPTTModelAdmin
 from .models import Category, Type, Series, Product, ProductImage, TechDoc
 
 
+class TechDocInline(admin.TabularInline):
+    model = TechDoc
+    fields = ['instruction']
+
+
+class ProductImageInline(admin.TabularInline):
+    model = ProductImage
+    fields = ['image', 'priority']
+
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('title',)
@@ -68,6 +78,7 @@ class ProductAdmin(MPTTModelAdmin):
     list_filter = ('category__title', 'type__title', 'series__title', 'creation_date')
     autocomplete_fields = ('parent', 'category', 'type', 'series')
     search_fields = ('title', 'qualifier')
+    inlines = (TechDocInline, ProductImageInline)
 
     def get_category(self, instance):
         if instance:
