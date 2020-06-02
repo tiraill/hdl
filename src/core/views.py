@@ -1,15 +1,11 @@
 import logging
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, reverse
-from core.contact import ContactForm, SearchForm
+from core.contact import ContactForm
 from django.core.mail import EmailMessage
-from django.db.models import Q
 from hdl_settings.settings import EMAIL_SENDER
 from .models import FeedbackHistory, EmailReceivers
 
-from catalog.models import Category, Type, Series, Product
-
-from core.utils import create_pagination
 
 log = logging.getLogger(__name__)
 
@@ -83,35 +79,3 @@ def send_feedback(request):
 
 def prepare_elements(elements_result, url_tag: str = None) -> list:
     return [{'url_tag': url_tag, 'element': element} for element in elements_result]
-
-
-def core_search_request(request):
-
-    ctx = {
-        'categories': Category.objects.all(),
-        'types': Type.objects.all(),
-        'series': Series.objects.all(),
-    }
-
-    if request.method == 'POST':
-        search_request_form: SearchForm = SearchForm(request.POST)
-        if search_request_form.is_valid():
-            products = Product.objects.filter(Q(title__icontains=search_request_form.data['search_q'])|
-                                              Q(qualifier__icontains=search_request_form.data['search_q']))
-
-            paginated_products = create_pagination(request, products)
-
-            ctx.update({
-                'products': paginated_products
-            })
-            return render(request,
-                          template_name="catalog/index.html",
-                          context=ctx)
-        ctx.update({
-            'search_form': search_request_form,
-            'products': Product.objects.all()
-        })
-        return render(request,
-                      template_name="catalog/index.html",
-                      context=ctx)
-    raise Http404("This page does not exist.")
