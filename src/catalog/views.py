@@ -24,15 +24,13 @@ def index(request):
             get_params.pop('page')
         slugged_get_params = {f'{key}__slug': value for key, value in get_params.items()}
         products = products.filter(**slugged_get_params)
-        product_categories = set(chain.from_iterable([list(product.category.all())
-                                                      for product in products if product.category]))
         product_types = set([product.type for product in products if product.type])
         product_series = set([product.series for product in products if product.series])
 
         paginated_products = create_pagination(request, products)
 
         ctx = {
-            'categories': product_categories,
+            'categories': Category.objects.all().order_by('title'),
             'types': product_types,
             'series': product_series,
             'products': paginated_products
@@ -45,7 +43,7 @@ def index(request):
     paginated_products = create_pagination(request, products)
 
     ctx = {
-        'categories': Category.objects.all(),
+        'categories': Category.objects.all().order_by('title'),
         'types': Type.objects.all(),
         'series': Series.objects.all(),
         'products': paginated_products
