@@ -1,5 +1,5 @@
 import logging
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, reverse
 from core.contact import ContactForm, SearchForm
 from django.core.mail import EmailMessage
@@ -87,6 +87,12 @@ def prepare_elements(elements_result, url_tag: str = None) -> list:
 
 def core_search_request(request):
 
+    ctx = {
+        'categories': Category.objects.all(),
+        'types': Type.objects.all(),
+        'series': Series.objects.all(),
+    }
+
     if request.method == 'POST':
         search_request_form: SearchForm = SearchForm(request.POST)
         if search_request_form.is_valid():
@@ -95,14 +101,17 @@ def core_search_request(request):
 
             paginated_products = create_pagination(request, products)
 
-            ctx = {
-                'categories': Category.objects.all(),
-                'types': Type.objects.all(),
-                'series': Series.objects.all(),
+            ctx.update({
                 'products': paginated_products
-            }
+            })
             return render(request,
                           template_name="catalog/index.html",
                           context=ctx)
-
-        return render(request, 'index.html', {'search_form': search_request_form})
+        ctx.update({
+            'search_form': search_request_form,
+            'products': Product.objects.all()
+        })
+        return render(request,
+                      template_name="catalog/index.html",
+                      context=ctx)
+    raise Http404("This page does not exist.")
