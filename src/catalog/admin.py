@@ -6,23 +6,35 @@ from mptt.admin import MPTTModelAdmin
 from .models import Category, Type, Series, Product, ProductImage, TechDoc
 
 
-class TechDocInline(admin.TabularInline):
+class TechDocInline(admin.StackedInline):
     model = TechDoc
     extra = 0
+    can_delete = False
     fields = ('uid', 'instruction')
 
+    def has_add_permission(self, request, obj=None):
+        return False
 
-class ProductImageInline(admin.TabularInline):
+
+class ProductImageInline(admin.StackedInline):
     model = ProductImage
     extra = 0
+    can_delete = False
     fields = ['uid', 'image', 'priority']
 
+    def has_add_permission(self, request, obj=None):
+        return False
 
-class ProductInline(admin.TabularInline):
+
+class ProductInline(admin.StackedInline):
     model = Product
     extra = 0
-    fk_name = "simlr"
-    fields = ['title', 'simlr']
+    can_delete = False
+    fk_name = 'simlr'
+    fields = ['title', 'simlr', 'category', 'type', 'series']
+
+    def has_add_permission(self, request, obj=None):
+        return False
 
 
 @admin.register(Category)
@@ -85,7 +97,7 @@ class ProductAdmin(MPTTModelAdmin):
 
     list_display = ('title', 'get_category', 'get_type', 'get_manufacturer', 'creation_date', 'qualifier')
     list_filter = ('category__title', 'type__title', 'series__title', 'creation_date')
-    autocomplete_fields = ('category', 'type', 'series')
+    autocomplete_fields = ('category', 'type', 'series', 'simlr')
     search_fields = ('title', 'qualifier')
     inlines = (ProductImageInline, ProductInline, TechDocInline)
 

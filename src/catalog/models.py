@@ -76,7 +76,8 @@ class Product(SaveModelSlugMixin, MPTTModel):
     title = models.CharField(max_length=250, verbose_name="Наименование",
                              help_text="Не более 250 символов с пробелами")
     slug = models.SlugField(max_length=350, blank=True, verbose_name="Наименование для создания ссылки")
-    short_description = models.TextField(verbose_name="Краткое описание товара в карточке товара")
+    short_description = models.TextField(verbose_name="Краткое описание товара в карточке товара",
+                                         null=True, blank=True)
     general_description = models.TextField(verbose_name="Общее описание")
     func_description = models.TextField(verbose_name="Функции")
     tech_description = models.TextField(verbose_name="Характеристики")
@@ -88,9 +89,10 @@ class Product(SaveModelSlugMixin, MPTTModel):
                                         help_text="Не более 1000 символов с пробелами")
     qualifier = models.CharField(max_length=50, null=True, blank=True, verbose_name="Артикул")
     simlr = models.ForeignKey('self', null=True, blank=True, related_name='similar',
-                              on_delete=models.SET_NULL, verbose_name="Ссылка на похожий товар",
+                              on_delete=models.SET_NULL, verbose_name="С каким товаром должен"
+                                                                      " рекомендоваться данный товар",
                               help_text='Укажите в карточке какого товара данный'
-                                        ' товар будет показан в разделе \"Похожие товары\"')
+                                        ' товар будет показан в разделе \"Рекомендованные товары\"')
     parent = TreeForeignKey('self', on_delete=models.CASCADE,
                             null=True, blank=True, related_name='children',
                             help_text='В этом поле можно использовать автозаполнение для поиска')
@@ -122,6 +124,9 @@ class TechDoc(models.Model):
     product = models.ForeignKey(Product, related_name='instructions',
                                 on_delete=models.CASCADE, verbose_name="Товар к которому привязана инструкция",
                                 help_text='В этом поле можно использовать автозаполнение')
+
+    def __str__(self):
+        return self.instruction.name if self.instruction else self.uid
 
 
 class ProductImage(SaveModelImageMixin, models.Model):

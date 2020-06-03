@@ -3368,6 +3368,7 @@ i.i-europe {
 }
 
 .similar .row .col-xl-3 {
+  min-width: 260px;
   padding: 60px 15px;
 }
 
