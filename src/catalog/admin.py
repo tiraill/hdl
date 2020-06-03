@@ -8,12 +8,21 @@ from .models import Category, Type, Series, Product, ProductImage, TechDoc
 
 class TechDocInline(admin.TabularInline):
     model = TechDoc
-    fields = ['instruction']
+    extra = 0
+    fields = ('uid', 'instruction')
 
 
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
-    fields = ['image', 'priority']
+    extra = 0
+    fields = ['uid', 'image', 'priority']
+
+
+class ProductInline(admin.TabularInline):
+    model = Product
+    extra = 0
+    fk_name = "simlr"
+    fields = ['title', 'simlr']
 
 
 @admin.register(Category)
@@ -76,9 +85,9 @@ class ProductAdmin(MPTTModelAdmin):
 
     list_display = ('title', 'get_category', 'get_type', 'get_manufacturer', 'creation_date', 'qualifier')
     list_filter = ('category__title', 'type__title', 'series__title', 'creation_date')
-    autocomplete_fields = ('parent', 'category', 'type', 'series')
+    autocomplete_fields = ('category', 'type', 'series')
     search_fields = ('title', 'qualifier')
-    inlines = (TechDocInline, ProductImageInline)
+    inlines = (ProductImageInline, ProductInline, TechDocInline)
 
     def get_category(self, instance):
         if instance:
