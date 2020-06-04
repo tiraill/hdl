@@ -1,3 +1,5 @@
+import logging
+
 from django.shortcuts import render
 from django.db.models import Q
 from django.core.exceptions import ObjectDoesNotExist
@@ -7,6 +9,8 @@ from .models import Category, Type, Series, Product
 
 from core.contact import SearchForm
 from core.utils import create_pagination
+
+logger = logging.getLogger('catalog')
 
 
 def index(request):
@@ -78,13 +82,15 @@ def filter_with_get_params(get_params, products):
 
     # here we create params to filter from all products with received filters
     slugged_get_params = {f'{key}__slug': value for key, value in get_params.items()}
-
+    logger.debug('Filters slug %s' % slugged_get_params)
     # here we need variable which'll be used for adding a filter after receiving info
     # about filter types
     additional_type_filter = {}
     if ('category' in get_params) and ('type' in get_params):
         # removing additional type filtering, just category
         additional_type_filter['type__slug'] = slugged_get_params.pop('type__slug')
+    logger.debug('Filters slug after type removal %s' % slugged_get_params)
+    logger.debug('Additional filter slug %s' % additional_type_filter)
     products = products.filter(**slugged_get_params)
     # receiving all types in current category, so we could present it on page
     product_types = set([product.type for product in products if product.series])
