@@ -43,13 +43,7 @@ def index(request):
                                    Q(qualifier__icontains=search_query[0]))
 
     if get_params:
-        if 'page' in get_params:
-            get_params.pop('page')
-        slugged_get_params = {f'{key}__slug': value for key, value in get_params.items()}
-        products = products.filter(**slugged_get_params)
-        product_types = set([product.type for product in products if product.type])
-        product_series = set([product.series for product in products if product.series])
-
+        products, product_types, product_series = filter_with_get_params(get_params, products)
         paginated_products = create_pagination(request, products)
 
         ctx = {
@@ -75,6 +69,30 @@ def index(request):
     return render(request,
                   template_name="catalog/index.html",
                   context=ctx)
+
+
+def filter_with_get_params(get_params, products):
+    # first we remove filter
+    if 'page' in get_params:
+        get_params.pop('page')
+
+    # here we create params to filter from all products with received filters
+    slugged_get_params = {f'{key}__slug': value for key, value in get_params.items()}
+
+    # here we need variable which'll be used for adding a filter after receiving info
+    # about filter types
+    additional_type_filter = {}
+    if ('category' in get_params) and ('type' in get_params):
+        # removing additional type filtering, just category
+        additional_type_filter['type__slug'] = slugged_get_params.pop('type__slug')
+    products = products.filter(**slugged_get_params)
+    # receiving all types in current category, so we could present it on page
+    product_types = set([product.type for product in products if product.series])
+    if additional_type_filter:
+        # adding type filter, if it's needed
+        products = products.filter(**additional_type_filter)
+    product_series = set([product.series for product in products if product.series])
+    return products, product_types, product_series
 
 
 def product_card(request, slug):

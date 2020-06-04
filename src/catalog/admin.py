@@ -26,17 +26,6 @@ class ProductImageInline(admin.StackedInline):
         return False
 
 
-class ProductInline(admin.StackedInline):
-    model = Product
-    extra = 0
-    can_delete = False
-    fk_name = 'simlr'
-    fields = ['title', 'simlr', 'category', 'type', 'series']
-
-    def has_add_permission(self, request, obj=None):
-        return False
-
-
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('title',)
@@ -99,7 +88,7 @@ class ProductAdmin(MPTTModelAdmin):
     list_filter = ('category__title', 'type__title', 'series__title', 'creation_date')
     autocomplete_fields = ('category', 'type', 'series', 'simlr')
     search_fields = ('title', 'qualifier')
-    inlines = (ProductImageInline, ProductInline, TechDocInline)
+    inlines = (ProductImageInline, TechDocInline)
 
     def get_category(self, instance):
         if instance:
