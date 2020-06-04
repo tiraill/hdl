@@ -93,7 +93,7 @@ def filter_with_get_params(get_params, products):
     logger.debug('Additional filter slug %s' % additional_type_filter)
     products = products.filter(**slugged_get_params)
     # receiving all types in current category, so we could present it on page
-    product_types = set([product.type for product in products if product.series])
+    product_types = set([product.type for product in products if product.type])
     if additional_type_filter:
         # adding type filter, if it's needed
         products = products.filter(**additional_type_filter)
