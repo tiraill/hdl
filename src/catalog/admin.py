@@ -92,7 +92,7 @@ class ProductCustomAdminForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['extra_simlr'].widget.attrs.update({'style': 'width: 550px'})
+        self.fields['extra_simlr'].widget.attrs.update({'class': 'custom__simlr'})
         self.fields['extra_simlr'].queryset = self.fields['extra_simlr'].queryset.exclude(slug=self.instance.slug).all()
         if self.instance:
             dependent = Product.objects.filter(simlr=self.instance)\
@@ -115,6 +115,12 @@ class ProductCustomAdminForm(forms.ModelForm):
 
 @admin.register(Product)
 class ProductAdmin(MPTTModelAdmin):
+
+    class Media:
+        css = {
+            'all': ('css/admin/admin.css',)
+        }
+
     form = ProductCustomAdminForm
 
     formfield_overrides = {
