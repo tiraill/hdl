@@ -1,3 +1,6 @@
+from django import forms
+from django.contrib.admin.widgets import AutocompleteSelect, AutocompleteSelectMultiple
+from django.forms import widgets
 from django.contrib import admin
 from django.db import models
 from django.forms import Textarea
@@ -76,8 +79,43 @@ class ProductImageAdmin(admin.ModelAdmin):
     get_product.short_description = "Продукт, к которому прикреплено фото"
 
 
+class ProductCustomAdminForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = '__all__'
+
+    extra_simlr = forms.ModelMultipleChoiceField(queryset=Product.objects.all(),
+                                                 required=False, label="Отметьте,"
+                                                                       " какие объекты будут рекомендоваться",)
+                                                 # widget=AutocompleteSelectMultiple(Product._meta.get_field('simlr')
+                                                 #                                   .remote_field, admin.site))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['extra_simlr'].widget.attrs.update({'style': 'width: 550px'})
+        self.fields['extra_simlr'].queryset = self.fields['extra_simlr'].queryset.exclude(slug=self.instance.slug).all()
+        if self.instance:
+            dependent = Product.objects.filter(simlr=self.instance)\
+                .all().values_list('id', flat=True)
+            if dependent:
+                self.fields['extra_simlr'].initial = [el for el in dependent]
+
+    def save(self, *args, commit=True, **kwargs):
+        choices = self.cleaned_data['extra_simlr']
+        already_dependent = Product.objects.filter(simlr=self.instance).all()
+        remove_conn = already_dependent.difference(choices)
+        for element in choices:
+            element.simlr = self.instance
+            element.save()
+        for element in remove_conn:
+            element.simlr = None
+            element.save()
+        return super().save(commit=commit)
+
+
 @admin.register(Product)
 class ProductAdmin(MPTTModelAdmin):
+    form = ProductCustomAdminForm
 
     formfield_overrides = {
         models.TextField: {'widget': Textarea(attrs={'cols': 80, 'rows': 5})},
@@ -88,7 +126,7 @@ class ProductAdmin(MPTTModelAdmin):
     list_filter = ('category__title', 'type__title', 'series__title', 'creation_date')
     autocomplete_fields = ('category', 'type', 'series', 'simlr')
     search_fields = ('title', 'qualifier')
-    inlines = (ProductImageInline, TechDocInline)
+    # inlines = (ProductImageInline, TechDocInline)
 
     def get_category(self, instance):
         if instance:
