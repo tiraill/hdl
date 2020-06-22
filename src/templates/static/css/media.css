@@ -1695,9 +1695,16 @@
   }
 }
 
- /* Resolve for Macbook*/
+ /* Solution for Macbook*/
 @media only screen and (max-width : 1441px) and (min-width : 1399px) {
  .solutions {
   margin: 105px 0 0 auto;
  }
 }
+
+@media only screen and (max-width : 1281px) and (min-width : 1199px) {
+  .solutions {
+    margin: 5px 0 0 auto;
+  }
+ }
+
