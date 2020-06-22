@@ -32,6 +32,9 @@
 
             <div class="col-lg-3">
               <aside class="aside">
+                <div class="aside__button">
+                  <button class="btn btn__main"><span><a href="{% url 'catalog-index' %}">Сбросить фильтры</a></span></button>
+                </div>
               {% if categories %}
                 <div class="aside__item">
                   <h3>
@@ -116,7 +119,7 @@
                     </svg>
                   </button>
                 </form>
-                  <button class="btn btn__main"><span><a href="{% url 'catalog-index' %}">Сбросить фильтры</a></span></button>
+                 
               </div>
               <div class="catalog__group row">
 
