@@ -1793,8 +1793,12 @@ i.i-file {
 /* Aside */
 
 .aside {
-  margin-top: 56px;
+ /* margin-top: 56px; */
 }
+.aside__button{
+  margin: 10px auto 30px;
+}
+
 
 .aside__item:not(:last-child) {
   margin-bottom: 40px;

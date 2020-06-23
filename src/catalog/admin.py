@@ -1,6 +1,4 @@
 from django import forms
-from django.contrib.admin.widgets import AutocompleteSelect, AutocompleteSelectMultiple
-from django.forms import widgets
 from django.contrib import admin
 from django.db import models
 from django.forms import Textarea
