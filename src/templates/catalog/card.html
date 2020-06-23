@@ -236,9 +236,17 @@
                 <div class="col-xl-3">
                   <div class="catalog__item speed">
                     <div class="catalog__img">
+                    {% if product.images.all %}
                         <a href="{% url 'catalog-product' product.slug %}" target="_blank">
                             <img src="{{ product.images.all.0.image.url }}" alt="Фото">
                         </a>
+                    {% else %}
+                        <a href="{% url 'catalog-product' product.slug %}" target="_blank">
+                            <img src="{% static 'img/other/noimage.png' %}" alt="Фото">
+                        </a>
+                    {% endif %}
+
+
                     </div>
                     <div class="catalog__desc">
                       <p class="catalog__name">{{ product.title }}</p>
