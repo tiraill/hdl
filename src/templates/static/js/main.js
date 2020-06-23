@@ -37,6 +37,7 @@ $(document).ready(function () {
   // Search
   $('.btn-search').click(function() {
     $('.modal_search').fadeIn();
+    $('#id_search_q').focus();
   });
 
   // Modal close
@@ -47,11 +48,8 @@ $(document).ready(function () {
     $('.open-modal-picture').click(function(e) {
     e.preventDefault();
     let modal = $('.modal__big_picture');
-    // console.log($('.product__sl__big__item'));
     let url = $(this).data("pictureurl");
-    console.log(url);
     modal.find('img').attr('src', url);
-    // modal.find('#id_additional_info').val('Обратный звонок');
     modal.fadeIn();
   });
 
