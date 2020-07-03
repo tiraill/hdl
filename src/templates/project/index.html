@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block header_bg_cls %}style="background: url({% static 'img/bg/buspro.jpg' %}) center 0/cover no-repeat;"{% endblock %}
+
+
+{% block header_bot %}
+<div class="header__bot header_projects">
+          <div class="container">
+            <nav class="breadcrumb">
+              <ol class="breadcrumb__list d-flex align-items-center">
+                <li class="breadcrumb__item">
+                  <a href="{% url 'core-index' %}" class="breadcrumb__link">Главная</a>
+                </li>
+                <li class="breadcrumb__item active">
+                  Проекты
+                </li>
+              </ol>
+            </nav>
+            <div class="main__title">
+              <h1>Избранные <br />проекты</h1>
+              <p>За долгие годы работы по всему миру выполнено более 5 000 объектов различного типа и сложности.</p>
+            </div>
+            <span class="countries">Более 5 000 объектов</span>
+            <div class="solutions">
+              <div class="row">
+
+                <!-- Col -->
+
+                <div class="col-4">
+                  <div class="solutions__item" style="background: url({% static 'img/other/projects-1.png' %}) center/cover no-repeat #dd73ed;">
+                  </div>
+                </div>
+
+                <!-- Col -->
+
+                <div class="col-4">
+                  <div class="solutions__item" style="background: url({% static 'img/other/projects-2.png' %}) center/cover no-repeat #dd73ed;">
+                  </div>
+                </div>
+
+                <!-- Col -->
+
+                <div class="col-4">
+                  <div class="solutions__item" style="background: url({% static 'img/other/projects-3.png' %}) center/cover no-repeat #dd73ed;">
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+{% endblock %}
+
+{% block main_body %}
+<div class="examples projects">
+        <div class="container">
+
+          <!-- Title -->
+
+          <div class="title text-center">
+            <span class="title__overhead">Более 5 000 объектов</span>
+            <h2 class="title__h2">Примеры <br>выполненных проектов</h2>
+            <p class="title__txt">За долгие годы работы по всему миру выполнено более 5 000 объектов различного типа и сложности.</p>
+          </div>
+
+        </div>
+        <div class="container-fluid">
+          <div class="row">
+
+            <!-- Col -->
+
+            <div class="col-sm-6 col-lg-4">
+              <a href="{% url 'project-hotels-morpheus' %}" class="examples__item fx-column justify-content-between" style="background: url({% static 'img/projects/1.jpg' %}) center/cover no-repeat;">
+                <h3 class="examples__name">City of Dreams — <br />Morpheus</h3>
+                <span class="projects__country">Макао</span>
+                <div class="examples__desc flex-center"><p>Роскошный отель Ушуая в Аргентине лежит у подножья горы Аларкен на высоте около 250 метров. Окруженный завораживающими панорамными видами, девственными лесами и полянами, Ушуая является одной из настоящих жемчужин Аргентины. Отель, насчитывающий 240 номеров, имеющий в распоряжении полноценный деловой центр, плавательный бассейн и современный тренажерный зал, был полностью автоматизирован при помощи решений HDL.</p></div>
+              </a>
+            </div>
+
+            <!-- Col -->
+
+            <div class="col-sm-6 col-lg-4">
+              <a href="#" class="examples__item fx-column justify-content-between" style="background: url({% static 'img/projects/2.jpg' %}) center/cover no-repeat;">
+                <h3 class="examples__name">Arora <br />Intercontinental</h3>
+                <span class="projects__country">Великобритания, Лондон</span>
+                <div class="examples__desc flex-center"><p>Роскошный отель Ушуая в Аргентине лежит у подножья горы Аларкен на высоте около 250 метров. Окруженный завораживающими панорамными видами, девственными лесами и полянами, Ушуая является одной из настоящих жемчужин Аргентины. Отель, насчитывающий 240 номеров, имеющий в распоряжении полноценный деловой центр, плавательный бассейн и современный тренажерный зал, был полностью автоматизирован при помощи решений HDL.</p></div>
+              </a>
+            </div>
+
+            <!-- Col -->
+
+            <div class="col-sm-6 col-lg-4">
+              <a href="#" class="examples__item fx-column justify-content-between" style="background: url({% static 'img/projects/3.jpg' %}) center/cover no-repeat;">
+                <h3 class="examples__name">Hotel Opera Mamaia</h3>
+                <span class="projects__country">Румыния</span>
+                <div class="examples__desc flex-center"><p>Роскошный отель Ушуая в Аргентине лежит у подножья горы Аларкен на высоте около 250 метров. Окруженный завораживающими панорамными видами, девственными лесами и полянами, Ушуая является одной из настоящих жемчужин Аргентины. Отель, насчитывающий 240 номеров, имеющий в распоряжении полноценный деловой центр, плавательный бассейн и современный тренажерный зал, был полностью автоматизирован при помощи решений HDL.</p></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}

@@ -1,0 +1,426 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block header_bg_cls %}style="background: url(/static/img/bg/buspro.jpg) center 0/cover no-repeat;"{% endblock %}
+
+{% block header_bot %}
+    <div class="header__bot">
+  <div class="container">
+    <nav class="breadcrumb">
+      <ol class="breadcrumb__list d-flex align-items-center">
+        <li class="breadcrumb__item">
+          <a href="{% url 'core-index' %}" class="breadcrumb__link">Главная</a>
+        </li>
+        <li class="breadcrumb__item">
+          <a href="{% url 'education-index' %}" class="breadcrumb__link">Обучение</a>
+        </li>
+        <li class="breadcrumb__item active">
+          HDL Buspro
+        </li>
+      </ol>
+    </nav>
+    <div class="main__title main__title_padding main__title__fix">
+      <h1>HDL BUSPRO</h1>
+      <p>Обучающие курсы по системе автоматизации</p>
+    </div>
+    <div class="header__img"><img src="{% static "img/other/buspro-1.png" %}" alt="Фото"></div>
+    <a href="https://www.youtube.com/embed/yT4wHDC917E" target="_blank"><button class="header__play flex-center">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path fill-rule="evenodd"
+         d="M-0.000,-0.001 L-0.000,26.000 L17.000,12.999 L-0.000,-0.001 Z"/>
+      </svg>
+      <span class="impuls"></span>
+    </button></a>
+    <span class="countries">Видео с мероприятия</span>
+  </div>
+</div>
+{% endblock %}
+
+{%  block main_body %}
+
+    <!-- Teaching -->
+
+    <div class="teaching">
+    <div class="container">
+
+      <!-- Title -->
+
+      <div class="title text-center">
+        <span class="title__overhead">СЕРТИФИЦИРОВАН ЗАВОДОМ HDL</span>
+        <h2 class="title__h2">Обучающий Центр HDL</h2>
+      </div>
+
+      <!-- Row -->
+
+      <div class="row justify-content-end">
+
+        <!-- Col -->
+
+        <div class="col-md-8">
+          <div class="teaching__item">
+            <div class="teaching__box d-flex align-items-center">
+              <p>Обучающий центр HDL Russia является авторизованным тренинг-центром производителя по России и станам СНГ. В течение двухдневных курсов обучающиеся получат как теоретические знания по системам HDL, так и практический опыт работы на реальном оборудовании. По окончании выдается официальный сертификат производителя.</p>
+            </div>
+            <div class="teaching__img"><img src="{% static "img/other/teaching.png" %}" alt="Фото"></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    </div>
+
+    <!-- Advantage -->
+
+    <div class="advantage">
+    <div class="container">
+
+      <!-- Title -->
+
+      <div class="title text-center">
+        <span class="title__overhead">HDL buspro</span>
+        <h2 class="title__h2">Преимущества HDL <br />Buspro перед аналогами</h2>
+      </div>
+
+      <!-- Row -->
+
+      <div class="row advantage__group">
+
+        <!-- Col -->
+
+        <div class="col-12">
+          <div class="row advantage__group_2">
+            <div class="col-lg-6 col-xl-8">
+              <div class="advantage__img"><img src="{% static "img/other/advantage.png" %}" alt="Фото"></div>
+            </div>
+            <div class="col-lg-6 col-xl-4">
+              <div class="advantage__item advantage__item_padding">
+                <h3>Распределенный интеллект - <br />не как у всех</h3>
+                <p class="advantage__desc">Отсутствие центрального процессора выгодно отличает HDL Buspro от аналогов. Наличие распределенного интеллекта расширяет возможности системы, а также повышает надежность её работы. Вместо центрального процессора каждое устройство содержит свой собственный контроллер - они обмениваются информацией при помощи шины HDL-Bus.</p>
+                <p class="advantage__extra purple">В результате расширение системы практически без ограничений - это следущий шаг к “умному дому” будущего!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Col -->
+
+        <div class="col-md-6 col-lg-4">
+          <div class="advantage__item">
+            <i class="advantage__icon i-energy"></i>
+            <h3>Экономия энергоресурсов - до 30% в сравнении с аналогами!</h3>
+            <p class="advantage__desc">Для соединения приборов друг с другом используется простой и открытый протокол RS485. Стоит попробовать и уже не захочется возвращаться к альтернативным аналогам.</p>
+            <p class="advantage__extra">HDL-Buspro - это повышение уровня комфорта на фоне экономии ресурсов.</p>
+          </div>
+        </div>
+
+        <!-- Col -->
+
+        <div class="col-md-6 col-lg-4">
+          <div class="advantage__item">
+            <i class="advantage__icon i-info"></i>
+            <h3>Отображение информации в режиме реального времени</h3>
+            <p class="advantage__desc">Все устройства, используемые для управления системой “умный дом”, включая планшеты, PC и панели управления, отображают актуальную информацию о состоянии системы в режиме реального времени.</p>
+            <p class="advantage__extra">Надежность работы оборудования выведены на новый уровень.</p>
+          </div>
+        </div>
+
+        <!-- Col -->
+
+        <div class="col-md-6 col-lg-4">
+          <div class="advantage__item">
+            <i class="advantage__icon i-programming"></i>
+            <h3>Возможность повторного программирования.</h3>
+            <p class="advantage__desc">Система HDL Buspro может повторно перепрограммироваться, что открывает новые возможности для установщиков “умного дома” - можно менять функции управления инженерными системами без изменения в электросхеме. ИспользуяHDL Buspro, можно забыть о вскрытии полов, перетяжке проводов, штроблении. </p>
+            <p class="advantage__extra">Переход на HDL Buspro - повышение эффективности и скорости.</p>
+          </div>
+        </div>
+
+        <!-- Col -->
+
+        <div class="col-md-6 col-lg-4">
+          <div class="advantage__item">
+            <i class="advantage__icon i-tcp"></i>
+            <h3>Координация всех подсистем и TCP/IP интеграция.</h3>
+            <p class="advantage__desc">Все подсистемы работают как единое целое, благодаря координированию. Подсистема безопасности может управлять освещением и климатом. Управление всеми устройствами осуществляется в автоматическом и ручном режимах. Благодаря TCP/IP интеграции несколько сетей HDL Buspro, связанных одной сетью, могут работать как единое целое. Связь осуществляется через TCP/IP интерфейсы.</p>
+            <p class="advantage__extra">HDL-Buspro - все работает как часы, слаженно и эффективно!</p>
+          </div>
+        </div>
+
+        <!-- Col -->
+
+        <div class="col-md-6 col-lg-4">
+          <div class="advantage__item">
+            <i class="advantage__icon i-keyboards"></i>
+            <h3>Клавишные панели DLP - функционал, недоступный конкурентам.</h3>
+            <p class="advantage__desc">Система HDL Buspro содержит уникальное устройство DLP (Dynamic Labeling Panel) - это клавишная панель, предназначенная для одновременного управления разными системами - от освещения до безопасности. Все это в формате простого выключателя, на каждую из клавиш которого можно запрограммировать отдельный сценарий для управления светом - до 99 групп, и климатов в 8 зонах.</p>
+            <p class="advantage__extra">На рынке подобного функционала нет ни у одного конкурента.</p>
+          </div>
+        </div>
+
+        <!-- Col -->
+
+        <div class="col-md-6 col-lg-4">
+          <div class="advantage__item">
+            <i class="advantage__icon i-sensor"></i>
+            <h3>Сенсор 8в1 HDL Buspro - “Умный дом” без ограничений!</h3>
+            <p class="advantage__desc">Сенсор движения на 360 градусов в формате 8в1 - работает одновременно на несколько систем. Предусмотрено два встроенных входа для подключения датчиков разных производителей. ИК трансмиттер - для управления AV приборами на расстоянии 10 м от сенсора, ИК вход - для управления 8-ю сценариями света и климата. Благодаря наличию сенсора можно экономить электроэнергию.</p>
+            <p class="advantage__extra">Ни одна из конкурирующих систем “Умный дом” не может предложить такие возможности как HDL Buspro с сенсором 8в1.</p>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+    </div>
+
+    <!-- Program -->
+
+    <div class="program">
+    <div class="container">
+
+      <!-- Title -->
+
+      <div class="title text-center">
+        <h2 class="title__h2">Программа курса</h2>
+        <p class="title__txt">Дату следующего обучения уточняйте у менеджеров.</p>
+      </div>
+
+      <!-- Box -->
+
+      <div class="box">
+
+        <!-- Row -->
+
+        <div class="row justify-content-start">
+          <div class="col-lg-10">
+            <div class="scope__item scope__item_left">
+              <div class="scope__img" style="background: url({% static "img/other/program-1.png" %}) center/cover no-repeat;"></div>
+              <div class="scope__wrap">
+                <span class="program__day">Среда</span>
+                <h3 class="scope__name">Теоретическая часть</h3>
+                <ul class="program__list">
+                  <li><p>Что такое «умный дом»?</p></li>
+                  <li><p>Система управления HDL Buspro</p></li>
+                  <li><p>Топология системы</p></li>
+                  <li><p>Ограничения</p></li>
+                  <li><p>Преимущества</p></li>
+                  <li><p>Требования</p></li>
+                  <li><p>Чем HDL лучше других Устройства HDL-Buspro, их функциональность</p></li>
+                  <li><p>Примеры расчетов и создания спецификации</p></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row -->
+
+        <div class="row justify-content-end">
+          <div class="col-lg-10">
+            <div class="scope__item scope__item_right">
+              <div class="scope__img" style="background: url({% static "img/other/program-2.png" %}) center/cover no-repeat;"></div>
+              <div class="scope__wrap">
+                <span class="program__day">Четверг</span>
+                <h3 class="scope__name">Коммерческая недвижимость</h3>
+                <ul class="program__list">
+                  <li><p>Сборка стенда и программирование устройств</p></li>
+                  <li><p>HDL Buspro</p></li>
+                  <li><p>Функционал DLP панели</p></li>
+                  <li><p>Диммеры-реле</p></li>
+                  <li><p>Сценарии-последовательности</p></li>
+                  <li><p>Сенсор 8 в одном</p></li>
+                  <li><p>Настройка других устройств</p></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Price -->
+
+      <div class="program__price d-flex align-items-center fx-wrap">
+        <p class="program__price__txt">Стоимость: 5 000 ₽</p>
+        <div class="program__price__btn">
+          <a href="#" class="btn btn__dark open-modal-education-buspro">
+            Зарегистрироваться
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <path fill-rule="evenodd" d="M4.987,4.918 L0.458,0.390 C0.351,0.284 0.180,0.284 0.074,0.390 C-0.033,0.497 -0.033,0.668 0.074,0.775 L4.409,5.109 L0.074,9.443 C-0.033,9.550 -0.033,9.721 0.074,9.828 C0.126,9.880 0.196,9.908 0.265,9.908 C0.333,9.908 0.404,9.882 0.456,9.828 L4.984,5.300 C5.091,5.195 5.091,5.022 4.987,4.918 Z"></path>
+            </svg>
+            <span class="btn__layer"><span></span></span>
+          </a>
+        </div>
+        <div class="program__price__link"><a href="#">При покупке демо-набора обучение БЕСПЛАТНО</a></div>
+      </div>
+
+    </div>
+    </div>
+
+    <!-- Finally -->
+
+    <div class="finally">
+    <div class="container">
+
+      <!-- Title -->
+
+      <div class="title text-center">
+        <h2 class="title__h2">Что Вы Получите После <br />Прохождения Курса</h2>
+        <p class="title__txt">После обучения специалист и организация получают официальные сертификаты завода HDL.</p>
+      </div>
+
+      <!-- Row -->
+
+      <div class="row justify-content-between">
+
+        <!-- Col -->
+
+        <div class="col-lg-6">
+          <div class="row finally__group">
+            <div class="col-6">
+              <div class="finally__item">
+                <i class="finally__icon i-certificate"></i>
+                <p class="finally__txt">Персональный международный сертификат</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="finally__item">
+                <i class="finally__icon i-books"></i>
+                <p class="finally__txt">Учебные материалы и пособия</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Col -->
+
+        <div class="col-lg-5">
+          <div class="finally__text">
+            <p>Сертифицированные специалисты имеют возможность подключения к дилерской программе, получают техническую и маркетинговую поддержку, доступ к обновленным инструкциям, учебникам, примерам проектов и программному обеспечению.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    </div>
+
+    <!-- Video -->
+
+    <div class="video">
+    <div class="container">
+      <div class="row">
+
+        <!-- Col -->
+
+        <div class="col-lg-6">
+          <div class="title d-flex align-items-center">
+            <h2 class="title__h2">Видео с мероприятия HDL для партнеров и дилеров</h2>
+          </div>
+          <div class="video__item">
+            <iframe src="https://www.youtube.com/embed/yT4wHDC917E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    </div>
+
+    <!-- Reviews -->
+
+    <div class="reviews">
+    <div class="container">
+
+      <!-- Title -->
+
+      <div class="title text-center">
+        <span class="title__overhead">Что о нас говорят</span>
+        <h2 class="title__h2">Отзывы</h2>
+      </div>
+
+      <!-- Sl -->
+
+      <div class="reviews__sl row">
+
+        <!-- Item -->
+
+        <div class="col-3">
+          <div class="reviews__item">
+            <div class="reviews__desc">
+              Курс, что называется, «по существу». Полностью оправдал ожидания. Минимум «воды» и максимум практических решений. Компетентность  преподавательского состава на высоте, поэтому были получены ответы на все интересующие вопросы, даже очень далеко выходящие за рамки практических заданий. Почерпнул для себя много нового. Домой увез не только знания с практическими навыками, но еще и море энтузиазма продолжать развивать в компании направление автоматизации зданий.
+            </div>
+            <div class="reviews__author">
+              <h3>Кочанов Сергей</h3>
+              <p class="reviews__company">ООО «Ваш админ», г. Смоленск</p>
+              <p class="reviews__date">24.05.2019</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item -->
+
+        <div class="col-3">
+          <div class="reviews__item">
+            <div class="reviews__desc">
+              Обучение проходит в уютном, оборудованном классе. Приятная атмосфера, преподаватели-профессионалы. Не зря потраченное время.
+            </div>
+            <div class="reviews__author">
+              <h3>Кочанов Сергей</h3>
+              <p class="reviews__company">ООО «Ваш админ», г. Смоленск</p>
+              <p class="reviews__date">24.05.2019</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item -->
+
+        <div class="col-3">
+          <div class="reviews__item">
+            <div class="reviews__desc">
+              Обучение прошло отлично, доступно для восприятия и в полном объеме. На учебных стендах представлено достаточно оборудования для понимания работы и настройки системы. Большое спасибо!
+            </div>
+            <div class="reviews__author">
+              <h3>Кочанов Сергей</h3>
+              <p class="reviews__company">ООО «Ваш админ», г. Смоленск</p>
+              <p class="reviews__date">24.05.2019</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item -->
+
+        <div class="col-3">
+          <div class="reviews__item">
+            <div class="reviews__desc">
+              Огромная благодарность за организацию курсов по автоматизации. Докладчики имеют высокий профессионализм. Все было изложено доходчиво и максимально понятно. Большое спасибо!
+            </div>
+            <div class="reviews__author">
+              <h3>Кочанов Сергей</h3>
+              <p class="reviews__company">ООО «Ваш админ», г. Смоленск</p>
+              <p class="reviews__date">24.05.2019</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item -->
+
+        <div class="col-3">
+          <div class="reviews__item">
+            <div class="reviews__desc">
+              Курс, что называется, «по существу». Полностью оправдал ожидания. Минимум «воды» и максимум практических решений. Компетентность  преподавательского состава на высоте, поэтому были получены ответы на все интересующие вопросы, даже очень далеко выходящие за рамки практических заданий. Почерпнул для себя много нового. Домой увез не только знания с практическими навыками, но еще и море энтузиазма продолжать развивать в компании направление автоматизации зданий.
+            </div>
+            <div class="reviews__author">
+              <h3>Кочанов Сергей</h3>
+              <p class="reviews__company">ООО «Ваш админ», г. Смоленск</p>
+              <p class="reviews__date">24.05.2019</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    </div>
+{% endblock %}

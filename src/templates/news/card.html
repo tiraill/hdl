@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block header_bg_cls %}style="background: url(/static/img/bg/article.jpg) center 0/cover no-repeat;"{% endblock %}
+
+    {% block header_bot %}
+        <div class="header__bot header__bot_article">
+            <div class="container">
+                <nav class="breadcrumb">
+                    <ol class="breadcrumb__list d-flex align-items-center">
+                        <li class="breadcrumb__item">
+                            <a href="{% url 'core-index' %}" class="breadcrumb__link">Главная</a>
+                        </li>
+                        <li class="breadcrumb__item">
+                            <a href="{% url 'news-index' %}" class="breadcrumb__link">Новости</a>
+                        </li>
+                        <li class="breadcrumb__item active">{{ news.title }}</li>
+                    </ol>
+                </nav>
+                <div class="main__title main__title_article text-center">
+                    <h1>{{ news.title }}</h1>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    {% block main_body %}
+    <div class="article">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 col-lg-7">
+              <div class="article__desc">
+                <p class="article__date">{{ news.date|date:"SHORT_DATE_FORMAT" }}</p>
+                <p class="article__txt">{{ news.text }}</p>
+              </div>
+              <div class="row article__group">
+                <div class="col-6 col-lg-6">
+                  <div class="article__img"><img src="{{ news.image.url }}" alt="Фото"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    {% endblock %}

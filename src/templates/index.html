@@ -1,0 +1,581 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+    {% block main_body %}
+      <!-- Intro -->
+
+      <div class="intro">
+        <div class="container">
+          
+          <!-- Txt -->
+
+          <div class="intro__txt">
+            <span class="intro__overhead">HDL AUTOMATION RUSSIA</span>
+            <h1 class="title__h1">Эксперты в области систем автоматизации</h1>
+            <p>Международная компания, производитель систем автоматизации «Умный Дом».</p>
+            <a href="" class="btn btn__dark intro__btn open-modal-request">
+              Оставить заявку на сотрудничество
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <path fill-rule="evenodd"
+                 d="M4.987,4.918 L0.458,0.390 C0.351,0.284 0.180,0.284 0.074,0.390 C-0.033,0.497 -0.033,0.668 0.074,0.775 L4.409,5.109 L0.074,9.443 C-0.033,9.550 -0.033,9.721 0.074,9.828 C0.126,9.880 0.196,9.908 0.265,9.908 C0.333,9.908 0.404,9.882 0.456,9.828 L4.984,5.300 C5.091,5.195 5.091,5.022 4.987,4.918 Z"/>
+              </svg>
+              <span class="btn__layer"><span></span></span>
+            </a>
+          </div>
+
+          <!-- Countries -->
+
+          <span class="countries">Представлены в 88 странах</span>
+
+          <!-- Scroll -->
+
+          <div class="scroll text-center">
+            <span class="scroll__txt">SCROLL</span>
+            <a href="#functions" class="scroll__mouse"></a>
+          </div>
+
+          <!-- Solutions -->
+
+          <div class="solutions">
+            <div class="row">
+              
+              <!-- Col -->
+              
+              <div class="col-4">
+                <div class="solutions__item" style="background: url({% static 'img/other/solutions-1.png' %}) center/cover no-repeat #dd73ed;">
+                    <a href="{% url 'project-living' %}"><h4 class="solutions__name">Для жилых <br />объектов</h4></a>
+                </div>
+              </div>
+              
+              <!-- Col -->
+              
+              <div class="col-4">
+                <div class="solutions__item" style="background: url({% static 'img/other/solutions-2.png' %}) center/cover no-repeat #dd73ed;">
+                    <a href="{% url 'project-commercial' %}"><h4 class="solutions__name">Для коммерческих <br />объектов</h4></a>
+                </div>
+              </div>
+
+              <!-- Col -->
+              
+              <div class="col-4">
+                <div class="solutions__item" style="background: url({% static 'img/other/solutions-3.png' %}) center/cover no-repeat #dd73ed;">
+                    <a href="{% url 'project-hotels' %}"><h4 class="solutions__name">Для гостиничных <br />объектов</h4></a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Functions -->
+      
+      <div class="functions" id="functions">
+        <div class="container">
+          
+          <!-- Title -->
+          
+          <div class="title text-center">
+            <span class="title__overhead">Более 200 дистрибьюторов HDL AUTOMATION RUSSIA</span>
+            <h2 class="title__h2">Возможности <br />HDL систем</h2>
+            <p class="title__txt">С 1985 года HDL - специализируется на развитии патентов и производстве высококачественных продуктов для домашней, коммерческой и промышленной автоматизации.</p>
+          </div>
+
+          <!-- Row -->
+          
+          <div class="row functions__row justify-content-end">
+            
+            <!-- Col -->
+
+            <div class="col-lg-10">
+              <div class="box">
+                <div class="row">
+                  
+                  <!-- Col -->
+                  
+                  <div class="col-lg-6">
+                    <div class="functions__item">
+                      <i class="functions__icon i-lighting"></i>
+                      <h3 class="functions__name">Освещение</h3>
+                      <p class="functions__txt">Управление любым типом светильника, а также создание определенной атмосферы через диммирование или изменения цвета. Автоматическое, групповое и сценарное управление освещением.</p>
+                    </div>
+                  </div>
+
+                  <!-- Col -->
+                  
+                  <div class="col-lg-6">
+                    <div class="functions__item">
+                      <i class="functions__icon i-heating"></i>
+                      <h3 class="functions__name">Отопление и теплый пол</h3>
+                      <p class="functions__txt">Обеспечение комфортной температуры в автоматическом режиме. Не нужны дополнительные термостаты. Экономия энергорусурсов. Мобильное управление.</p>
+                    </div>
+                  </div>
+
+                  <!-- Col -->
+                  
+                  <div class="col-lg-6">
+                    <div class="functions__item">
+                      <i class="functions__icon i-curtains"></i>
+                      <h3 class="functions__name">Шторы и жалюзи</h3>
+                      <p class="functions__txt">Автоматизированное управление в зависимости от уровня освещенности. Дистанционный контроль, сценарное управление, максимальное удобство в использовании.</p>
+                    </div>
+                  </div>
+
+                  <!-- Col -->
+
+                  <div class="functions__phone"><img src="{% static 'img/other/phone.png' %}" alt="Фото"></div>
+
+                  <!-- Col -->
+                  
+                  <div class="col-lg-6">
+                    <div class="functions__item">
+                      <i class="functions__icon i-security"></i>
+                      <h3 class="functions__name">Системы безопасности</h3>
+                      <p class="functions__txt">Комплексная защита, применение различных датчиков, имитация присутствия, дистанционный контроль, интеграция с домофонными и охранными системами.</p>
+                    </div>
+                  </div>
+
+                  <!-- Col -->
+                  
+                  <div class="col-lg-6">
+                    <div class="functions__item">
+                      <i class="functions__icon i-conditioning"></i>
+                      <h3 class="functions__name">Кондиционирование</h3>
+                      <p class="functions__txt">Различные режимы работы системы кондиционирования. Управление с любой панели или мобильного устройства. Автоматический контроль температуры.</p>
+                    </div>
+                  </div>
+
+                  <!-- Col -->
+                  
+                  <div class="col-lg-6">
+                    <div class="functions__item">
+                      <i class="functions__icon i-music"></i>
+                      <h3 class="functions__name">Музыка</h3>
+                      <p class="functions__txt">Возможность проигрывать музыкальные треки в одной комнате, или во всем доме. Управление мультирумом с настенных панелей и с мобильных устройств. Воспроизведение с любых звуковых систем.</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Examples -->
+
+      <div class="examples">
+        <div class="container">
+
+          <!-- Title -->
+          
+          <div class="title text-center">
+            <span class="title__overhead">Более 1300 крупных дилеров и инсталляторов</span>
+            <h2 class="title__h2">Примеры <br />выполненных проектов</h2>
+            <p class="title__txt">Здесь представлены некоторые проекты выполненные на оборудовании HDL</p>
+          </div>
+
+        </div>
+        <div class="container-fluid">
+          <div class="row">
+            
+            <!-- Col -->
+            
+            <div class="col-md-12 col-lg-6">
+              <a href="#" class="examples__item examples__item_big flex-center" style="background: url({% static 'img/examples/1.jpg' %}) center/cover no-repeat;">
+                <h3 class="examples__name">Arakur <br />Ushuaia</h3>
+                <div class="examples__desc flex-center"><p>Роскошный отель Ушуая в Аргентине лежит у подножья горы Аларкен на высоте около 250 метров. Окруженный завораживающими панорамными видами, девственными лесами и полянами, Ушуая является одной из настоящих жемчужин Аргентины. Отель, насчитывающий 240 номеров, имеющий в распоряжении полноценный деловой центр, плавательный бассейн и современный тренажерный зал, был полностью автоматизирован при помощи решений HDL.</p></div>
+              </a>
+            </div>
+
+            <!-- Col -->
+            
+            <div class="col-md-12 col-lg-6">
+              <a href="#" class="examples__item examples__item_big flex-center" style="background: url({% static 'img/examples/2.jpg' %}) center/cover no-repeat;">
+                <h3 class="examples__name">Arakur <br />Ushuaia</h3>
+                <div class="examples__desc flex-center"><p>Гостиница The Gran Ho Tram работала в тесном сотрудничестве с HDL, чтобы реализовать требуемый контроль освещением, контроль AC, визуальную индикацию режимов очистки помещения, статуса помещения и отображения индикаторов DND на панели дверного звонка.</p></div>
+              </a>
+            </div>
+            
+            <!-- Col -->
+            
+            <div class="col-md-6 col-lg-3">
+              <a href="#" class="examples__item examples__item_small flex-center" style="background: url({% static 'img/examples/3.jpg' %}) center/cover no-repeat;">
+                <h3 class="examples__name">BMW Welt (World) in Munich</h3>
+                <div class="examples__desc flex-center"><p>Роскошный отель Ушуая в Аргентине лежит у подножья горы Аларкен на высоте около 250 метров. Окруженный завораживающими панорамными видами, девственными лесами и полянами, Ушуая является одной из настоящих жемчужин Аргентины. Отель, насчитывающий 240 номеров, имеющий в распоряжении полноценный деловой центр, плавательный бассейн и современный тренажерный зал, был полностью автоматизирован при помощи решений HDL.</p></div>
+              </a>
+            </div>
+
+             <!-- Col -->
+            
+            <div class="col-md-6 col-lg-3">
+              <a href="#" class="examples__item examples__item_small flex-center" style="background: url({% static 'img/examples/4.jpg' %}) center/cover no-repeat;">
+                <h3 class="examples__name">Коттеджный поселок iLand в Кирове</h3>
+                <div class="examples__desc flex-center"><p>Гостиница The Gran Ho Tram работала в тесном сотрудничестве с HDL, чтобы реализовать требуемый контроль освещением, контроль AC, визуальную индикацию режимов очистки помещения, статуса помещения и отображения индикаторов DND на панели дверного звонка.</p></div>
+              </a>
+            </div>
+
+             <!-- Col -->
+            
+            <div class="col-md-6 col-lg-3">
+              <a href="#" class="examples__item examples__item_small flex-center" style="background: url({% static 'img/examples/5.jpg' %}) center/cover no-repeat;">
+                <h3 class="examples__name">Park Hyatt Sydney</h3>
+                <div class="examples__desc flex-center"><p>Роскошный отель Ушуая в Аргентине лежит у подножья горы Аларкен на высоте около 250 метров. Окруженный завораживающими панорамными видами, девственными лесами и полянами, Ушуая является одной из настоящих жемчужин Аргентины. Отель, насчитывающий 240 номеров, имеющий в распоряжении полноценный деловой центр, плавательный бассейн и современный тренажерный зал, был полностью автоматизирован при помощи решений HDL.</p></div>
+              </a>
+            </div>
+
+             <!-- Col -->
+            
+            <div class="col-md-6 col-lg-3">
+              <a href="#" class="examples__item examples__item_small flex-center" style="background: url({% static 'img/examples/6.jpg' %}) center/cover no-repeat;">
+                <h3 class="examples__name">Sofitel Casablanca</h3>
+                <div class="examples__desc flex-center"><p>Гостиница The Gran Ho Tram работала в тесном сотрудничестве с HDL, чтобы реализовать требуемый контроль освещением, контроль AC, визуальную индикацию режимов очистки помещения, статуса помещения и отображения индикаторов DND на панели дверного звонка.</p></div>
+              </a>
+            </div>
+
+          </div>
+          <div class="more more_mobile text-center">
+            <a href="#" class="btn btn__dark more__btn">
+              Все проекты
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <path fill-rule="evenodd" d="M4.987,4.918 L0.458,0.390 C0.351,0.284 0.180,0.284 0.074,0.390 C-0.033,0.497 -0.033,0.668 0.074,0.775 L4.409,5.109 L0.074,9.443 C-0.033,9.550 -0.033,9.721 0.074,9.828 C0.126,9.880 0.196,9.908 0.265,9.908 C0.333,9.908 0.404,9.882 0.456,9.828 L4.984,5.300 C5.091,5.195 5.091,5.022 4.987,4.918 Z"></path>
+              </svg>
+              <span class="btn__layer"><span></span></span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Offer -->
+
+      <div class="offer">
+        <div class="container">
+
+          <!-- Row -->
+
+          <div class="row">
+            
+            <!-- Col -->
+            
+            <div class="col-xl-4">
+              <div class="title">
+                <h2 class="title__h2">Мы <br />предлагаем</h2>
+                <p class="title__txt">Комплексный подход к развитию бизнеса систем автоматизации.</p>
+              </div>
+            </div>
+
+            <!-- Col -->
+            
+            <div class="col-md-6 col-xl-4">
+              <div class="offer__item">
+                <div class="offer__box">
+                  <i class="offer__icon i-equipment"></i>
+                  <h3 class="offer__name">Оборудование KNX</h3>
+                  <p class="offer__txt">KNX cамый популярный стандарт систем автоматизации, предпологающий высокие требования к оборудованию.</p>
+                </div>
+                <div class="offer__wrap">
+                  <a href="{% url 'catalog-index' %}" class="btn btn__main offer__btn"><span>Подробнее</span></a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Col -->
+            
+            <div class="col-md-6 col-xl-4">
+              <div class="offer__item">
+                <div class="offer__box">
+                  <i class="offer__icon i-equipment"></i>
+                  <h3 class="offer__name">Оборудование Buspro</h3>
+                  <p class="offer__txt">Открытый протокол с высокой надежностью и широким функционалом.</p>
+                </div>
+                <div class="offer__wrap">
+                  <a href="{% url 'catalog-index' %}" class="btn btn__main offer__btn"><span>Подробнее</span></a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Col -->
+            
+            <div class="col-md-6 col-xl-4">
+              <div class="offer__item">
+                <div class="offer__box">
+                  <i class="offer__icon i-antenna"></i>
+                  <h3 class="offer__name">Оборудование Wireless</h3>
+                  <p class="offer__txt">Buspro Wireless стандартизирована и работает по стандарту IEEE 802.15.4. Используя частоты 768, 868 и 900 МГц</p>
+                </div>
+                <div class="offer__wrap">
+                  <a href="{% url 'catalog-index' %}" class="btn btn__main offer__btn"><span>Подробнее</span></a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Col -->
+            
+            <div class="col-md-6 col-xl-4">
+              <div class="offer__item">
+                <div class="offer__box">
+                  <i class="offer__icon i-hotels"></i>
+                  <h3 class="offer__name">Оборудование для гостиниц</h3>
+                  <p class="offer__txt">Новый уровень комфорта и оптимизация потребления энергоресурсов.</p>
+                </div>
+                <div class="offer__wrap">
+                  <a href="{% url 'catalog-index' %}" class="btn btn__main offer__btn"><span>Подробнее</span></a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Col -->
+            
+            <div class="col-md-6 col-xl-4">
+              <div class="offer__item">
+                <div class="offer__box">
+                  <i class="offer__icon i-training"></i>
+                  <h3 class="offer__name">Обучающий центр</h3>
+                  <p class="offer__txt">Мы предлагаем разные варианты обучающих курсов по работе с системами умный дом.</p>
+                </div>
+                <div class="offer__wrap">
+                  <a href="{% url 'education-index' %}" class="btn btn__main offer__btn"><span>Подробнее</span></a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          
+          <!-- Row -->
+          
+          <div class="row vantage">
+            
+            <!-- Col -->
+            
+            <div class="col-lg-4">
+              <div class="vantage__item">
+                <i class="vantage__icon i-knx i-txt"><span>KNX</span></i>
+                <div class="vantage__box">
+                  <h3 class="vantage__name">KNX testing lab</h3>
+                  <p class="vantage__txt">Один из не многих производителей, который имеет официальную тестовую лабораторию.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Col -->
+            
+            <div class="col-lg-4">
+              <div class="vantage__item">
+                <i class="vantage__icon i-support"></i>
+                <div class="vantage__box">
+                  <h3 class="vantage__name">Техническая поддержка</h3>
+                  <p class="vantage__txt">Ежедневно мы осуществляем технические консультации и помощь.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Col -->
+            
+            <div class="col-lg-4">
+              <div class="vantage__item">
+                <i class="vantage__icon i-star i-txt flex-center"><span>5</span></i>
+                <div class="vantage__box">
+                  <h3 class="vantage__name">Гарантия 5 лет</h3>
+                  <p class="vantage__txt">Мы предоставляем оборудование высокого качества с гарантийным сроком до 5 лет.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          
+          <!-- Btn -->
+
+          <div class="offer__btn__box text-center">
+            <a href="" class="btn btn__dark open-modal-consult">
+              Получить консультацию
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <path fill-rule="evenodd" d="M4.987,4.918 L0.458,0.390 C0.351,0.284 0.180,0.284 0.074,0.390 C-0.033,0.497 -0.033,0.668 0.074,0.775 L4.409,5.109 L0.074,9.443 C-0.033,9.550 -0.033,9.721 0.074,9.828 C0.126,9.880 0.196,9.908 0.265,9.908 C0.333,9.908 0.404,9.882 0.456,9.828 L4.984,5.300 C5.091,5.195 5.091,5.022 4.987,4.918 Z"></path>
+              </svg>
+              <span class="btn__layer"><span></span></span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Scope -->
+
+      <div class="scope">
+        <div class="container">
+          
+          <!-- Title -->
+          
+          <div class="title text-center">
+            <span class="title__overhead">В России с 2009 года</span>
+            <h2 class="title__h2">Сфера применения нашего оборудования</h2>
+            <p class="title__txt">Подходит для всех типов объектов</p>
+          </div>
+
+          <!-- Box -->
+
+          <div class="box">
+            
+            <!-- Row -->
+            
+            <div class="row justify-content-start">
+              <div class="col-lg-10">
+                <div class="scope__item scope__item_left">
+                  <div class="scope__img" style="background: url({% static 'img/other/scope-1.png' %}) center/cover no-repeat;"></div>
+                  <div class="scope__wrap">
+                    <h3 class="scope__name">Квартиры и дома</h3>
+                    <p class="scope__txt">Возможность просто и эффективно контролировать Ваш Дом с любого места. Элегантные панели управления представлены в разнообразных расцветках, стилях и материалах, удовлетворяющих дизайн любого интерьера.</p>
+                    <a href="{% url 'project-living' %}" class="btn btn__main scope__btn"><span>Подробнее</span></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row -->
+            
+            <div class="row justify-content-end">
+              <div class="col-lg-10">
+                <div class="scope__item scope__item_right">
+                  <div class="scope__img" style="background: url({% static 'img/other/scope-2.png' %}) center/cover no-repeat;"></div>
+                  <div class="scope__wrap">
+                    <h3 class="scope__name">Коммерческая недвижимость</h3>
+                    <p class="scope__txt">Решения по экономии энергоресурсов, интеллектуальное управление освещением, климатом и другими системами зданийщих дизайн любого интерьера.</p>
+                    <a href="{% url 'project-commercial' %}" class="btn btn__main scope__btn"><span>Подробнее</span></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row -->
+            
+            <div class="row justify-content-start">
+              <div class="col-lg-10">
+                <div class="scope__item scope__item_left">
+                  <div class="scope__img" style="background: url({% static 'img/other/scope-3.png' %}) center/cover no-repeat;"></div>
+                  <div class="scope__wrap">
+                    <h3 class="scope__name">Гостиницы и отели</h3>
+                    <p class="scope__txt">Автоматизация номерного фонда, энергоэффективность, интеграция с системами PMS, новый уровень комфорта и сервиса для гостей.</p>
+                    <a href="{% url 'project-hotels' %}" class="btn btn__main scope__btn"><span>Подробнее</span></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Trust -->
+
+      <div class="trust">
+        <div class="container">
+
+          <!-- Title -->
+          
+          <div class="title text-center">
+            <h2 class="title__h2">Нам доверяют</h2>
+            <p class="title__txt">HDL разработана для обеспечения целостного решения любого уровня.</p>
+          </div>
+
+        </div>
+        <div class="container-fluid">
+          <div class="trust__sl">
+            
+            <!-- Item -->
+            
+            <div class="trust__item">
+              <div class="trust__img"><img src="{% static 'img/trust/1.png' %}" alt="Фото"></div>
+            </div>
+
+            <!-- Item -->
+            
+            <div class="trust__item">
+              <div class="trust__img"><img src="{% static 'img/trust/2.png' %}" alt="Фото"></div>
+            </div>
+
+            <!-- Item -->
+            
+            <div class="trust__item">
+              <div class="trust__img"><img src="{% static 'img/trust/3.png' %}" alt="Фото"></div>
+            </div>
+
+            <!-- Item -->
+            
+            <div class="trust__item">
+              <div class="trust__img"><img src="{% static 'img/trust/4.png' %}" alt="Фото"></div>
+            </div>
+
+            <!-- Item -->
+            
+            <div class="trust__item">
+              <div class="trust__img"><img src="{% static 'img/trust/5.png' %}" alt="Фото"></div>
+            </div>
+
+            <!-- Item -->
+            
+            <div class="trust__item">
+              <div class="trust__img"><img src="{% static 'img/trust/6.png' %}" alt="Фото"></div>
+            </div>
+
+            <!-- Item -->
+            
+            <div class="trust__item">
+              <div class="trust__img"><img src="{% static 'img/trust/7.png' %}" alt="Фото"></div>
+            </div>
+
+            <!-- Item -->
+            
+            <div class="trust__item">
+              <div class="trust__img"><img src="{% static 'img/trust/8.png' %}" alt="Фото"></div>
+            </div>
+
+            <!-- Item -->
+            
+            <div class="trust__item">
+              <div class="trust__img"><img src="{% static 'img/trust/9.png' %}" alt="Фото"></div>
+            </div>
+
+            <!-- Item -->
+            
+            <div class="trust__item">
+              <div class="trust__img"><img src="{% static 'img/trust/10.png' %}" alt="Фото"></div>
+            </div>
+
+            <!-- Item -->
+            
+            <div class="trust__item">
+              <div class="trust__img"><img src="{% static 'img/trust/11.png' %}" alt="Фото"></div>
+            </div>
+
+            <!-- Item -->
+            
+            <div class="trust__item">
+              <div class="trust__img"><img src="{% static 'img/trust/12.png' %}" alt="Фото"></div>
+            </div>
+
+            <!-- Item -->
+            
+            <div class="trust__item">
+              <div class="trust__img"><img src="{% static 'img/trust/13.png' %}" alt="Фото"></div>
+            </div>
+
+            <!-- Item -->
+            
+            <div class="trust__item">
+              <div class="trust__img"><img src="{% static 'img/trust/14.png' %}" alt="Фото"></div>
+            </div>
+
+            <!-- Item -->
+            
+            <div class="trust__item">
+              <div class="trust__img"><img src="{% static 'img/trust/15.png' %}" alt="Фото"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    {% endblock %}

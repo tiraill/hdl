@@ -1,0 +1,279 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block header_bg_cls %}style="background: url(/static/img/bg/buspro.jpg) center 0/cover no-repeat;"{% endblock %}
+
+        {% block header_bot %}
+        <div class="header__bot header__bot_education">
+          <div class="container">
+            <nav class="breadcrumb">
+              <ol class="breadcrumb__list d-flex align-items-center">
+                <li class="breadcrumb__item">
+                  <a href="{% url 'core-index' %}" class="breadcrumb__link">Главная</a>
+                </li>
+                <li class="breadcrumb__item active">
+                  Обучение
+                </li>
+              </ol>
+            </nav>
+            <div class="main__title main__title_padding text-center">
+              <span class="title__overhead">KNX<span>|</span>BUSPRO</span>
+              <h1>Обучение системам <br />умный дом</h1>
+              <p>Мы проводим обучение по системам KNX и Buspro</p>
+              <div class="maint__title__btn open-modal-education-general">
+                <a href="#" class="btn btn__main">
+                  <span>
+                    Оставить заявку на обучение
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <path fill-rule="evenodd" d="M4.987,4.918 L0.458,0.390 C0.351,0.284 0.180,0.284 0.074,0.390 C-0.033,0.497 -0.033,0.668 0.074,0.775 L4.409,5.109 L0.074,9.443 C-0.033,9.550 -0.033,9.721 0.074,9.828 C0.126,9.880 0.196,9.908 0.265,9.908 C0.333,9.908 0.404,9.882 0.456,9.828 L4.984,5.300 C5.091,5.195 5.091,5.022 4.987,4.918 Z"></path>
+                    </svg>
+                  </span>
+                </a>
+              </div>
+            </div>
+            <a href="https://www.youtube.com/embed/yT4wHDC917E" target="_blank"><button class="header__play flex-center">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <path fill-rule="evenodd"
+                 d="M-0.000,-0.001 L-0.000,26.000 L17.000,12.999 L-0.000,-0.001 Z"/>
+              </svg>
+              <span class="impuls"></span>
+            </button></a>
+            <span class="countries countries_top">Видео с мероприятия</span>
+          </div>
+        </div>
+        {% endblock %}
+
+      {%  block main_body %}
+      <!-- Courses -->
+
+      <div class="courses">
+        <div class="container">
+          <div class="row justify-content-end">
+            
+            <!-- Col -->
+
+            <div class="col-lg-10">
+              <div class="courses__item">
+                <div class="courses__box">
+                  <div class="title">
+                    <h2 class="title__h2">Подробнее <br />о курсах</h2>
+                  </div>
+                  <p class="courses__txt">«Компания HDL Automation предлагает несколько вариантов обучающих курсов по работе с системами умный дом: БЕСПЛАТНЫЕ базовые, Углубленные профессиональные, Дистанционные (онлайн) или в офисе, на русском и английском языках.</p>
+                  <p class="courses__txt">Также мы оказываем своим партнерам постоянную техническую и маркетинговую поддержку, осуществляем защиту проектов, помогаем в проектировании и выборе решений. По итогу курсов специалист или компания получают образец сертификата.</p>
+                </div>
+                <div class="courses__img"><img src="{% static 'img/other/courses.png' %}" alt="Фото"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Options -->
+
+      <div class="options">
+        <div class="container">
+          
+          <!-- Title -->
+          
+          <div class="title text-center">
+            <span class="title__overhead">HDL Automation</span>
+            <h2 class="title__h2">Варианты обучения</h2>
+          </div>
+
+          <!-- Row -->
+
+          <div class="row">
+            
+            <!-- Col -->
+            
+            <div class="col-md-6 col-lg-4">
+              <div class="options__item">
+                <div class="options__img"><img src="{% static 'img/other/options-1.png' %}" alt="Фото"></div>
+                <div class="options__box">
+                  <h3>Обучение протоколу <br />Buspro в офисе</h3>
+                  <p class="options__txt">Длительность обучения составляет 2 дня, первый день теория и второй практика. После обучения специалист и организация получают официальные сертификаты завода HDL.</p>
+                  <p class="options__price">5 000 ₽</p>
+                  <div class="options__btn d-xl-flex align-items-center justify-content-between">
+                    <a href="#" class="btn btn__main"><span>Подробнее</span></a>
+                    <a href="#" class="btn btn__dark open-modal-education-general-buspro">
+                      Записаться
+                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <path fill-rule="evenodd" d="M4.987,4.918 L0.458,0.390 C0.351,0.284 0.180,0.284 0.074,0.390 C-0.033,0.497 -0.033,0.668 0.074,0.775 L4.409,5.109 L0.074,9.443 C-0.033,9.550 -0.033,9.721 0.074,9.828 C0.126,9.880 0.196,9.908 0.265,9.908 C0.333,9.908 0.404,9.882 0.456,9.828 L4.984,5.300 C5.091,5.195 5.091,5.022 4.987,4.918 Z"></path>
+                      </svg>
+                      <span class="btn__layer"><span></span></span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Col -->
+            
+            <div class="col-md-6 col-lg-4">
+              <div class="options__item">
+                <div class="options__img"><img src="{% static 'img/other/options-2.png' %}" alt="Фото"></div>
+                <div class="options__box">
+                  <h3>Обучение <br />протоколу KNX</h3>
+                  <p class="options__txt">Длительность обучения составляет 5 дней. Слушатели, успешно сдавшие теоретический и практический экзамены, получают персональный сертификат «KNX Partner».</p>
+                  <p class="options__price">25 000 ₽</p>
+                  <div class="options__btn d-xl-flex align-items-center justify-content-between">
+                    <a href="#" class="btn btn__main"><span>Подробнее</span></a>
+                    <a href="#" class="btn btn__dark open-modal-education-general-knx">
+                      Записаться
+                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <path fill-rule="evenodd" d="M4.987,4.918 L0.458,0.390 C0.351,0.284 0.180,0.284 0.074,0.390 C-0.033,0.497 -0.033,0.668 0.074,0.775 L4.409,5.109 L0.074,9.443 C-0.033,9.550 -0.033,9.721 0.074,9.828 C0.126,9.880 0.196,9.908 0.265,9.908 C0.333,9.908 0.404,9.882 0.456,9.828 L4.984,5.300 C5.091,5.195 5.091,5.022 4.987,4.918 Z"></path>
+                      </svg>
+                      <span class="btn__layer"><span></span></span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Col -->
+            
+            <div class="col-md-6 col-lg-4">
+              <div class="options__item">
+                <div class="options__img"><img src="{% static 'img/other/options-3.png' %}" alt="Фото"></div>
+                <div class="options__box">
+                  <h3>Онлайн обучение <br />HDL Buspro</h3>
+                  <p class="options__txt">Данный курс содержит две лекции: Теория и практика. Каждая лекция по длительности составляет примерно 1,5 часа.</p>
+                  <p class="options__price">БЕСПЛАТНО</p>
+                  <div class="options__btn d-xl-flex align-items-center justify-content-between">
+                    <a href="#" class="btn btn__main"><span>Подробнее</span></a>
+                    <a href="#" class="btn btn__dark open-modal-education-general-online">
+                      Записаться
+                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <path fill-rule="evenodd" d="M4.987,4.918 L0.458,0.390 C0.351,0.284 0.180,0.284 0.074,0.390 C-0.033,0.497 -0.033,0.668 0.074,0.775 L4.409,5.109 L0.074,9.443 C-0.033,9.550 -0.033,9.721 0.074,9.828 C0.126,9.880 0.196,9.908 0.265,9.908 C0.333,9.908 0.404,9.882 0.456,9.828 L4.984,5.300 C5.091,5.195 5.091,5.022 4.987,4.918 Z"></path>
+                      </svg>
+                      <span class="btn__layer"><span></span></span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      
+      <!-- Video -->
+
+      <div class="video">
+        <div class="container">
+          <div class="row">
+            
+            <!-- Col -->
+            
+            <div class="col-lg-6">
+              <div class="title d-flex align-items-center">
+                <h2 class="title__h2">Видео с мероприятия HDL для партнеров и дилеров</h2>
+              </div>
+              <div class="video__item">
+                <iframe src="https://www.youtube.com/embed/yT4wHDC917E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Reviews -->
+      
+      <div class="reviews">
+        <div class="container">
+          
+          <!-- Title -->
+
+          <div class="title text-center">
+            <span class="title__overhead">Что о нас говорят</span>
+            <h2 class="title__h2">Отзывы</h2>
+          </div>
+
+          <!-- Sl -->
+
+          <div class="reviews__sl row">
+            
+            <!-- Item -->
+            
+            <div class="col-3">
+              <div class="reviews__item">
+                <div class="reviews__desc">
+                  Курс, что называется, «по существу». Полностью оправдал ожидания. Минимум «воды» и максимум практических решений. Компетентность  преподавательского состава на высоте, поэтому были получены ответы на все интересующие вопросы, даже очень далеко выходящие за рамки практических заданий. Почерпнул для себя много нового. Домой увез не только знания с практическими навыками, но еще и море энтузиазма продолжать развивать в компании направление автоматизации зданий.
+                </div>
+                <div class="reviews__author">
+                  <h3>Кочанов Сергей</h3>
+                  <p class="reviews__company">ООО «Ваш админ», г. Смоленск</p>
+                  <p class="reviews__date">24.05.2019</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Item -->
+            
+            <div class="col-3">
+              <div class="reviews__item">
+                <div class="reviews__desc">
+                  Обучение проходит в уютном, оборудованном классе. Приятная атмосфера, преподаватели-профессионалы. Не зря потраченное время.
+                </div>
+                <div class="reviews__author">
+                  <h3>Кочанов Сергей</h3>
+                  <p class="reviews__company">ООО «Ваш админ», г. Смоленск</p>
+                  <p class="reviews__date">24.05.2019</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item -->
+            
+            <div class="col-3">
+              <div class="reviews__item">
+                <div class="reviews__desc">
+                  Обучение прошло отлично, доступно для восприятия и в полном объеме. На учебных стендах представлено достаточно оборудования для понимания работы и настройки системы. Большое спасибо!
+                </div>
+                <div class="reviews__author">
+                  <h3>Кочанов Сергей</h3>
+                  <p class="reviews__company">ООО «Ваш админ», г. Смоленск</p>
+                  <p class="reviews__date">24.05.2019</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item -->
+            
+            <div class="col-3">
+              <div class="reviews__item">
+                <div class="reviews__desc">
+                  Огромная благодарность за организацию курсов по автоматизации. Докладчики имеют высокий профессионализм. Все было изложено доходчиво и максимально понятно. Большое спасибо!
+                </div>
+                <div class="reviews__author">
+                  <h3>Кочанов Сергей</h3>
+                  <p class="reviews__company">ООО «Ваш админ», г. Смоленск</p>
+                  <p class="reviews__date">24.05.2019</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Item -->
+            
+            <div class="col-3">
+              <div class="reviews__item">
+                <div class="reviews__desc">
+                  Курс, что называется, «по существу». Полностью оправдал ожидания. Минимум «воды» и максимум практических решений. Компетентность  преподавательского состава на высоте, поэтому были получены ответы на все интересующие вопросы, даже очень далеко выходящие за рамки практических заданий. Почерпнул для себя много нового. Домой увез не только знания с практическими навыками, но еще и море энтузиазма продолжать развивать в компании направление автоматизации зданий.
+                </div>
+                <div class="reviews__author">
+                  <h3>Кочанов Сергей</h3>
+                  <p class="reviews__company">ООО «Ваш админ», г. Смоленск</p>
+                  <p class="reviews__date">24.05.2019</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    {% endblock %}

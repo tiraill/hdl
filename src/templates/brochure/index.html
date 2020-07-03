@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+    {% block header_bot %}
+        <div class="header__bot">
+          <div class="container">
+            <nav class="breadcrumb">
+              <ol class="breadcrumb__list d-flex align-items-center">
+                <li class="breadcrumb__item">
+                  <a href="{% url 'core-index' %}" class="breadcrumb__link">Главная</a>
+                </li>
+                <li class="breadcrumb__item active">
+                  Брошюры
+                </li>
+              </ol>
+            </nav>
+            <h1 class="title__page">Брошюры и каталоги</h1>
+          </div>
+        </div>
+        {% endblock %}
+
+        {%  block main_body %}
+
+      <!-- Brochures -->
+
+      <div class="brochures tabs-js">
+        <nav class="tabs__nav">
+          <div class="container">
+            <ul class="tabs__list d-flex justify-content-between">
+            <!-- set active first li -->
+                {% for category in categories %}
+                    <li class="tabs__name speed">
+                        {% if category.svg_file %}{{ category.svg_file|safe }}{% endif %}
+                        {% if category.display_name %}<span class="tabs__name__txt">{{ category.display_name }}</span>{% endif %}
+                        {% if category.image %}<img src="{{ category.image.url }}"  alt="">{% endif %}
+                        <p>{{ category.title }}</p>
+                    </li>
+                  {% endfor %}
+            </ul>
+          </div>
+        </nav>
+        <div class="tabs__content">
+          <div class="container ">
+            {% for category in categories %}
+                <div class="tabs__item row">
+                    {% for brochure in brochures %}
+                        {% if brochure.brochure_category == category or category.general_category %}
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="brochures__item flex-center fx-column speed">
+                                <i class="brochures__icon i-file"></i>
+                                <p class="brochures__name">{{ brochure.title }}
+                                    {% if brochure.brochure_file %}
+                                        <span class="brochures__size">{{ brochure.brochure_file.size|filesizeformat }}</span>
+                                        {% else %}
+                                        <span class="brochures__size">Файл отсутствует</span>
+                                        {% endif %}
+                                </p>
+                                {% if brochure.brochure_file %}
+                                    <div class="brochures__btn">
+                                        <a href="{{ brochure.brochure_file.url }}" class="btn btn__main" target="_blank">
+                                            <span>Скачать</span>
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      {% endblock %}

@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load core_extras %}
+
+        {% block header_bot %}
+        <div class="header__bot">
+          <div class="container">
+            <nav class="breadcrumb">
+              <ol class="breadcrumb__list d-flex align-items-center">
+                <li class="breadcrumb__item">
+                  <a href="{% url 'core-index' %}" class="breadcrumb__link">Главная</a>
+                </li>
+                <li class="breadcrumb__item active">
+                  Каталог
+                </li>
+              </ol>
+            </nav>
+            <h1 class="title__page">Каталог</h1>
+          </div>
+        </div>
+        {% endblock %}
+
+        {%  block main_body %}
+
+      <!-- Catalog -->
+
+      <div class="catalog">
+        <div class="container">
+          <div class="row">
+            
+            <!-- Col -->
+
+            <div class="col-lg-3">
+              <aside class="aside">
+                <div class="aside__button">
+                  <button class="btn btn__main"><span><a href="{% url 'catalog-index' %}">Сбросить фильтры</a></span></button>
+                </div>
+              {% if categories %}
+                <div class="aside__item">
+                  <h3>
+                    Каталог:
+                    <span class="aside__arrow">
+                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21px" height="10px">
+                        <path fill-rule="evenodd"  fill="rgb(0, 0, 0)"
+                         d="M10.308,9.865 L19.880,0.681 C20.050,0.519 20.050,0.254 19.880,0.091 C19.710,-0.072 19.434,-0.072 19.265,0.091 L10.001,8.980 L0.736,0.091 C0.566,-0.072 0.290,-0.072 0.121,0.091 C0.036,0.173 -0.006,0.280 -0.006,0.387 C-0.006,0.494 0.036,0.600 0.121,0.681 L9.693,9.865 C9.862,10.027 10.138,10.027 10.308,9.865 Z"/>
+                      </svg>
+                    </span>
+                  </h3>
+                    <div class="aside__list check">
+                  {% for category in categories %}
+                        <label class="check__item d-flex filters__item">
+                          <input type="checkbox" data-slug="{{ category.slug }}" name="category">
+                          <span class="check__mark"></span>
+                          <span class="check__name">{{ category.title }}</span>
+                        </label>
+                  {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+              {% if types %}
+                <div class="aside__item">
+                  <h3>
+                    Категория:
+                    <span class="aside__arrow">
+                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21px" height="10px">
+                        <path fill-rule="evenodd"  fill="rgb(0, 0, 0)"
+                         d="M10.308,9.865 L19.880,0.681 C20.050,0.519 20.050,0.254 19.880,0.091 C19.710,-0.072 19.434,-0.072 19.265,0.091 L10.001,8.980 L0.736,0.091 C0.566,-0.072 0.290,-0.072 0.121,0.091 C0.036,0.173 -0.006,0.280 -0.006,0.387 C-0.006,0.494 0.036,0.600 0.121,0.681 L9.693,9.865 C9.862,10.027 10.138,10.027 10.308,9.865 Z"/>
+                      </svg>
+                    </span>
+                  </h3>
+                  <div class="aside__list check">
+                    {% for type in types %}
+                        <label class="check__item d-flex filters__item">
+                          <input type="checkbox" data-slug="{{ type.slug }}" name="type">
+                          <span class="check__mark"></span>
+                          <span class="check__name">{{ type.title }}</span>
+                        </label>
+                      {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+                  {% if series %}
+                    <div class="aside__item">
+                      <h3>
+                        Тип:
+                        <span class="aside__arrow">
+                          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21px" height="10px">
+                            <path fill-rule="evenodd"  fill="rgb(0, 0, 0)"
+                             d="M10.308,9.865 L19.880,0.681 C20.050,0.519 20.050,0.254 19.880,0.091 C19.710,-0.072 19.434,-0.072 19.265,0.091 L10.001,8.980 L0.736,0.091 C0.566,-0.072 0.290,-0.072 0.121,0.091 C0.036,0.173 -0.006,0.280 -0.006,0.387 C-0.006,0.494 0.036,0.600 0.121,0.681 L9.693,9.865 C9.862,10.027 10.138,10.027 10.308,9.865 Z"/>
+                          </svg>
+                        </span>
+                      </h3>
+                      <div class="aside__list check">
+                         {% for serie in series %}
+                          <label class="check__item d-flex filters__item">
+                            <input type="checkbox" data-slug="{{ serie.slug }}" name="series">
+                            <span class="check__mark"></span>
+                            <span class="check__name">{{ serie.title }}</span>
+                          </label>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  {% endif %}
+              </aside>
+            </div>
+
+            <!-- Col -->
+
+            <div class="col-lg-9">
+              <div class="catalog__panel d-flex align-items-center justify-content-between">
+                <form action="#" class="catalog__seach">
+                  <label>
+                      <input type="text" id="catalog-search-input" placeholder="Поиск по каталогу" name="search">
+                  </label>
+                  <button class="btn" id="catalog__search__symbol">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <path fill-rule="evenodd"
+                       d="M16.880,16.327 L12.914,12.361 C13.978,11.138 14.622,9.542 14.622,7.798 C14.622,3.959 11.500,0.839 7.665,0.839 C3.826,0.839 0.707,3.962 0.707,7.798 C0.707,11.634 3.830,14.757 7.665,14.757 C9.409,14.757 11.004,14.113 12.227,13.049 L16.192,17.015 C16.287,17.109 16.413,17.160 16.536,17.160 C16.659,17.160 16.786,17.112 16.880,17.015 C17.068,16.827 17.068,16.515 16.880,16.327 ZM1.680,7.798 C1.680,4.498 4.365,1.817 7.661,1.817 C10.961,1.817 13.642,4.501 13.642,7.798 C13.642,11.095 10.961,13.783 7.661,13.783 C4.365,13.783 1.680,11.098 1.680,7.798 Z"/>
+                    </svg>
+                  </button>
+                </form>
+                 
+              </div>
+              <div class="catalog__group row">
+
+                {% for product in products %}
+
+                    <div class="col-sm-6 col-lg-6 col-xl-4">
+                      <div class="catalog__item speed">
+                        <div class="catalog__img">
+                            <a href="{% url 'catalog-product' product.slug %}" target="_blank">
+                                {% if product.images.all %}
+                                    <img src="{{ product.images.all.0.image.url }}" alt="Фото">
+                                {% else %}
+                                    <img src="{% static 'img/other/noimage.png' %}" alt="Фото">
+                                {% endif %}
+                            </a>
+                            </div>
+                        <div class="catalog__desc">
+                          <p class="catalog__name">{{ product.title }}</p>
+                          <p class="catalog__articul">Артикул: {{ product.qualifier }}</p>
+                        </div>
+                          <div class="catalog__btn">
+                              <a href="{% url 'catalog-product' product.slug %}" class="btn btn__main"  target="_blank">
+                                <span>Подробнее</span>
+                              </a>
+                          </div>
+                      </div>
+                </div>
+
+                {% endfor %}
+              </div>
+            {% if products.has_other_pages %}
+              <nav class="pagination">
+                <ul class="pagination__list flex-center">
+                {% for pg_num in products.paginator.page_range %}
+                    {% if products.number == pg_num %}
+                      <li class="page__item">
+                        <a class="page__link active" href="?{% url_replace page=pg_num %}">{{ pg_num }}</a>
+                      </li>
+                    {% else %}
+                      <li class="page__item">
+                        <a class="page__link" href="?{% url_replace page=pg_num %}">{{ pg_num }}</a>
+                      </li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+              </nav>
+            {% endif %}
+            </div>
+
+          </div>
+        </div>
+      </div>
+        {% endblock %}
+    {% block additional_js %}
+          <script src="{% static 'js/catalog.js' %}"></script>
+    {% endblock %}

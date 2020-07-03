@@ -1,0 +1,5 @@
+postgresql-dev
+musl-dev
+libffi-dev
+gcc
+git

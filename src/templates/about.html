@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block header_bg_cls %}style="background: url(/static/img/bg/buspro.jpg) center 0/cover no-repeat;"{% endblock %}
+
+    {% block header_bot %}
+        <div class="header__bot header__bot_article">
+            <div class="container">
+                <nav class="breadcrumb">
+                    <ol class="breadcrumb__list d-flex align-items-center">
+                        <li class="breadcrumb__item">
+                            <a href="{% url 'core-index' %}" class="breadcrumb__link">Главная</a>
+                        </li>
+                        <li class="breadcrumb__item active">О компании</li>
+                    </ol>
+                </nav>
+                <div class="main__title main__title_article text-center">
+                    <h1>{{ news.title }}</h1>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+{%  block main_body %}
+          <!-- About -->
+
+      <div class="about">
+        <div class="container">
+
+          <!-- Title -->
+
+          <div class="title text-center">
+            <h2 class="title__h2">О компании</h2>
+            <p class="title__txt">Профессионалы в области Умных зданий</p>
+          </div>
+
+          <!-- Txt -->
+
+          <div class="about__txt">
+            <p class="paragraph">Наша компания является эксклюзивным дистрибьютором оборудования систем Умного дома HDL по всей России с 2009 года. В 2018 г. мы получили награду за 3-е место в мире по объему продаж!</p>
+            <div class="about__list">
+              <p>Оборудование поставляемое нами подходит для трех сегментов рынка:</p>
+              <ul class="about__list__box">
+                <li><span>частные проекты (квартиры, загородные дома),</span></li>
+                <li><span>коммерческие проекты (многоквартирные дома, коттеджные поселки, офисы, кафе, бары, аэропорты, музеи, школы, конференц залы, больницы, поликлиники и т.д.),</span></li>
+                <li><span>гостиничные проекты (отели от 3-5 звезд, апарт отели, бутик отели)</span></li>
+              </ul>
+            </div>
+            <p class="paragraph">Наши продукты и решения обеспечивают энергосбережение, централизованный контроль, комфорт, удобство, а также дополнительную безопасность.</p>
+            <p class="paragraph">В нашей линейке представлены проводные и беспроводные протоколы, такие как: Buspro, KNX, Buspro wireless.</p>
+            <div class="about__list">
+              <p>Бренды которые мы поставляем:</p>
+              <ul class="about__list__box">
+                <li><span>HDL - оборудования систем автоматизации домов, квартир, зданий.</span></li>
+                <li><span>CasaTunes - инновационные многоканальные аудиосистемы.</span></li>
+                <li><span>Coolautomation - универсальные шлюзы для управления системами вентиляции и кондиционирования.</span></li>
+              </ul>
+            </div>
+            <p class="paragraph">Мы являемся эксклюзивным представителем всех брендов, поставляемых нашей компанией.</p>
+            <p class="paragraph">За все время работы мы обучили более 670 специалистов в нашем обучающем центре по работе с оборудованием Умного дома и системами автоматизации.</p>
+            <p class="paragraph">Наши клиенты - это профессиональные инженерные компании занимающиеся проектированием, электромонтажом и пусконаладкой систем автоматизации, а также застройщики, отельеры.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Advantages -->
+
+      <div class="advantages">
+        <div class="container">
+
+          <!-- Title -->
+
+          <div class="title text-center">
+            <h2 class="title__h2">Наши преимущества</h2>
+            <p class="title__txt">Каждый день мы много работаем, чтобы сделать жизнь лучше и счастливее</p>
+          </div>
+
+          <!-- Row -->
+
+          <div class="row">
+
+            <!-- Col -->
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="advantages__item">
+                <i class="advantages__icon i-antenna"></i>
+                <h3 class="advantages__name">Высокое качество</h3>
+                <p class="advantages__txt">Мы являемся ведущей фирмой, обеспечивая качество и ценность для наших клиентов.</p>
+              </div>
+            </div>
+
+            <!-- Col -->
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="advantages__item">
+                <i class="advantages__icon i-antenna"></i>
+                <h3 class="advantages__name">Техническая поддержка</h3>
+                <p class="advantages__txt">Наши менеджеры всегда готовы ответить на ваши вопросы.</p>
+              </div>
+            </div>
+
+            <!-- Col -->
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="advantages__item">
+                <i class="advantages__icon i-antenna"></i>
+                <h3 class="advantages__name">Индивидуальный подход</h3>
+                <p class="advantages__txt">Этот метод позволяет нам добиваться успеха в проблемах всех уровней.</p>
+              </div>
+            </div>
+
+            <!-- Col -->
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="advantages__item">
+                <i class="advantages__icon i-antenna"></i>
+                <h3 class="advantages__name">Уникальный опыт</h3>
+                <p class="advantages__txt">Все наши специалисты имеют более чем 5-летний опыт работы в автоматизации.</p>
+              </div>
+            </div>
+
+            <!-- Col -->
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="advantages__item">
+                <i class="advantages__icon i-antenna"></i>
+                <h3 class="advantages__name">Бонусы и акции</h3>
+                <p class="advantages__txt">На регулярной основе мы проводим скидочные акции.</p>
+              </div>
+            </div>
+
+            <!-- Col -->
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="advantages__item">
+                <i class="advantages__icon i-antenna"></i>
+                <h3 class="advantages__name">Сервисное обслуживание</h3>
+                <p class="advantages__txt">Мы заботимся о времени наших клиентов. Просто позвоните нам или напишите на почту - и мы поможем вам со всеми вопросами.</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Showroom -->
+
+      <div class="showroom">
+        <div class="container">
+
+          <!-- Title -->
+
+          <div class="title text-center">
+            <h2 class="title__h2">Посетить наш шоу-рум</h2>
+            <p class="title__txt">В нашем шоу-руме представлен большой выбор оборудования. Офис полностью оборудован системой автоматизации HDL и работает по различным сценариям.</p>
+          </div>
+
+        </div>
+        <div class="box">
+          <div class="showroom__sl">
+
+            <!-- Item -->
+
+              <div class="showroom__sl__item"  style="background: url('{% static 'img/other/showroom-1.webp' %}') center/cover no-repeat;"></div>
+
+            <!-- Item -->
+
+              <div class="showroom__sl__item" style="background: url('{% static 'img/other/showroom-2.webp' %}') center/cover no-repeat;"></div>
+            <!-- Item -->
+
+              <div class="showroom__sl__item" style="background: url('{% static 'img/other/showroom-1.webp' %}') center/cover no-repeat;"></div>
+            <!-- Item -->
+
+              <div class="showroom__sl__item" style="background: url('{% static 'img/other/showroom-2.webp' %}') center/cover no-repeat;"></div>
+
+          </div>
+        </div>
+      </div>
+{% endblock %}
