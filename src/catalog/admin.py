@@ -38,11 +38,17 @@ class TypeAdmin(admin.ModelAdmin):
     list_display = ('title',)
     search_fields = ('title', 'slug')
 
+    def has_delete_permission(self, request, obj=None):
+        return False
+
 
 @admin.register(Series)
 class SeriesAdmin(admin.ModelAdmin):
     list_display = ('title',)
     search_fields = ('title', 'slug')
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 @admin.register(TechDoc)
