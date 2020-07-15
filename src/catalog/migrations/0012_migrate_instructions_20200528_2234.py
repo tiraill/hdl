@@ -1,12 +1,12 @@
 from django.db import migrations
 from django.core.files.base import ContentFile
-from catalog.models import TechDoc, Product
 
 
-def move_instructions_to_new_model(self, orm):
-    products = Product.objects.all()
+def move_instructions_to_new_model(apps, schema_editor):
+    TechDoc = apps.get_model('catalog', 'TechDoc')
+    Product = apps.get_model('catalog', 'Product')
 
-    for product in products:
+    for product in Product.objects.all():
         if product.instruction.name:
             with open(product.instruction.path, 'rb') as file:
                 tech_instance = TechDoc(product_id=product.id)
