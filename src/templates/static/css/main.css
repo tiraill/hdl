@@ -97,10 +97,10 @@ body {
 .btn__main:after {
   opacity: 0;
   top: 0;left: 0;right: 0;bottom: 0;
-  background: -o-linear-gradient(right , #19bff7 0%, #f14497 100%);
+ /* background: -o-linear-gradient(right , #19bff7 0%, #f14497 100%);
   background: -webkit-gradient(linear , right top, left top , from(#19bff7), to(#f14497));
-  background: linear-gradient(to left , #19bff7 0%, #f14497 100%);
-  -webkit-transition: all .3s;
+  background: linear-gradient(to left , #19bff7 0%, #f14497 100%); */
+  background: none;
   -o-transition: all .3s;
   transition: all .3s;
 }
