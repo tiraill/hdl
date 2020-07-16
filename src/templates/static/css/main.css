@@ -4347,10 +4347,12 @@ i.i-safety {
   position: relative;
   border-radius: 20px;
   padding: 70px 40px 50px;
-  max-width: 600px;width: 96%;
-  background: -webkit-gradient(linear, left top, right top, from(#2e1b56), to(#14083f));
+  max-width: 600px;
+  width: 96%;
+ /* background: -webkit-gradient(linear, left top, right top, from(#2e1b56), to(#14083f));
   background: -o-linear-gradient(left, #2e1b56, #14083f);
-  background: linear-gradient(to right, #2e1b56, #14083f);
+  background: linear-gradient(to right, #2e1b56, #14083f); */
+  background: #ffffff;
 }
 .modal__close {
   position: absolute;
