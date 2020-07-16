@@ -1051,7 +1051,7 @@
   }
 
   .nav {
-    width: 60%;
+    width: 100%;
     right: -70%;
   }
 
@@ -1849,7 +1849,7 @@
   }
 
   .nav {
-    width: 255px;
+    width: 100%;
     right: -280px;
     padding: 75px 0 30px;
   }
