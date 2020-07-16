@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib import admin
+from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.db import models
 from django.forms import Textarea
 from mptt.admin import MPTTModelAdmin
@@ -90,9 +91,8 @@ class ProductCustomAdminForm(forms.ModelForm):
 
     extra_simlr = forms.ModelMultipleChoiceField(queryset=Product.objects.all(),
                                                  required=False, label="Отметьте,"
-                                                                       " какие объекты будут рекомендоваться",)
-                                                 # widget=AutocompleteSelectMultiple(Product._meta.get_field('simlr')
-                                                 #                                   .remote_field, admin.site))
+                                                                       " какие объекты будут рекомендоваться",
+                                                 widget=FilteredSelectMultiple("объекты", is_stacked=False))
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
