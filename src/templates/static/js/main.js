@@ -19,8 +19,8 @@ $(document).ready(function () {
   if($(window).width() < 1200){
     $('.nav__item_drop .nav__link').click(function(e) {
       e.preventDefault();
-      // $(this).parents('.nav__item_drop').toggleClass('nav__item_drop_active');
-      // $(this).next('.navdrop').slideToggle( "slow", function() {});
+      $(this).parents('.nav__item_drop').toggleClass('nav__item_drop_active');
+      $(this).next('.navdrop').slideToggle( "slow", function() {});
     });
   }
 
