@@ -53,16 +53,16 @@
 
                 <div class="col-lg-6">
                   <div class="product__sl d-flex">
-                    {% if product.images.all %}
+                    {% if product.image_links.all %}
                     <div class="product__sl__small">
-                        {% for picture in product.images.all %}
-                            <div class="product__sl__small__item"><img src="{{ picture.image.url }}" alt="Фото"></div>
+                        {% for image_link in product.image_links.all %}
+                            <div class="product__sl__small__item"><img src="{{ image_link.link.image.url }}" alt="Фото"></div>
                         {% endfor %}
                     </div>
                     <div class="product__sl__big">
-                        {% for picture in product.images.all %}
-                            <div class="product__sl__big__item open-modal-picture" data-pictureUrl="{{ picture.image.url }}">
-                                <img src="{{ picture.image.url }}" alt="Фото"></div>
+                        {% for image_link in product.image_links.all %}
+                            <div class="product__sl__big__item open-modal-picture" data-pictureUrl="{{ image_link.link.image.url }}">
+                                <img src="{{ image_link.link.image.url }}" alt="Фото"></div>
                         {% endfor %}
                     </div>
                   {% else %}
