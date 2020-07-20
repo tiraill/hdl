@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib import admin
+from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.db import models
 from django.forms import Textarea
 from mptt.admin import MPTTModelAdmin
@@ -38,11 +39,17 @@ class TypeAdmin(admin.ModelAdmin):
     list_display = ('title',)
     search_fields = ('title', 'slug')
 
+    def has_delete_permission(self, request, obj=None):
+        return False
+
 
 @admin.register(Series)
 class SeriesAdmin(admin.ModelAdmin):
     list_display = ('title',)
     search_fields = ('title', 'slug')
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 @admin.register(TechDoc)
@@ -84,9 +91,8 @@ class ProductCustomAdminForm(forms.ModelForm):
 
     extra_simlr = forms.ModelMultipleChoiceField(queryset=Product.objects.all(),
                                                  required=False, label="Отметьте,"
-                                                                       " какие объекты будут рекомендоваться",)
-                                                 # widget=AutocompleteSelectMultiple(Product._meta.get_field('simlr')
-                                                 #                                   .remote_field, admin.site))
+                                                                       " какие объекты будут рекомендоваться",
+                                                 widget=FilteredSelectMultiple("объекты", is_stacked=False))
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -130,7 +136,7 @@ class ProductAdmin(MPTTModelAdmin):
     list_filter = ('category__title', 'type__title', 'series__title', 'creation_date')
     autocomplete_fields = ('category', 'type', 'series', 'simlr')
     search_fields = ('title', 'qualifier')
-    # inlines = (ProductImageInline, TechDocInline)
+    inlines = (ProductImageInline, TechDocInline)
 
     def get_category(self, instance):
         if instance:

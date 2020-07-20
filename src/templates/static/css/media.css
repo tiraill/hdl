@@ -2194,6 +2194,17 @@
     margin-top: 0;
   }
 
+  .solution-hotels{
+    height: calc(100vh - 157px);
+  }
+
+  .solution-living{
+    height: calc(100vh - 157px);
+  }
+
+  .solution-commertial{
+    height: calc(100vh - 157px);
+  }
 }
 
 @media only screen and (max-width : 1281px) and (min-width : 1199px) {
@@ -2214,5 +2225,17 @@
     position: relative;
     width: 100%;
     margin-top: 0;
+  }
+
+  .solution-hotels{
+    height: calc(100vh - 157px);
+  }
+
+  .solution-living{
+    height: calc(100vh - 157px);
+  }
+
+  .solution-commertial{
+    height: calc(100vh - 157px);
   }
 }

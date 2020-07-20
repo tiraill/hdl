@@ -163,7 +163,7 @@
                   </div>
                   <div class="accordion-body">
                     <h3>Общая информация</h3>
-                    <p>{{ product.general_description }}</p>
+                    <p>{{ product.general_description|safe }}</p>
                   </div>
                 </li>
                 <li>
@@ -176,7 +176,7 @@
                   </div>
                   <div class="accordion-body">
                     <h3>Характеристики</h3>
-                    <p>{{ product.tech_description }}</p>
+                    <p>{{ product.tech_description|safe }}</p>
                   </div>
                 </li>
                 <li>
@@ -189,7 +189,7 @@
                   </div>
                   <div class="accordion-body">
                     <h3>Функции</h3>
-                    <p>{{ product.func_description }}</p>
+                    <p>{{ product.func_description|safe }}</p>
                   </div>
                 </li>
                 <li>

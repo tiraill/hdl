@@ -32,8 +32,8 @@ class Category(SaveModelSlugMixin, models.Model):
 class Type(SaveModelSlugMixin, models.Model):
 
     class Meta:
-        verbose_name = 'Категория продукта'
-        verbose_name_plural = 'Категории продуктов'
+        verbose_name = 'Тип продукта'
+        verbose_name_plural = 'Типы продуктов'
 
     title = models.CharField(max_length=250, verbose_name="Наименование",
                              help_text="Не более 250 символов с пробелами")
@@ -48,8 +48,8 @@ class Type(SaveModelSlugMixin, models.Model):
 class Series(SaveModelSlugMixin, models.Model):
 
     class Meta:
-        verbose_name = "Тип продукта"
-        verbose_name_plural = "Типы продуктов"
+        verbose_name = "Серия продукта"
+        verbose_name_plural = "Серии продуктов"
 
     title = models.CharField(max_length=250, null=True, verbose_name="Наименование",
                              help_text="Не более 250 символов с пробелами")
