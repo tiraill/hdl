@@ -13,8 +13,8 @@ log = logging.getLogger(__name__)
 class Category(SaveModelSlugMixin, models.Model):
 
     class Meta:
-        verbose_name = 'Каталог продукта'
-        verbose_name_plural = 'Катклоги продуктов'
+        verbose_name = 'Категория продукта'
+        verbose_name_plural = 'Категории продуктов'
 
     title = models.CharField(max_length=250, verbose_name="Наименование",
                              help_text="Не более 250 символов с пробелами")
@@ -96,9 +96,12 @@ class Product(SaveModelSlugMixin, MPTTModel):
     parent = TreeForeignKey('self', on_delete=models.CASCADE,
                             null=True, blank=True, related_name='children',
                             help_text='В этом поле можно использовать автозаполнение для поиска')
-    category = models.ManyToManyField(Category, related_name='products',
-                                      verbose_name="Категория продукта",
-                                      help_text='В этом поле можно использовать автозаполнение для поиска')
+    category = models.ManyToManyField(
+        Category,
+        related_name='products',
+        verbose_name="Категория продукта",
+        help_text='В этом поле можно использовать автозаполнение для поиска'
+    )
     type = models.ForeignKey(Type, null=True, blank=True, related_name='products',
                              on_delete=models.SET_NULL, verbose_name="Тип продукта",
                              help_text='В этом поле можно использовать автозаполнение для поиска')
@@ -121,12 +124,16 @@ class TechDoc(models.Model):
     uid = models.UUIDField(default=uuid.uuid4, primary_key=True)
     instruction = models.FileField(blank=True, null=True,
                                    validators=[file_size_and_extension], verbose_name="Инструкция")
-    product = models.ForeignKey(Product, related_name='instructions',
-                                on_delete=models.CASCADE, verbose_name="Товар к которому привязана инструкция",
-                                help_text='В этом поле можно использовать автозаполнение')
+    product = models.ManyToManyField(
+        Product,
+        blank=True,
+        related_name='instructions',
+        verbose_name="Товары к которым привязана инструкция",
+        help_text='В этом поле можно использовать автозаполнение'
+    )
 
     def __str__(self):
-        return self.instruction.name if self.instruction else self.uid
+        return self.instruction.name or '(unknown instruction)'
 
 
 class ProductImage(SaveModelImageMixin, models.Model):
@@ -134,14 +141,25 @@ class ProductImage(SaveModelImageMixin, models.Model):
     class Meta:
         verbose_name = "Изображение товара"
         verbose_name_plural = "Изображения товара"
-        ordering = ['priority']
 
     uid = models.UUIDField(default=uuid.uuid4, primary_key=True)
     image = models.ImageField(null=True)
-    priority = models.IntegerField(default=1)
-    product = models.ForeignKey(Product, related_name='images',
-                                on_delete=models.CASCADE, verbose_name="Товар к которому привязана картинка",
-                                help_text='В этом поле можно использовать автозаполнение')
+    product = models.ManyToManyField(
+        Product,
+        blank=True,
+        verbose_name="Товары к которым привязана картинка",
+        help_text='В этом поле можно использовать автозаполнение',
+        through='ProductXImage'
+    )
 
     def __str__(self):
-        return f'<{self.image.name}, размер={self.image.size}, товар={self.product.title}>'
+        return f'<{self.image.name}>'
+
+
+class ProductXImage(models.Model):
+    class Meta:
+        ordering = ['priority']
+
+    priority = models.IntegerField(default=1)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='image_links')
+    link = models.ForeignKey(ProductImage, on_delete=models.CASCADE)

@@ -4,28 +4,34 @@ from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.db import models
 from django.forms import Textarea
 from mptt.admin import MPTTModelAdmin
+from django.utils.safestring import mark_safe
 
-from .models import Category, Type, Series, Product, ProductImage, TechDoc
+from .models import Category, Type, Series, Product, ProductImage, TechDoc, ProductXImage
 
 
-class TechDocInline(admin.StackedInline):
-    model = TechDoc
+def image_preview(self):
+    if self.link:
+        return mark_safe(
+            '<a href="{0}" target="_blank"><img src="{0}" alt="{0}" width="80" height="80"/></a>'.format(self.link.image.url)
+        )
+    else:
+        return '(No image)'
+
+
+class TechDocInline(admin.TabularInline):
+    model = TechDoc.product.through
     extra = 0
-    can_delete = False
-    fields = ('uid', 'instruction')
-
-    def has_add_permission(self, request, obj=None):
-        return False
 
 
-class ProductImageInline(admin.StackedInline):
-    model = ProductImage
+class ProductImageInline(admin.TabularInline):
+    model = ProductImage.product.through
     extra = 0
-    can_delete = False
-    fields = ['uid', 'image', 'priority']
+    readonly_fields = (image_preview,)
 
-    def has_add_permission(self, request, obj=None):
-        return False
+
+class ProductXImageInline(admin.TabularInline):
+    model = ProductXImage
+    extra = 0
 
 
 @admin.register(Category)
@@ -54,34 +60,40 @@ class SeriesAdmin(admin.ModelAdmin):
 
 @admin.register(TechDoc)
 class TechDocAdmin(admin.ModelAdmin):
-    list_display = ('uid', 'get_product')
-    list_filter = ('product__title',)
-    search_fields = ('product__title',)
-    autocomplete_fields = ('product',)
-    exclude = ('uid',)
+    list_display = ('file_name', 'links',)
+    exclude = ('uid', 'product')
+    inlines = (TechDocInline,)
 
-    def get_product(self, instance):
-        if instance and instance.product:
-            return instance.product.title
-        else:
-            return f"Продукт не указан, либо был удален"
-    get_product.short_description = "Продукт, к которому прикреплена инструкция"
+    def file_name(self, obj: TechDoc):
+        f_name = getattr(obj.instruction, 'name', None)
+        return f_name or '(No file)'
+    file_name.short_description = 'Имя файла'
+
+    def links(self, obj: TechDoc):
+        return obj.product.count()
+    links.short_description = 'Количество ссылок на продукты'
 
 
 @admin.register(ProductImage)
 class ProductImageAdmin(admin.ModelAdmin):
-    list_display = ('uid', 'get_product')
-    list_filter = ('product__title',)
-    search_fields = ('product__title',)
-    autocomplete_fields = ('product',)
+    list_display = ('file_name', 'links', 'image_preview')
     exclude = ('uid',)
 
-    def get_product(self, instance):
-        if instance and instance.product:
-            return instance.product.title
-        else:
-            return f"Продукт не указан, либо был удален"
-    get_product.short_description = "Продукт, к которому прикреплено фото"
+    def file_name(self, obj: ProductImage):
+        return obj.image.name
+    file_name.short_description = 'Имя файла'
+
+    def links(self, obj: ProductImage):
+        return obj.product.count()
+    links.short_description = 'Количество ссылок на продукты'
+
+    def image_preview(self, obj: ProductImage):
+        return mark_safe(
+            '<a href="{0}" target="_blank"><img src="{0}" alt="{0}" width="80" height="80"/></a>'.format(obj.image.url)
+        )
+    image_preview.short_description = 'Изображение'
+
+    inlines = (ProductXImageInline,)
 
 
 class ProductCustomAdminForm(forms.ModelForm):
@@ -89,18 +101,19 @@ class ProductCustomAdminForm(forms.ModelForm):
         model = Product
         fields = '__all__'
 
-    extra_simlr = forms.ModelMultipleChoiceField(queryset=Product.objects.all(),
-                                                 required=False, label="Отметьте,"
-                                                                       " какие объекты будут рекомендоваться",
-                                                 widget=FilteredSelectMultiple("объекты", is_stacked=False))
+    extra_simlr = forms.ModelMultipleChoiceField(
+        queryset=Product.objects.all(),
+        required=False,
+        label="Отметьте, какие объекты будут рекомендоваться",
+        widget=FilteredSelectMultiple("объекты", is_stacked=False)
+    )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['extra_simlr'].widget.attrs.update({'class': 'custom__simlr'})
         self.fields['extra_simlr'].queryset = self.fields['extra_simlr'].queryset.exclude(slug=self.instance.slug).all()
         if self.instance:
-            dependent = Product.objects.filter(simlr=self.instance)\
-                .all().values_list('id', flat=True)
+            dependent = Product.objects.filter(simlr=self.instance).all().values_list('id', flat=True)
             if dependent:
                 self.fields['extra_simlr'].initial = [el for el in dependent]
 
