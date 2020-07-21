@@ -4,6 +4,19 @@ from django.db import migrations, models
 import django.db.models.deletion
 
 
+def move_image_links_to_m2m_model(apps, schema_editor):
+    ProductImage = apps.get_model('catalog', 'ProductImage')
+    ProductXImage = apps.get_model('catalog', 'ProductXImage')
+
+    for product_image in ProductImage.objects.all():
+        product_x_image = ProductXImage(
+            product=product_image.product,
+            link=product_image,
+            priority=product_image.priority,
+        )
+        product_x_image.save()
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -28,14 +41,6 @@ class Migration(migrations.Migration):
             options={'verbose_name': 'Тип продукта', 'verbose_name_plural': 'Типы продуктов'},
         ),
         migrations.RemoveField(
-            model_name='productimage',
-            name='priority',
-        ),
-        migrations.RemoveField(
-            model_name='productimage',
-            name='product',
-        ),
-        migrations.RemoveField(
             model_name='techdoc',
             name='product',
         ),
@@ -55,6 +60,15 @@ class Migration(migrations.Migration):
             options={
                 'ordering': ['priority'],
             },
+        ),
+        migrations.RunPython(move_image_links_to_m2m_model),
+        migrations.RemoveField(
+            model_name='productimage',
+            name='priority',
+        ),
+        migrations.RemoveField(
+            model_name='productimage',
+            name='product',
         ),
         migrations.AddField(
             model_name='productimage',
