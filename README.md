@@ -4,7 +4,7 @@
 Проект написан при помощи [Python + Django][1]
 
 Для разработки и доработки проекта необходимо настроить локальное окружение
-1. GIT
+1. [GIT][4], [Python][5]
 2. Установить [PyCharm][2] (есть как бесплатная версия Community так и платная Professional Edition)
 3. Иметь установленный локалько [Docker][3]
 4. Запустить PostgreSQL в Docker контейнере. (выполнить в консоли команду)
@@ -30,6 +30,8 @@
   [1]: https://www.djangoproject.com
   [2]: https://www.jetbrains.com/ru-ru/pycharm/download/
   [3]: https://www.docker.com
+  [4]: https://git-scm.com
+  [5]: https://www.python.org
 
 ---
 PS
