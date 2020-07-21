@@ -3,6 +3,8 @@
 from django.db import migrations, models
 import django.db.models.deletion
 
+TECHDOC_LINKS = {}
+
 
 def move_image_links_to_m2m_model(apps, schema_editor):
     ProductImage = apps.get_model('catalog', 'ProductImage')
@@ -15,6 +17,24 @@ def move_image_links_to_m2m_model(apps, schema_editor):
             priority=product_image.priority,
         )
         product_x_image.save()
+
+
+def save_techdoc_links_to_m2m_model(apps, schema_editor):
+    TechDoc = apps.get_model('catalog', 'TechDoc')
+
+    for doc in TechDoc.objects.all():
+        TECHDOC_LINKS[doc.product.id] = doc.uid
+
+
+def load_techdoc_links_to_m2m_model(apps, schema_editor):
+    TechDoc = apps.get_model('catalog', 'TechDoc')
+    Product = apps.get_model('catalog', 'Product')
+
+    for product_id, techdoc_uid in TECHDOC_LINKS.items():
+        doc = TechDoc.objects.get(uid=techdoc_uid)
+        product = Product.objects.get(id=product_id)
+        doc.product.add(product)
+        doc.save()
 
 
 class Migration(migrations.Migration):
@@ -40,6 +60,7 @@ class Migration(migrations.Migration):
             name='type',
             options={'verbose_name': 'Тип продукта', 'verbose_name_plural': 'Типы продуктов'},
         ),
+        migrations.RunPython(save_techdoc_links_to_m2m_model),
         migrations.RemoveField(
             model_name='techdoc',
             name='product',
@@ -47,8 +68,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='techdoc',
             name='product',
-            field=models.ManyToManyField(blank=True, help_text='В этом поле можно использовать автозаполнение', related_name='instructions', to='catalog.Product', verbose_name='Товары к которым привязана инструкция'),
+            field=models.ManyToManyField(blank=True, help_text='В этом поле можно использовать автозаполнение',
+                                         related_name='instructions', to='catalog.Product',
+                                         verbose_name='Товары к которым привязана инструкция'),
         ),
+        migrations.RunPython(load_techdoc_links_to_m2m_model),
         migrations.CreateModel(
             name='ProductXImage',
             fields=[
