@@ -492,8 +492,8 @@
   }
 
   .nav {
-    width: 50%;
-    right: -60%;
+    width: 100%;
+    right: -100%;
   }
 
   .intro__txt {
@@ -1051,8 +1051,8 @@
   }
 
   .nav {
-    width: 60%;
-    right: -70%;
+    width: 100%;
+    right: -100%;
   }
 
   .intro {
@@ -1512,6 +1512,12 @@
   .advantages__txt {
     font-size: 16px;
   }
+  .catalog__img > a {
+    height: 100%;
+  }
+  .catalog__img > a > img  {
+    height: 100%;
+  }
 }
 
 @media only screen and (max-width : 576px) {
@@ -1843,8 +1849,8 @@
   }
 
   .nav {
-    width: 255px;
-    right: -280px;
+    width: 100%;
+    right: -100%;
     padding: 75px 0 30px;
   }
 

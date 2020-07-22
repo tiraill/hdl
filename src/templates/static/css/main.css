@@ -97,10 +97,10 @@ body {
 .btn__main:after {
   opacity: 0;
   top: 0;left: 0;right: 0;bottom: 0;
-  background: -o-linear-gradient(right , #19bff7 0%, #f14497 100%);
+ /* background: -o-linear-gradient(right , #19bff7 0%, #f14497 100%);
   background: -webkit-gradient(linear , right top, left top , from(#19bff7), to(#f14497));
-  background: linear-gradient(to left , #19bff7 0%, #f14497 100%);
-  -webkit-transition: all .3s;
+  background: linear-gradient(to left , #19bff7 0%, #f14497 100%); */
+  background: none;
   -o-transition: all .3s;
   transition: all .3s;
 }
@@ -628,7 +628,7 @@ body {
 }
 
 .scroll {
-  left: 15px;bottom: 95px;
+  left: 15px;bottom: 55px;
 }
 
 .scroll__txt {
@@ -1797,6 +1797,7 @@ i.i-file {
 }
 .aside__button{
   margin: 10px auto 30px;
+  text-align: center;
 }
 
 
@@ -4346,10 +4347,12 @@ i.i-safety {
   position: relative;
   border-radius: 20px;
   padding: 70px 40px 50px;
-  max-width: 600px;width: 96%;
-  background: -webkit-gradient(linear, left top, right top, from(#2e1b56), to(#14083f));
+  max-width: 600px;
+  width: 96%;
+ /* background: -webkit-gradient(linear, left top, right top, from(#2e1b56), to(#14083f));
   background: -o-linear-gradient(left, #2e1b56, #14083f);
-  background: linear-gradient(to right, #2e1b56, #14083f);
+  background: linear-gradient(to right, #2e1b56, #14083f); */
+  background: #ffffff;
 }
 .modal__close {
   position: absolute;
@@ -4358,7 +4361,7 @@ i.i-safety {
 }
 
 .modal__close svg {
-  fill: #fff;
+  fill: #000000;
   width: inherit;height: inherit;
 }
 
