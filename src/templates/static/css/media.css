@@ -492,8 +492,8 @@
   }
 
   .nav {
-    width: 50%;
-    right: -60%;
+    width: 100%;
+    right: -100%;
   }
 
   .intro__txt {
@@ -1052,7 +1052,7 @@
 
   .nav {
     width: 100%;
-    right: -70%;
+    right: -100%;
   }
 
   .intro {
@@ -1850,7 +1850,7 @@
 
   .nav {
     width: 100%;
-    right: -280px;
+    right: -100%;
     padding: 75px 0 30px;
   }
 
