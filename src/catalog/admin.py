@@ -149,6 +149,7 @@ class ProductAdmin(MPTTModelAdmin):
     list_filter = ('category__title', 'type__title', 'series__title', 'creation_date')
     autocomplete_fields = ('category', 'type', 'series', 'simlr')
     search_fields = ('title', 'qualifier')
+    exclude = ('parent', 'simlr')
     inlines = (ProductImageInline, TechDocInline)
 
     def get_category(self, instance):
