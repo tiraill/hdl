@@ -14,7 +14,7 @@
 6. Склонировать репозиторий `$> git clone https://github.com/happyoleg/hdl.git`
 7. Установить зависимости для python
 <br>`$> pip install -r requirements/python.txt` 
-(при ошибке вида: "Error: pg_config executable not found." в файле "requirements/python.txt" заменить "psycopg2==2.8.5" на "psycopg2-binary=2.8.5")
+(при ошибке вида: "Error: pg_config executable not found." в файле "requirements/python.txt" заменить "psycopg2==2.8.5" на "psycopg2-binary==2.8.5")
 8. Выполнить скрипты с миграциями в базу
 <br>`$> python src/manage.py migrate` 
 (возможно еще протребудется команда: `$> export SECRET_KEY='secret'`)
@@ -22,7 +22,7 @@
 <br>`$> python src/manage.py createsuperuser`
 Можно пропускать шаг с введением E-mail просто нажав Enter.
 Логин\Пароль также может быть просто admin/admin
-10. Запустить проект.
+10. Запустить проект. Возможно еще понадобится выполнить `export DEBUG=1 и export PYTHONPATH=./`
 ``$> python src/manage.py runserver``
 Проект будет доступен по адресу: http:\\127.0.0.1:8000
 Админка проекта будет доступна по адресу: http:\\127.0.0.1:8000\admin

@@ -94,6 +94,15 @@ body {
   border-radius: inherit;
 }
 
+.btn__main span:hover a{
+  color: white;
+}
+
+
+.btn__main span:hover {
+  background: linear-gradient(to right , #19bff7 0%, #f14497 100%);
+}
+
 .btn__main:after {
   opacity: 0;
   top: 0;left: 0;right: 0;bottom: 0;
@@ -1077,6 +1086,10 @@ i.i-star {
   padding: 18px 79px;
 }
 
+.offer__btn span:hover {
+  color: white;
+}
+
 /* ------------- *Scope ------------- */
 
 .scope {
@@ -1173,6 +1186,10 @@ i.i-star {
 
 .scope__btn span {
   background: #fff;
+}
+
+.scope__btn span:hover {
+  color: white;
 }
 
 /* ------------- *Trust ------------- */
@@ -1547,9 +1564,10 @@ input[type="checkbox"]:checked + span:before {
 }
 
 .subscription__btn:hover:after {
-  background: -o-linear-gradient(bottom , #19bff7 0%, #f14497 100%);
-  background: -webkit-gradient(linear , left bottom, left top , from(#19bff7), to(#f14497));
-  background: linear-gradient(to top , #19bff7 0%, #f14497 100%);
+  /* background: -o-linear-gradient(right , #19bff7 0%, #f14497 100%);
+  background: -webkit-gradient(linear , right top, left top , from(#19bff7), to(#f14497));
+  background: linear-gradient(to left , #19bff7 0%, #f14497 100%); */
+  background: none;
 }
 
 .subscription__btn span {
@@ -1780,6 +1798,11 @@ i.i-file {
 .brochures__btn .btn span {
   background: #fff;
   padding: 15px 47px;
+}
+
+.brochures__btn .btn span:hover {
+  background: linear-gradient(to right , #19bff7 0%, #f14497 100%);
+  color: white;
 }
 
 /* =================================== */
@@ -2017,6 +2040,11 @@ i.i-file {
 .catalog__btn .btn span {
   background: #fff;
   padding: 15px 40px;
+}
+
+.catalog__btn .btn span:hover {
+  background: linear-gradient(to right , #19bff7 0%, #f14497 100%);
+  color: white;
 }
 
 /* Catalog items END */
@@ -2955,6 +2983,11 @@ i.i-europe {
 
 .options__btn .btn__main span {
   background: #fff;
+}
+
+.options__btn .btn__main span:hover {
+  background: linear-gradient(to right , #19bff7 0%, #f14497 100%);
+  color: white;
 }
 
 .options__btn .btn__dark {
@@ -4160,6 +4193,10 @@ i.i-safety {
 
 .realization__btn .btn span {
   padding: 15px 55px;
+}
+
+.realization__btn span:hover {
+  color: white;
 }
 
 /* ----------- *Sentence ------------- */
