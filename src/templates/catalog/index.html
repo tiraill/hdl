@@ -128,7 +128,7 @@
                     <div class="col-sm-6 col-lg-6 col-xl-4">
                       <div class="catalog__item speed">
                         <div class="catalog__img">
-                            <a href="{% url 'catalog-product' product.slug %}" target="_blank">
+                            <a href="{% url 'catalog-product' product.slug %}">
                                 {% if product.image_links.all %}
                                     <img src="{{ product.image_links.all.0.link.image.url }}" alt="Фото">
                                 {% else %}
