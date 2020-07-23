@@ -81,14 +81,14 @@ $(document).ready(function () {
     modal.fadeIn();
   });
 
-  // Modal education general // disabled because of a client request
-  // $('.open-modal-education-general').click(function(e) {
-  //   e.preventDefault();
-  //   let modal = $('.modal_bell');
-  //   modal.find('h2').text('Заявка на обучение');
-  //   modal.find('#id_additional_info').val('Заявка на обучение');
-  //   modal.fadeIn();
-  // });
+  // Modal education general
+  $('.open-modal-education-general').click(function(e) {
+    e.preventDefault();
+    let modal = $('.modal_bell');
+    modal.find('h2').text('Заявка на обучение');
+    modal.find('#id_additional_info').val('Заявка на обучение');
+    modal.fadeIn();
+  });
 
   // Modal education general-buspro
   $('.open-modal-education-general-buspro').click(function(e) {
@@ -141,7 +141,7 @@ $(document).ready(function () {
       || $(event.target).closest('.open-modal-bell').length
       || $(event.target).closest('.open-modal-request').length
       || $(event.target).closest('.open-modal-consult').length
-      // || $(event.target).closest('.open-modal-education-general').length // disabled because of a client request
+      || $(event.target).closest('.open-modal-education-general').length
       || $(event.target).closest('.open-modal-education-general-buspro').length
       || $(event.target).closest('.open-modal-education-general-knx').length
       || $(event.target).closest('.open-modal-education-general-online').length
