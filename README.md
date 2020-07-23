@@ -1,32 +1,37 @@
 Проект HDL Solution
 ---
 
-Для разработки проекта необходимо запустить PostgreSQL в Docker контейнере.
-Для запуска разработки необходимо иметь Docker на машине разработчика.
+Проект написан при помощи [Python + Django][1]
 
-Что такое докер - тут: https://www.docker.com/
+Для разработки и доработки проекта необходимо настроить локальное окружение
+1. [GIT][4], [Python][5]
+2. Установить [PyCharm][2] (есть как бесплатная версия Community так и платная Professional Edition)
+3. Иметь установленный локалько [Docker][3]
+4. Запустить PostgreSQL в Docker контейнере. (выполнить в консоли команду)
+<br>`$> docker run --name hdl-base -e POSTGRES_PASSWORD=hdlpass -e POSTGRES_USER=hdladmin -e POSTGRES_DB=hdl -p 5435:5432 -d postgres:11.6-alpine`
 
-1. Собрать слепок образа контейнера. <br>
-Находясь в папке проекта ввести в консоли команду <br>
-``$>  docker build -t hdl_postgres_image -f Dockerfile_postgres .``
-
-2. Создать экземляр контейнера. <br>
-Находясь в папке проекта ввести в консоли команду <br>
-``$>  docker run -p 5435:5432 -d --name hdl_postgres hdl_postgres_image``
-
-3. Находясь в папке с проектом ввести команду для выполнения изначальных миграций.
-``$> python manage.py migrate``
-
-4. Создать суперпользователя
-``$> python manage.py createsuperuser``
+5. Открыть IDE PyCharm и выбрать пункт меню `File -> New Project` (создать новый проект)
+6. Склонировать репозиторий `$> git clone https://github.com/happyoleg/hdl.git`
+7. Установить зависимости для python
+<br>`$> pip install -r requirements/python.txt` 
+(при ошибке вида: "Error: pg_config executable not found." в файле "requirements/python.txt" заменить "psycopg2==2.8.5" на "psycopg2-binary==2.8.5")
+8. Выполнить скрипты с миграциями в базу
+<br>`$> python src/manage.py migrate` 
+(возможно еще протребудется команда: `$> export SECRET_KEY='secret'`)
+9. Опционально. для доступа в админу выполнить 
+<br>`$> python src/manage.py createsuperuser`
 Можно пропускать шаг с введением E-mail просто нажав Enter.
 Логин\Пароль также может быть просто admin/admin
-
-5. Запустить проект.
-``$> python manage.py runserver``
-
-Ваш проект будет доступен по адресу: http:\\127.0.0.1:8000
+10. Запустить проект. Возможно еще понадобится выполнить `export DEBUG=1 и export PYTHONPATH=./`
+``$> python src/manage.py runserver``
+Проект будет доступен по адресу: http:\\127.0.0.1:8000
 Админка проекта будет доступна по адресу: http:\\127.0.0.1:8000\admin
+ 
+  [1]: https://www.djangoproject.com
+  [2]: https://www.jetbrains.com/ru-ru/pycharm/download/
+  [3]: https://www.docker.com
+  [4]: https://git-scm.com
+  [5]: https://www.python.org
 
 ---
 PS
