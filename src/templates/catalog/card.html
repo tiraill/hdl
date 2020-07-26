@@ -54,19 +54,19 @@
                 <div class="col-lg-6">
                   <div class="product__sl d-flex">
                     {% if product.image_links.all %}
-                    <div class="product__sl__small">
+                    <div class="product__slider product__sl__small">
                         {% for image_link in product.image_links.all %}
                             <div class="product__sl__small__item"><img src="{{ image_link.link.image.url }}" alt="Фото"></div>
                         {% endfor %}
                     </div>
-                    <div class="product__sl__big">
+                    <div class="product__slider product__sl__big">
                         {% for image_link in product.image_links.all %}
                             <div class="product__sl__big__item open-modal-picture" data-pictureUrl="{{ image_link.link.image.url }}">
                                 <img src="{{ image_link.link.image.url }}" alt="Фото"></div>
                         {% endfor %}
                     </div>
                   {% else %}
-                    <div class="product__sl__big">
+                    <div class="product__slider product__sl__big">
                         <div class="product__sl__big__item"><img src="{% static 'img/other/noimage.png' %}" alt="Фото"></div>
                     </div>
                   {% endif %}
@@ -79,6 +79,20 @@
                   <div class="product__box">
                     <p class="product__txt">{{ product.short_description }}</p>
                   </div>
+                  <div class="product__price">
+                    {% for price in product.prices.all %}
+                        {% if price.currency == product.active_currency %}
+                            <span>
+                                {% if price.currency.svg_logo %}
+                                    {{ price.currency.svg_logo|safe }}
+                                {% else %}
+                                    {{ price.currency.char_logo }}
+                                {% endif %}
+                                {{ price.price }}
+                            </span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
                 </div>
               </div>
             </div>
@@ -252,6 +266,20 @@
                       <p class="catalog__name">{{ product.title }}</p>
                       <p class="catalog__articul">Код товара: {{ product.qualifier }}</p>
                     </div>
+                    <div class="catalog__price">
+                      {% for price in product.prices.all %}
+                          {% if price.currency == product.active_currency %}
+                              <span>
+                                  {% if price.currency.svg_logo %}
+                                    {{ price.currency.svg_logo|safe }}
+                                  {% else %}
+                                    {{ price.currency.char_logo }}
+                                  {% endif %}
+                                  {{ price.price }}
+                              </span>
+                          {% endif %}
+                      {% endfor %}
+                    </div>
                   </div>
                 </div>
                 {% endfor %}
@@ -275,9 +303,19 @@
                           L284.286,256.002z"></path>
                       </svg>
                     </button>
-                    <div class="modal__body modal__product__inner">
-                        <img src="{{ picture.image.url }}" class="modal__product__big" alt="Фото">
-                    </div>
+                    <div class="box">
+                          <div class="product__slider product_modal__sl">
+                            <!-- Items -->
+
+                            {% for image_link in product.image_links.all %}
+                                <div class="realization__sl__item">
+                                    <div class="realization__box"><img src="{{ image_link.link.image.url }}" alt="Фото"></div>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+                      </div>
+
                   </div>
                 </div>
               </div>
