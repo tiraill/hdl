@@ -3283,6 +3283,7 @@ i.i-europe {
 
 .product__price {
   font-weight: 300;
+  font-size: 20px;
 }
 
 .product__btn {
@@ -4183,6 +4184,14 @@ i.i-safety {
 
 .realization__sl .slick-next {
   right: 0;
+}
+
+.product_modal__sl .slick-prev {
+  left: -25px;
+}
+
+.product_modal__sl .slick-next {
+  right: -25px;
 }
 
 /* Controls sl END */

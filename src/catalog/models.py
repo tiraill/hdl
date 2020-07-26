@@ -64,6 +64,25 @@ class Series(SaveModelSlugMixin, models.Model):
         return f'{self.title}'
 
 
+class Currency(models.Model):
+
+    class Meta:
+        verbose_name = "Список валют"
+        verbose_name_plural = "Список валют"
+
+    code = models.CharField(max_length=10, verbose_name="Кодовое название",  primary_key=True)
+    title = models.CharField(max_length=50, verbose_name="Наименование",
+                             help_text="Не более 50 символов с пробелами")
+    slug = models.SlugField(max_length=100, blank=True,
+                            verbose_name="Наименование для создания ссылки",
+                            help_text="Необязательно для заполнения руками")
+    svg_logo = models.TextField(blank=True, verbose_name="Изображение в формате svg")
+    char_logo = models.CharField(max_length=20, verbose_name="Символ валюты вместо изображения", blank=True)
+
+    def __str__(self):
+        return f'{self.title}'
+
+
 class Product(SaveModelSlugMixin, MPTTModel):
 
     class Meta:
@@ -110,6 +129,8 @@ class Product(SaveModelSlugMixin, MPTTModel):
                                help_text='В этом поле можно использовать автозаполнение для поиска')
     creation_date = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     modified = models.DateTimeField(auto_now=True)
+    active_currency = models.ForeignKey(Currency, on_delete=models.SET_NULL, null=True,
+                                        blank=True, verbose_name="Отображаемая цена")
 
     def __str__(self):
         return self.title
@@ -163,3 +184,13 @@ class ProductXImage(models.Model):
     priority = models.IntegerField(default=1)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='image_links')
     link = models.ForeignKey(ProductImage, on_delete=models.CASCADE)
+
+
+class ProductXCurrency(models.Model):
+
+    price = models.FloatField()
+    currency = models.ForeignKey(Currency, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='prices')
+
+    class Meta:
+        unique_together = ('currency', 'product')

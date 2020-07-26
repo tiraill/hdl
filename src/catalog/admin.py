@@ -1,12 +1,16 @@
 from django import forms
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.db import models
 from django.forms import Textarea
+from django.shortcuts import redirect
+from django.urls import path
 from mptt.admin import MPTTModelAdmin
 from django.utils.safestring import mark_safe
 
-from .models import Category, Type, Series, Product, ProductImage, TechDoc, ProductXImage
+from django.utils.html import format_html
+
+from .models import Category, Type, Series, Product, ProductImage, TechDoc, ProductXImage, Currency, ProductXCurrency
 
 
 def image_preview(self):
@@ -21,17 +25,31 @@ def image_preview(self):
 class TechDocInline(admin.TabularInline):
     model = TechDoc.product.through
     extra = 0
+    verbose_name_plural = "Связи документации и товара"
+    verbose_name = "связь документации и товара"
 
 
 class ProductImageInline(admin.TabularInline):
     model = ProductImage.product.through
     extra = 0
     readonly_fields = (image_preview,)
+    verbose_name_plural = "Изображения товара"
+    verbose_name = "изображение товара"
 
 
 class ProductXImageInline(admin.TabularInline):
     model = ProductXImage
     extra = 0
+    verbose_name_plural = "Связи с товарами"
+    verbose_name = "связь с товаром"
+
+
+class ProductXCurrencyInline(admin.TabularInline):
+
+    model = ProductXCurrency
+    extra = 0
+    verbose_name_plural = "Цены в разных валютах"
+    verbose_name = "цену в валюте"
 
 
 @admin.register(Category)
@@ -130,6 +148,37 @@ class ProductCustomAdminForm(forms.ModelForm):
         return super().save(commit=commit)
 
 
+@admin.register(Currency)
+class CurrencyAdmin(admin.ModelAdmin):
+    list_display = ('code', 'title', 'char_logo')
+    search_fields = ('title', 'slug')
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def set_active_currency(self, obj: ProductImage):
+        return format_html('<a class="button" href="%s/set_active_currency/">Применить для всех товаров</a>' % obj.id)
+
+    set_active_currency.short_description = 'Установить по умолчанию'
+    set_active_currency.allow_tags = True
+
+    def get_urls(self):
+        custom_urls = []
+        urls = super().get_urls()
+        custom_urls += [
+            path('<path:object_id>/set_active_currency/', self.admin_site.admin_view(set_currency_method),
+                 name='vision_questionarioistituzionescolastica_generatepdf')
+        ]
+        return custom_urls + urls
+
+
+def set_currency_method(request, object_id, form_url='', extra_context=None):
+    currency = Currency.objects.filter(pk=object_id).first()
+    update_count = Product.objects.all().update(active_currency=currency)
+    messages.add_message(request, messages.INFO, f'Валюта {currency} установлена для {update_count} продуктов')
+    return redirect(request.META['HTTP_REFERER'])
+
+
 @admin.register(Product)
 class ProductAdmin(MPTTModelAdmin):
 
@@ -150,7 +199,7 @@ class ProductAdmin(MPTTModelAdmin):
     autocomplete_fields = ('category', 'type', 'series', 'simlr')
     search_fields = ('title', 'qualifier')
     exclude = ('parent', 'simlr')
-    inlines = (ProductImageInline, TechDocInline)
+    inlines = (ProductXCurrencyInline, ProductImageInline, TechDocInline)
 
     def get_category(self, instance):
         if instance:

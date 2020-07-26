@@ -45,11 +45,10 @@ $(document).ready(function () {
     $('.modal').fadeOut();
   });
 
-    $('.open-modal-picture').click(function(e) {
+  $('.open-modal-picture').click(function(e) {
     e.preventDefault();
     let modal = $('.modal__big_picture');
-    let url = $(this).data("pictureurl");
-    modal.find('img').attr('src', url);
+    modal.resize();
     modal.fadeIn();
   });
 
@@ -267,7 +266,7 @@ $(document).ready(function () {
     focusOnSelect: true,
     centerPadding: '0',
     autoplaySpeed: 3000,
-    asNavFor: '.product__sl__big',
+    asNavFor: '.product__slider',
     prevArrow: '<button class="slick-prev"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill-rule="evenodd" d="M9.602,0.153 L0.175,9.520 C-0.047,9.741 -0.047,10.095 0.175,10.316 C0.397,10.536 0.753,10.536 0.975,10.316 L10.000,1.347 L19.024,10.316 C19.246,10.536 19.602,10.536 19.824,10.316 C19.933,10.208 19.992,10.061 19.992,9.920 C19.992,9.779 19.937,9.633 19.824,9.525 L10.398,0.157 C10.180,-0.064 9.820,-0.064 9.602,0.153 Z"/></svg></button>',
     nextArrow: '<button class="slick-next"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill-rule="evenodd" d="M9.602,10.816 L0.175,1.448 C-0.047,1.227 -0.047,0.873 0.175,0.652 C0.397,0.432 0.753,0.432 0.975,0.652 L10.000,9.621 L19.024,0.652 C19.246,0.432 19.602,0.432 19.824,0.652 C19.933,0.761 19.992,0.907 19.992,1.048 C19.992,1.190 19.937,1.335 19.824,1.443 L10.398,10.811 C10.180,11.032 9.820,11.032 9.602,10.816 Z"/></svg></button>',
     dots: false,
@@ -288,7 +287,7 @@ $(document).ready(function () {
     autoplay: false,
     slidesToShow: 1,
     autoplaySpeed: 3000,
-    asNavFor: '.product__sl__small',
+    asNavFor: '.product__slider',
     dots: false,
     responsive: [
       // {
@@ -329,6 +328,26 @@ $(document).ready(function () {
           slidesToShow: 1,
         }
       }
+    ]
+  });
+
+  // Product modal sl
+  $('.product_modal__sl').slick({
+    arrows: true,
+    autoplay: false,
+    slidesToShow: 1,
+    dots: true,
+    adaptiveHeight: true,
+    asNavFor: '.product__slider',
+    prevArrow: '<button class="slick-prev"><svg xmlns="http://www.w3.org/2000/svg"xmlns:xlink="http://www.w3.org/1999/xlink"><path fill-rule="evenodd" d="M0.469,12.302 L11.965,0.795 C12.169,0.591 12.500,0.591 12.704,0.795 C12.908,0.999 12.908,1.331 12.704,1.535 L1.577,12.671 L12.704,23.807 C12.907,24.011 12.907,24.343 12.704,24.547 C12.601,24.648 12.467,24.700 12.334,24.700 C12.200,24.700 12.066,24.648 11.965,24.547 L0.469,13.041 C0.265,12.837 0.265,12.506 0.469,12.302 Z"/></svg></button>',
+    nextArrow: '<button class="slick-next"><svg xmlns="http://www.w3.org/2000/svg"xmlns:xlink="http://www.w3.org/1999/xlink"><path fill-rule="evenodd" d="M12.531,12.302 L1.035,0.795 C0.831,0.591 0.500,0.591 0.296,0.795 C0.092,0.999 0.092,1.331 0.296,1.535 L11.423,12.671 L0.296,23.807 C0.092,24.011 0.092,24.343 0.296,24.547 C0.399,24.648 0.532,24.700 0.666,24.700 C0.800,24.700 0.934,24.648 1.035,24.547 L12.531,13.041 C12.734,12.837 12.734,12.506 12.531,12.302 Z"/></svg></button>',
+    responsive: [
+      // {
+      //   breakpoint: 1366,
+      //   settings: {
+      //     slidesToShow: 6
+      //   }
+      // }
     ]
   });
 
