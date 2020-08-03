@@ -81,16 +81,14 @@
                   </div>
                   <div class="product__price">
                     {% for price in product.prices.all %}
-                        {% if price.currency == product.active_currency %}
-                            <span>
-                                {% if price.currency.svg_logo %}
-                                    {{ price.currency.svg_logo|safe }}
-                                {% else %}
-                                    {{ price.currency.char_logo }}
-                                {% endif %}
-                                {{ price.price }}
-                            </span>
-                        {% endif %}
+                        <span>
+                            {% if price.currency.svg_logo %}
+                                {{ price.currency.svg_logo|safe }}
+                            {% else %}
+                                {{ price.currency.char_logo }}
+                            {% endif %}
+                            {{ price.price|floatformat:0 }}
+                        </span>
                     {% endfor %}
                 </div>
                 </div>
