@@ -7,8 +7,10 @@ from django.shortcuts import redirect
 from django.urls import path
 from mptt.admin import MPTTModelAdmin
 from django.utils.safestring import mark_safe
-
 from django.utils.html import format_html
+from import_export import resources, widgets
+from import_export.admin import ImportExportModelAdmin
+from import_export.fields import Field
 
 from .models import Category, Type, Series, Product, ProductImage, TechDoc, ProductXImage, Currency, ProductXCurrency
 
@@ -222,3 +224,44 @@ class ProductAdmin(MPTTModelAdmin):
         else:
             return f"Производитель не указан, либо был удалён"
     get_manufacturer.short_description = "Производитель товара"
+
+
+class ProductResource(resources.ModelResource):
+    rub_price = Field()
+    usd_price = Field()
+    eur_price = Field()
+    prices = Field(
+        attribute='prices',
+        widget=widgets.ManyToManyWidget(
+            ProductXCurrency,
+            field='price',
+            separator='|')
+    )
+
+    def save(self, commit=True):
+        rub_price = self.cleaned_data.get('rub_price', None)
+        # ...do something with extra_field here...
+        return super(ProductResource, self).save(commit=commit)
+
+    class Meta:
+        model = Product
+        exclude = ('parent', 'slug', 'modified')
+
+    def dehydrate_rub_price(self, product: Product):
+        rub_price = product.prices.filter(currency_id='RUB').first()
+        return getattr(rub_price, 'price', '-')
+
+    def dehydrate_usd_price(self, product: Product):
+        usd_price = product.prices.filter(currency_id='USD').first()
+        return getattr(usd_price, 'price', '-')
+
+    def dehydrate_eur_price(self, product: Product):
+        eur_price = product.prices.filter(currency_id='EUR').first()
+        return getattr(eur_price, 'price', '-')
+
+
+class ProductResourceAdmin(ImportExportModelAdmin):
+    resource_class = ProductResource
+
+
+admin.site.register(ProductResourceAdmin,)
