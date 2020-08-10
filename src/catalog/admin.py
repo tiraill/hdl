@@ -7,8 +7,11 @@ from django.shortcuts import redirect
 from django.urls import path
 from mptt.admin import MPTTModelAdmin
 from django.utils.safestring import mark_safe
-
 from django.utils.html import format_html
+from import_export import resources, widgets
+from import_export.admin import ImportExportModelAdmin
+from import_export.fields import Field
+
 
 from .models import Category, Type, Series, Product, ProductImage, TechDoc, ProductXImage, Currency, ProductXCurrency
 
@@ -179,14 +182,66 @@ def set_currency_method(request, object_id, form_url='', extra_context=None):
     return redirect(request.META['HTTP_REFERER'])
 
 
+class ProductResource(resources.ModelResource):
+
+    class Meta:
+        model = Product
+        exclude = ('parent', 'slug', 'modified', 'lft', 'rght', 'tree_id', 'level')
+
+    title = Field(attribute='title', column_name='Title')
+    slug = Field(attribute='slug', column_name='slug')
+    short_description = Field(attribute='short_description', column_name='short_description')
+    general_description = Field(attribute='general_description', column_name='general_description')
+    func_description = Field(attribute='func_description', column_name='func_description')
+    tech_description = Field(attribute='tech_description', column_name='tech_description')
+    meta_keywords = Field(attribute='meta_keywords', column_name='meta_keywords')
+    meta_description = Field(attribute='meta_description', column_name='meta_description')
+    qualifier = Field(attribute='qualifier', column_name='qualifier')
+    rub_price = Field()
+    usd_price = Field()
+    eur_price = Field()
+    prices = Field(
+        attribute='prices',
+        widget=widgets.ManyToManyWidget(
+            ProductXCurrency,
+            field='price',
+            separator='|')
+    )
+
+    def save(self, commit=True):
+        rub_price = self.cleaned_data.get('rub_price', None)
+        # ...do something with extra_field here...
+        return super(ProductResource, self).save(commit=commit)
+
+    def dehydrate_rub_price(self, product: Product):
+        rub_price = product.prices.filter(currency_id='RUB').first()
+        return getattr(rub_price, 'price', '-')
+
+    def dehydrate_usd_price(self, product: Product):
+        usd_price = product.prices.filter(currency_id='USD').first()
+        return getattr(usd_price, 'price', '-')
+
+    def dehydrate_eur_price(self, product: Product):
+        eur_price = product.prices.filter(currency_id='EUR').first()
+        return getattr(eur_price, 'price', '-')
+
+    def before_import(self, dataset, using_transactions, dry_run, **kwargs):
+
+    # def import_data(self, dataset, dry_run=False, raise_errors=False,
+    #                 use_transactions=None, collect_failed_rows=False, **kwargs):
+    #
+    #     return super().import_data(dataset, dry_run, raise_errors, use_transactions, collect_failed_rows, **kwargs)
+
+
 @admin.register(Product)
-class ProductAdmin(MPTTModelAdmin):
+class ProductAdmin(ImportExportModelAdmin):
 
     class Media:
         css = {
             'all': ('css/admin/admin.css',)
         }
 
+    resource_class = ProductResource
     form = ProductCustomAdminForm
 
     formfield_overrides = {
@@ -222,3 +277,4 @@ class ProductAdmin(MPTTModelAdmin):
         else:
             return f"Производитель не указан, либо был удалён"
     get_manufacturer.short_description = "Производитель товара"
+
