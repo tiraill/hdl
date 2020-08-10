@@ -225,7 +225,7 @@ class ProductResource(resources.ModelResource):
         eur_price = product.prices.filter(currency_id='EUR').first()
         return getattr(eur_price, 'price', '-')
 
-    def before_import(self, dataset, using_transactions, dry_run, **kwargs):
+    # def before_import(self, dataset, using_transactions, dry_run, **kwargs):
 
     # def import_data(self, dataset, dry_run=False, raise_errors=False,
     #                 use_transactions=None, collect_failed_rows=False, **kwargs):
