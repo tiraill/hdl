@@ -128,9 +128,9 @@
                     <div class="col-sm-6 col-lg-6 col-xl-4">
                       <div class="catalog__item speed">
                         <div class="catalog__img">
-                            <a href="{% url 'catalog-product' product.slug %}" target="_blank">
-                                {% if product.images.all %}
-                                    <img src="{{ product.images.all.0.image.url }}" alt="Фото">
+                            <a href="{% url 'catalog-product' product.slug %}">
+                                {% if product.image_links.all %}
+                                    <img src="{{ product.image_links.all.0.link.image.url }}" alt="Фото">
                                 {% else %}
                                     <img src="{% static 'img/other/noimage.png' %}" alt="Фото">
                                 {% endif %}
@@ -140,8 +140,22 @@
                           <p class="catalog__name">{{ product.title }}</p>
                           <p class="catalog__articul">Артикул: {{ product.qualifier }}</p>
                         </div>
+                        <div class="catalog__price">
+                            {% for price in product.prices.all %}
+                                {% if price.currency == product.active_currency %}
+                                    <span>
+                                        {% if price.currency.svg_logo %}
+                                          {{ price.currency.svg_logo|safe }}
+                                        {% else %}
+                                          {{ price.currency.char_logo }}
+                                        {% endif %}
+                                        {{ price.price }}
+                                    </span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
                           <div class="catalog__btn">
-                              <a href="{% url 'catalog-product' product.slug %}" class="btn btn__main"  target="_blank">
+                              <a href="{% url 'catalog-product' product.slug %}" class="btn btn__main">
                                 <span>Подробнее</span>
                               </a>
                           </div>

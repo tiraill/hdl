@@ -1,31 +1,58 @@
 from django import forms
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.db import models
 from django.forms import Textarea
+from django.shortcuts import redirect
+from django.urls import path
 from mptt.admin import MPTTModelAdmin
+from django.utils.safestring import mark_safe
+from django.utils.html import format_html
+from import_export import resources, widgets
+from import_export.admin import ImportExportModelAdmin
+from import_export.fields import Field
 
-from .models import Category, Type, Series, Product, ProductImage, TechDoc
+
+from .models import Category, Type, Series, Product, ProductImage, TechDoc, ProductXImage, Currency, ProductXCurrency
 
 
-class TechDocInline(admin.StackedInline):
-    model = TechDoc
+def image_preview(self):
+    if self.link:
+        return mark_safe(
+            '<a href="{0}" target="_blank"><img src="{0}" alt="{0}" width="80" height="80"/></a>'.format(self.link.image.url)
+        )
+    else:
+        return '(No image)'
+
+
+class TechDocInline(admin.TabularInline):
+    model = TechDoc.product.through
     extra = 0
-    can_delete = False
-    fields = ('uid', 'instruction')
-
-    def has_add_permission(self, request, obj=None):
-        return False
+    verbose_name_plural = "Связи документации и товара"
+    verbose_name = "связь документации и товара"
 
 
-class ProductImageInline(admin.StackedInline):
-    model = ProductImage
+class ProductImageInline(admin.TabularInline):
+    model = ProductImage.product.through
     extra = 0
-    can_delete = False
-    fields = ['uid', 'image', 'priority']
+    readonly_fields = (image_preview,)
+    verbose_name_plural = "Изображения товара"
+    verbose_name = "изображение товара"
 
-    def has_add_permission(self, request, obj=None):
-        return False
+
+class ProductXImageInline(admin.TabularInline):
+    model = ProductXImage
+    extra = 0
+    verbose_name_plural = "Связи с товарами"
+    verbose_name = "связь с товаром"
+
+
+class ProductXCurrencyInline(admin.TabularInline):
+
+    model = ProductXCurrency
+    extra = 0
+    verbose_name_plural = "Цены в разных валютах"
+    verbose_name = "цену в валюте"
 
 
 @admin.register(Category)
@@ -54,34 +81,40 @@ class SeriesAdmin(admin.ModelAdmin):
 
 @admin.register(TechDoc)
 class TechDocAdmin(admin.ModelAdmin):
-    list_display = ('uid', 'get_product')
-    list_filter = ('product__title',)
-    search_fields = ('product__title',)
-    autocomplete_fields = ('product',)
-    exclude = ('uid',)
+    list_display = ('file_name', 'links',)
+    exclude = ('uid', 'product')
+    inlines = (TechDocInline,)
 
-    def get_product(self, instance):
-        if instance and instance.product:
-            return instance.product.title
-        else:
-            return f"Продукт не указан, либо был удален"
-    get_product.short_description = "Продукт, к которому прикреплена инструкция"
+    def file_name(self, obj: TechDoc):
+        f_name = getattr(obj.instruction, 'name', None)
+        return f_name or '(No file)'
+    file_name.short_description = 'Имя файла'
+
+    def links(self, obj: TechDoc):
+        return obj.product.count()
+    links.short_description = 'Количество ссылок на продукты'
 
 
 @admin.register(ProductImage)
 class ProductImageAdmin(admin.ModelAdmin):
-    list_display = ('uid', 'get_product')
-    list_filter = ('product__title',)
-    search_fields = ('product__title',)
-    autocomplete_fields = ('product',)
+    list_display = ('file_name', 'links', 'image_preview')
     exclude = ('uid',)
 
-    def get_product(self, instance):
-        if instance and instance.product:
-            return instance.product.title
-        else:
-            return f"Продукт не указан, либо был удален"
-    get_product.short_description = "Продукт, к которому прикреплено фото"
+    def file_name(self, obj: ProductImage):
+        return obj.image.name
+    file_name.short_description = 'Имя файла'
+
+    def links(self, obj: ProductImage):
+        return obj.product.count()
+    links.short_description = 'Количество ссылок на продукты'
+
+    def image_preview(self, obj: ProductImage):
+        return mark_safe(
+            '<a href="{0}" target="_blank"><img src="{0}" alt="{0}" width="80" height="80"/></a>'.format(obj.image.url)
+        )
+    image_preview.short_description = 'Изображение'
+
+    inlines = (ProductXImageInline,)
 
 
 class ProductCustomAdminForm(forms.ModelForm):
@@ -89,18 +122,19 @@ class ProductCustomAdminForm(forms.ModelForm):
         model = Product
         fields = '__all__'
 
-    extra_simlr = forms.ModelMultipleChoiceField(queryset=Product.objects.all(),
-                                                 required=False, label="Отметьте,"
-                                                                       " какие объекты будут рекомендоваться",
-                                                 widget=FilteredSelectMultiple("объекты", is_stacked=False))
+    extra_simlr = forms.ModelMultipleChoiceField(
+        queryset=Product.objects.all(),
+        required=False,
+        label="Отметьте, какие объекты будут рекомендоваться",
+        widget=FilteredSelectMultiple("объекты", is_stacked=False)
+    )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['extra_simlr'].widget.attrs.update({'class': 'custom__simlr'})
         self.fields['extra_simlr'].queryset = self.fields['extra_simlr'].queryset.exclude(slug=self.instance.slug).all()
         if self.instance:
-            dependent = Product.objects.filter(simlr=self.instance)\
-                .all().values_list('id', flat=True)
+            dependent = Product.objects.filter(simlr=self.instance).all().values_list('id', flat=True)
             if dependent:
                 self.fields['extra_simlr'].initial = [el for el in dependent]
 
@@ -117,14 +151,97 @@ class ProductCustomAdminForm(forms.ModelForm):
         return super().save(commit=commit)
 
 
+@admin.register(Currency)
+class CurrencyAdmin(admin.ModelAdmin):
+    list_display = ('code', 'title', 'char_logo')
+    search_fields = ('title', 'slug')
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def set_active_currency(self, obj: ProductImage):
+        return format_html('<a class="button" href="%s/set_active_currency/">Применить для всех товаров</a>' % obj.id)
+
+    set_active_currency.short_description = 'Установить по умолчанию'
+    set_active_currency.allow_tags = True
+
+    def get_urls(self):
+        custom_urls = []
+        urls = super().get_urls()
+        custom_urls += [
+            path('<path:object_id>/set_active_currency/', self.admin_site.admin_view(set_currency_method),
+                 name='vision_questionarioistituzionescolastica_generatepdf')
+        ]
+        return custom_urls + urls
+
+
+def set_currency_method(request, object_id, form_url='', extra_context=None):
+    currency = Currency.objects.filter(pk=object_id).first()
+    update_count = Product.objects.all().update(active_currency=currency)
+    messages.add_message(request, messages.INFO, f'Валюта {currency} установлена для {update_count} продуктов')
+    return redirect(request.META['HTTP_REFERER'])
+
+
+class ProductResource(resources.ModelResource):
+
+    class Meta:
+        model = Product
+        exclude = ('parent', 'slug', 'modified', 'lft', 'rght', 'tree_id', 'level')
+
+    title = Field(attribute='title', column_name='Title')
+    slug = Field(attribute='slug', column_name='slug')
+    short_description = Field(attribute='short_description', column_name='short_description')
+    general_description = Field(attribute='general_description', column_name='general_description')
+    func_description = Field(attribute='func_description', column_name='func_description')
+    tech_description = Field(attribute='tech_description', column_name='tech_description')
+    meta_keywords = Field(attribute='meta_keywords', column_name='meta_keywords')
+    meta_description = Field(attribute='meta_description', column_name='meta_description')
+    qualifier = Field(attribute='qualifier', column_name='qualifier')
+    rub_price = Field()
+    usd_price = Field()
+    eur_price = Field()
+    prices = Field(
+        attribute='prices',
+        widget=widgets.ManyToManyWidget(
+            ProductXCurrency,
+            field='price',
+            separator='|')
+    )
+
+    def save(self, commit=True):
+        rub_price = self.cleaned_data.get('rub_price', None)
+        # ...do something with extra_field here...
+        return super(ProductResource, self).save(commit=commit)
+
+    def dehydrate_rub_price(self, product: Product):
+        rub_price = product.prices.filter(currency_id='RUB').first()
+        return getattr(rub_price, 'price', '-')
+
+    def dehydrate_usd_price(self, product: Product):
+        usd_price = product.prices.filter(currency_id='USD').first()
+        return getattr(usd_price, 'price', '-')
+
+    def dehydrate_eur_price(self, product: Product):
+        eur_price = product.prices.filter(currency_id='EUR').first()
+        return getattr(eur_price, 'price', '-')
+
+    # def before_import(self, dataset, using_transactions, dry_run, **kwargs):
+
+    # def import_data(self, dataset, dry_run=False, raise_errors=False,
+    #                 use_transactions=None, collect_failed_rows=False, **kwargs):
+    #
+    #     return super().import_data(dataset, dry_run, raise_errors, use_transactions, collect_failed_rows, **kwargs)
+
+
 @admin.register(Product)
-class ProductAdmin(MPTTModelAdmin):
+class ProductAdmin(ImportExportModelAdmin):
 
     class Media:
         css = {
             'all': ('css/admin/admin.css',)
         }
 
+    resource_class = ProductResource
     form = ProductCustomAdminForm
 
     formfield_overrides = {
@@ -136,7 +253,8 @@ class ProductAdmin(MPTTModelAdmin):
     list_filter = ('category__title', 'type__title', 'series__title', 'creation_date')
     autocomplete_fields = ('category', 'type', 'series', 'simlr')
     search_fields = ('title', 'qualifier')
-    inlines = (ProductImageInline, TechDocInline)
+    exclude = ('parent', 'simlr')
+    inlines = (ProductXCurrencyInline, ProductImageInline, TechDocInline)
 
     def get_category(self, instance):
         if instance:
@@ -159,3 +277,4 @@ class ProductAdmin(MPTTModelAdmin):
         else:
             return f"Производитель не указан, либо был удалён"
     get_manufacturer.short_description = "Производитель товара"
+

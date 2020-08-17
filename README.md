@@ -4,7 +4,7 @@
 Проект написан при помощи [Python + Django][1]
 
 Для разработки и доработки проекта необходимо настроить локальное окружение
-1. GIT
+1. [GIT][4], [Python][5]
 2. Установить [PyCharm][2] (есть как бесплатная версия Community так и платная Professional Edition)
 3. Иметь установленный локалько [Docker][3]
 4. Запустить PostgreSQL в Docker контейнере. (выполнить в консоли команду)
@@ -14,7 +14,7 @@
 6. Склонировать репозиторий `$> git clone https://github.com/happyoleg/hdl.git`
 7. Установить зависимости для python
 <br>`$> pip install -r requirements/python.txt` 
-(при ошибке вида: "Error: pg_config executable not found." в файле "requirements/python.txt" заменить "psycopg2==2.8.5" на "psycopg2-binary=2.8.5")
+(при ошибке вида: "Error: pg_config executable not found." в файле "requirements/python.txt" заменить "psycopg2==2.8.5" на "psycopg2-binary==2.8.5")
 8. Выполнить скрипты с миграциями в базу
 <br>`$> python src/manage.py migrate` 
 (возможно еще протребудется команда: `$> export SECRET_KEY='secret'`)
@@ -22,7 +22,7 @@
 <br>`$> python src/manage.py createsuperuser`
 Можно пропускать шаг с введением E-mail просто нажав Enter.
 Логин\Пароль также может быть просто admin/admin
-10. Запустить проект.
+10. Запустить проект. Возможно еще понадобится выполнить `export DEBUG=1 и export PYTHONPATH=./`
 ``$> python src/manage.py runserver``
 Проект будет доступен по адресу: http:\\127.0.0.1:8000
 Админка проекта будет доступна по адресу: http:\\127.0.0.1:8000\admin
@@ -30,6 +30,8 @@
   [1]: https://www.djangoproject.com
   [2]: https://www.jetbrains.com/ru-ru/pycharm/download/
   [3]: https://www.docker.com
+  [4]: https://git-scm.com
+  [5]: https://www.python.org
 
 ---
 PS

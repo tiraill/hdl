@@ -94,13 +94,22 @@ body {
   border-radius: inherit;
 }
 
+.btn__main span:hover a{
+  color: white;
+}
+
+
+.btn__main span:hover {
+  background: linear-gradient(to right , #19bff7 0%, #f14497 100%);
+}
+
 .btn__main:after {
   opacity: 0;
   top: 0;left: 0;right: 0;bottom: 0;
-  background: -o-linear-gradient(right , #19bff7 0%, #f14497 100%);
+ /* background: -o-linear-gradient(right , #19bff7 0%, #f14497 100%);
   background: -webkit-gradient(linear , right top, left top , from(#19bff7), to(#f14497));
-  background: linear-gradient(to left , #19bff7 0%, #f14497 100%);
-  -webkit-transition: all .3s;
+  background: linear-gradient(to left , #19bff7 0%, #f14497 100%); */
+  background: none;
   -o-transition: all .3s;
   transition: all .3s;
 }
@@ -628,7 +637,7 @@ body {
 }
 
 .scroll {
-  left: 15px;bottom: 95px;
+  left: 15px;bottom: 55px;
 }
 
 .scroll__txt {
@@ -1077,6 +1086,10 @@ i.i-star {
   padding: 18px 79px;
 }
 
+.offer__btn span:hover {
+  color: white;
+}
+
 /* ------------- *Scope ------------- */
 
 .scope {
@@ -1173,6 +1186,10 @@ i.i-star {
 
 .scope__btn span {
   background: #fff;
+}
+
+.scope__btn span:hover {
+  color: white;
 }
 
 /* ------------- *Trust ------------- */
@@ -1547,9 +1564,10 @@ input[type="checkbox"]:checked + span:before {
 }
 
 .subscription__btn:hover:after {
-  background: -o-linear-gradient(bottom , #19bff7 0%, #f14497 100%);
-  background: -webkit-gradient(linear , left bottom, left top , from(#19bff7), to(#f14497));
-  background: linear-gradient(to top , #19bff7 0%, #f14497 100%);
+  /* background: -o-linear-gradient(right , #19bff7 0%, #f14497 100%);
+  background: -webkit-gradient(linear , right top, left top , from(#19bff7), to(#f14497));
+  background: linear-gradient(to left , #19bff7 0%, #f14497 100%); */
+  background: none;
 }
 
 .subscription__btn span {
@@ -1782,6 +1800,11 @@ i.i-file {
   padding: 15px 47px;
 }
 
+.brochures__btn .btn span:hover {
+  background: linear-gradient(to right , #19bff7 0%, #f14497 100%);
+  color: white;
+}
+
 /* =================================== */
 /*            Page Catalog             */
 /* =================================== */
@@ -1797,6 +1820,7 @@ i.i-file {
 }
 .aside__button{
   margin: 10px auto 30px;
+  text-align: center;
 }
 
 
@@ -2016,6 +2040,11 @@ i.i-file {
 .catalog__btn .btn span {
   background: #fff;
   padding: 15px 40px;
+}
+
+.catalog__btn .btn span:hover {
+  background: linear-gradient(to right , #19bff7 0%, #f14497 100%);
+  color: white;
 }
 
 /* Catalog items END */
@@ -2956,6 +2985,11 @@ i.i-europe {
   background: #fff;
 }
 
+.options__btn .btn__main span:hover {
+  background: linear-gradient(to right , #19bff7 0%, #f14497 100%);
+  color: white;
+}
+
 .options__btn .btn__dark {
   padding: 15px 30px;
 }
@@ -3249,6 +3283,7 @@ i.i-europe {
 
 .product__price {
   font-weight: 300;
+  font-size: 20px;
 }
 
 .product__btn {
@@ -4151,6 +4186,14 @@ i.i-safety {
   right: 0;
 }
 
+.product_modal__sl .slick-prev {
+  left: -25px;
+}
+
+.product_modal__sl .slick-next {
+  right: -25px;
+}
+
 /* Controls sl END */
 
 .realization__btn {
@@ -4159,6 +4202,10 @@ i.i-safety {
 
 .realization__btn .btn span {
   padding: 15px 55px;
+}
+
+.realization__btn span:hover {
+  color: white;
 }
 
 /* ----------- *Sentence ------------- */
@@ -4346,10 +4393,12 @@ i.i-safety {
   position: relative;
   border-radius: 20px;
   padding: 70px 40px 50px;
-  max-width: 600px;width: 96%;
-  background: -webkit-gradient(linear, left top, right top, from(#2e1b56), to(#14083f));
+  max-width: 600px;
+  width: 96%;
+ /* background: -webkit-gradient(linear, left top, right top, from(#2e1b56), to(#14083f));
   background: -o-linear-gradient(left, #2e1b56, #14083f);
-  background: linear-gradient(to right, #2e1b56, #14083f);
+  background: linear-gradient(to right, #2e1b56, #14083f); */
+  background: #ffffff;
 }
 .modal__close {
   position: absolute;
@@ -4358,7 +4407,7 @@ i.i-safety {
 }
 
 .modal__close svg {
-  fill: #fff;
+  fill: #000000;
   width: inherit;height: inherit;
 }
 
